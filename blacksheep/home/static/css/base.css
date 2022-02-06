@@ -3,6 +3,28 @@ html {
 }
 
 body {
-    background-image: url('/media/home-bg.png') no-repeat center center fixed;
-    background-size: cover;
+    background: url('/media/home-bg.png') no-repeat center center fixed;
+    background-size: contain;
+    background-color: #386477;
+    height: calc(100vh - 400px);
+    font-family: 'Alegreya Sans', sans-serif;
+    color: #f4f4ee;
+}
+
+#banner-top {
+    background-color: #7DA074;
+    font-family: 'Alegreya', serif;
+}
+
+#nav-bg {
+    background-color: #2CC4D5;
+}
+
+.nav-link {
+    color: #111;
+    font-family: 'Alegreya', serif;
+}
+
+.text-pampas {
+    color: #f4f4ee;
 }

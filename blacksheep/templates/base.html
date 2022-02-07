@@ -50,17 +50,17 @@
 
 <body>
     <header class="container-fluid fixed-top">
-        <div id="banner-top" class="row py-lg-0 d-none d-lg-flex">
+        <div id="banner-top" class="row py-lg-0 d-lg-flex">
             <!-- Banner -->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <span class="mb-0 text-pampas">BlackSheep Printing</span>
+                <span class="d-none d-lg-block mb-0 text-pampas">BlackSheep Printing</span>
             </div>
             <!-- Delivery message -->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center">
                 <span class="mb-0 text-pampas">Free Delivery on Orders Exceeding €60!</span>
             </div>
             <!-- User and Basket buttons -->
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <div class="col-12 col-lg-4 d-none d-lg-block my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <!-- User-->
                     <li class="list-inline-item dropdown">
@@ -107,26 +107,28 @@
             </div>
         </div>
         <!-- navbar adapted from https://getbootstrap.com/docs/5.1/components/navbar/ -->
-        <div id="nav-bg" class="row py-lg-1 d-none d-lg-flex">
-            <!-- Logo -->
-            <div class="col-12 col-lg-4 my-auto py-1 text-center">
+        <div id="nav-bg" class="row py-lg-1d-lg-flex">
+            <!-- Logo, displays on all devices -->
+            <div class="col-3 col-lg-4 my-auto py-1 text-center">
                 <a class="navbar-brand" href="#">
                     <img src="{% static 'favicon/logo.png' %}" alt="logo" width="50" height="50">
                 </a>
             </div>
-            <!-- Adapted from boutique-ado template -->
-            <div class="col-12 col-lg-4 my-auto py-1 text-center">
+            <div class="col-6 d-lg-none">
+                <span class="mb-0 text-black">BlackSheep Printing</span>
+            </div>
+            <!-- Menu - Adapted from boutique-ado template -->
+            <div class="col-4 my-auto py-1 text-center">
                 <nav class="navbar navbar-expand-lg">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
-                        aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    {% include 'includes/mobile-top-header.html' %}
                     {% include 'includes/main-nav.html' %}
+                    {% include 'includes/mobile-top-header.html' %}
                 </nav>
             </div>
             <!-- Search bar -->
-            <div class="col-12 col-lg-4 my-auto py-1 text-right">
+            <div class="col-4 my-auto py-1 text-right">
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn" type="submit">
@@ -134,8 +136,6 @@
                     </button>
                 </form>
             </div>
-        </div>
-        </nav>
         </div>
     </header>
 

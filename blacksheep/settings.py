@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'google_oauth_app',
     'home',
-    
+    'products',
+
     # Other
     "crispy_forms",
     "crispy_bootstrap5",

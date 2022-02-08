@@ -9,6 +9,7 @@ django-allauth = "==0.47.0"
 djangorestframework = "*"
 django-cors-headers = "*"
 social-auth-app-django = "*"
+crispy-bootstrap5 = "*"
 
 [dev-packages]
 

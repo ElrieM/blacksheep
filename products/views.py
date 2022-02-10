@@ -8,17 +8,16 @@ from django.shortcuts import render, redirect, reverse
 
 def product_overview(request):
     """
-    A view to show categories and products for design template.
-    User selects category, then product, which loads design page.
+    A view to show categories and products.
     """
     return render(request, 'products/products.html')
 
 
-def product_design(request):
+def product_details(request):
     """
-    A view with selected product type in background, canvas overlay for design input and export design file
+    A view to show details of product, select options and add to cart
     """
-    return render(request, 'products/product_design.html')
+    return render(request, 'products/product_details.html')
 
 
 def add_product(request):

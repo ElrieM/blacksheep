@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'google_oauth_app',
     'home',
     'products',
+    'designs',
 
     # Other
     "crispy_forms",

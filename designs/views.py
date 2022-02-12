@@ -1,7 +1,9 @@
 # Imports 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 3rd party:
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+
+from .models import Mockup
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -11,14 +13,26 @@ def design_overview(request):
     A view to show categories and design for design template.
     User selects category, then product, which loads design page.
     """
-    return render(request, 'designs/design_overview.html')
+    mockups = Mockup.objects.all()
+
+    context = {
+        'mockup': mockups,
+    }
+
+    return render(request, 'designs/design_overview.html', context)
 
 
-def design_mockup(request):
+def design_mockup(request, mockup_id):
     """
     A view with selected product type in background, canvas overlay for design input and export design file
     """
-    return render(request, 'designs/design_mockup.html')
+
+    mockup = get_object_or_404(Mockup, pk=mockup_id)
+
+    context = {
+        'mockup': mockup,
+    }
+    return render(request, 'designs/design_mockup.html', context)
 
 
 def add_mockup(request):

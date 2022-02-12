@@ -10,10 +10,29 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-{% endblock %}
+<div class="overlay"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center">Choose a Product for Your Design</h2>
+            <div class="row">
+                {% for m in mockup %}
+                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <div class="card">
+                        <a href="{% url 'design_mockup' m.id %}">
+                            <img class="card-img-top" src="{{ m.image_url }}" alt="{{ m.friendly_name }}">
+                        </a>
+                        <div class="card-body">
+                            <a class="card-title" href="{% url 'designs' %}?mockup={{ m.name }}">
+                                <span class="">{{ m.friendly_name }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+            </div>
+        </div>
+    </div>
 
-{% block postloadjs %}
-    <!-- Include Fabric.js in the page -->
-    <script src="./fabric.min.js"></script>
+</div>
 {% endblock %}

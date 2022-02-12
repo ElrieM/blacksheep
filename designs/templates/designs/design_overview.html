@@ -23,7 +23,7 @@
                             <img class="card-img-top" src="{{ m.image_url }}" alt="{{ m.friendly_name }}">
                         </a>
                         <div class="card-body">
-                            <a class="card-title" href="{% url 'designs' %}?mockup={{ m.name }}">
+                            <a class="card-title" href="{% url 'design_mockup' m.id %}">
                                 <span class="">{{ m.friendly_name }}</span>
                             </a>
                         </div>

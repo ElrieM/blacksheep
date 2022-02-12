@@ -10,14 +10,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
+<div class="overlay"></div>
 
-    <!-- Create the container of the tool -->
+<!-- Create the container of the tool -->
     <div id="tshirt-div">
         <!-- 
-                Initially, the image will have the background tshirt that has transparency
-                So we can simply update the color with CSS or JavaScript dinamically
-            -->
+                    Initially, the image will have the background tshirt that has transparency
+                    So we can simply update the color with CSS or JavaScript dinamically
+                -->
         <img id="tshirt-backgroundpicture" src="{{ MEDIA_URL }}/background_tshirt.png" />
 
         <div id="drawingArea" class="drawing-area">
@@ -26,10 +26,10 @@
             </div>
         </div>
     </div>
+    <br>
 
     <p>To remove a loaded picture on the T-Shirt select it and press the <kbd>DEL</kbd> key.</p>
-    <!-- The select that will allow the user to pick one of the static designs -->
-    <br>
+
     <!-- The select that will allow the user to pick one of the static designs -->
     <br>
     <label for="tshirt-design">T-Shirt Design:</label>
@@ -50,53 +50,77 @@
         <option value="#ff0">Yellow</option>
     </select>
 
+    <br><br>
+    <label for="tshirt-custompicture">Upload your own design:</label>
+    <input type="file" id="tshirt-custompicture" />
+
 {% endblock %}
 
 {% block postloadjs %}
-    <!-- Include Fabric.js in the page -->
-    <script src="{{ STATIC_URL }}js/fabric.min.js"></script>
-    <script>
-        // Select the canvas an make it accesible for all the snippets of this article
-        let canvas = new fabric.Canvas('tshirt-canvas');
+<!-- Include Fabric.js in the page -->
+<script src="{{ STATIC_URL }}js/fabric.min.js"></script>
+<script>
+    let canvas = new fabric.Canvas('tshirt-canvas');
 
-        /**
-        * Method that defines a picture as background image of the canvas.
-        * 
-        * @param {String} imageUrl      The server URL of the image that you want to load on the T-Shirt.
-        *
-        * @return {void} Return value description.
-        */
-        function updateTshirtImage(imageURL) {
-            // If the user doesn't pick an option of the select, clear the canvas
-            if (!imageURL) {
-                canvas.clear();
-            }
+    function updateTshirtImage(imageURL){
+        fabric.Image.fromURL(imageURL, function(img) {                   
+            img.scaleToHeight(300);
+            img.scaleToWidth(300); 
+            canvas.centerObject(img);
+            canvas.add(img);
+            canvas.renderAll();
+        });
+    }
+    
+    // Update the TShirt color according to the selected color by the user
+    document.getElementById("tshirt-color").addEventListener("change", function(){
+        document.getElementById("tshirt-div").style.backgroundColor = this.value;
+    }, false);
 
-            // Create a new image that can be used in Fabric with the URL
-            fabric.Image.fromURL(imageURL, function (img) {
-                // Define the image as background image of the Canvas
-                canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
-                    // Scale the image to the canvas size
-                    scaleX: canvas.width / img.width,
-                    scaleY: canvas.height / img.height
-                });
-            });
+    // Update the TShirt color according to the selected color by the user
+    document.getElementById("tshirt-design").addEventListener("change", function(){
+
+        // Call the updateTshirtImage method providing as first argument the URL
+        // of the image provided by the select
+        updateTshirtImage(this.value);
+    }, false);
+
+    // When the user clicks on upload a custom picture
+    document.getElementById('tshirt-custompicture').addEventListener("change", function(e){
+        var reader = new FileReader();
+        
+        reader.onload = function (event){
+            var imgObj = new Image();
+            imgObj.src = event.target.result;
+
+            // When the picture loads, create the image in Fabric.js
+            imgObj.onload = function () {
+                var img = new fabric.Image(imgObj);
+
+                img.scaleToHeight(300);
+                img.scaleToWidth(300); 
+                canvas.centerObject(img);
+                canvas.add(img);
+                canvas.renderAll();
+            };
+        };
+
+        // If the user selected a picture, load it
+        if(e.target.files[0]){
+            reader.readAsDataURL(e.target.files[0]);
         }
+    }, false);
 
-        // 1. When the T-Shirt color select changes:
-        // Update the TShirt color according to the selected color by the user
-        document.getElementById("tshirt-color").addEventListener("change", function () {
-            document.getElementById("tshirt-div").style.backgroundColor = this.value;
-        }, false);
+    // When the user selects a picture that has been added and press the DEL key
+    // The object will be removed !
+    document.addEventListener("keydown", function(e) {
+        var keyCode = e.keyCode;
 
-        // 2. When the user picks a design:
-        // Update the TShirt background image according to the selected image by the user
-        document.getElementById("tshirt-design").addEventListener("change", function () {
-
-            // Call the updateTshirtImage method providing as first argument the URL
-            // of the image provided by the select
-            updateTshirtImage(this.value);
-        }, false);
-    </script>
+        if(keyCode == 46){
+            console.log("Removing selected element on Fabric.js on DELETE key !");
+            canvas.remove(canvas.getActiveObject());
+        }
+    }, false);
+</script>
 
 {% endblock %}

@@ -419,26 +419,12 @@ Heroku is a free hosting service for hosting small projects.
 ## 7.1. Code
 
 - Bootstrap 5: Bootstrap Library used to make the site responsive using the Bootstrap Grid System
-- [emailJS](https://www.emailjs.com/) for contact form API
-- [Sign in form](https://mdbootstrap.com/docs/standard/extended/login/) for Sign In form
-- [Register form](https://mdbootstrap.com/docs/standard/extended/register/) for Register form
-- [Flash messages](https://flask.palletsprojects.com/en/2.0.x/patterns/flashing/)
-- [Clicking for detailed recipe](https://stackoverflow.com/questions/67165461/get-data-on-selection-from-mongodb-list-in-python-and-html)
 - [Form autocomplete](https://www.chromium.org/developers/design-documents/form-styles-that-chromium-understands)
 - [AWS file uploading](https://gist.github.com/leongjinqwen/9d9a2d58bf2fb923658820559a88a5ec)
-- [AWS file uploading with Flask](https://medium.com/aws-pocket/uploading-files-to-aws-s3-with-flask-3d3d213404fb)
-- [Forcing Footer to bottom of page](https://stackoverflow.com/questions/16679146/force-footer-on-bottom-on-pages-with-little-content)
-- [Displaying array](https://www.w3resource.com/javascript-exercises/javascript-array-exercise-13.php)
+- [Using FabricJS for t-shirt printing website](https://ourcodeworld.com/articles/read/1016/how-to-create-your-own-t-shirt-designer-using-fabricjs-in-javascript)
 
 ## 7.2. Content
 
-- Recipes for testing :
-  - [Banana Bread](https://www.simplyrecipes.com/recipes/banana_bread/)
-  - [Beetroot Hummus Crispy Chickpea Sub Sandwich](https://www.bbcgoodfood.com/recipes/beetroot-hummus-crispy-chickpea-sub-sandwich)
-- Recipe images:
-  - [Banana Bread](Photo by Airin Party from Pexels https://www.pexels.com/photo/close-up-photography-of-banana-bread-on-saucer-830894/)
-- [HTML error details](https://en.wikipedia.org/wiki/List_of_HTTP_status_code0073)
-- Placeholder image for recipes adapted from [flaticon](https://www.flaticon.com/free-icon/hot-pot_465)
 - Created favicon from logo using [favicon.cc](https://www.favicon.cc/)
 
 ## 7.3. Media

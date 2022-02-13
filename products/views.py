@@ -3,14 +3,24 @@
 # 3rd party:
 from django.shortcuts import render, redirect, reverse
 
+# Internal:
+from .models import Product, Category, Subcategory
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 def product_overview(request):
     """
-    A view to show categories and products.
+    A view to show categories, subcategories and products.
     """
-    return render(request, 'products/products.html')
+
+    products = Product.objects.all()
+
+    context = {
+        'products': products,
+        'current_categories': Category.objects.all(),
+        'current_subcategories': Subcategory.objects.all(),
+    }
+    return render(request, 'products/products.html', context)
 
 
 def product_details(request):

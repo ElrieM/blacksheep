@@ -4,7 +4,7 @@
 from django.contrib import admin
 
 # internal:
-from .models import Category, Subcategory, Product
+from .models import Category, Product
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class ProductAdmin(admin.ModelAdmin):
@@ -15,7 +15,6 @@ class ProductAdmin(admin.ModelAdmin):
         'stock_code',
         'name',
         'category',
-        'subcategory',
         'has_sizes',
         'price',
         'image',
@@ -24,13 +23,11 @@ class ProductAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'category',
-        'subcategory',
         'name',
         'price',
     )
     search_fields = (
         'category',
-        'subcategory',
         'name',
         'price',
     )
@@ -47,16 +44,5 @@ class CategoryAdmin(admin.ModelAdmin):
     )
 
 
-class SubcategoryAdmin(admin.ModelAdmin):
-    """
-    Subcategory model admin class
-    """
-    list_display = (
-        'friendly_name',
-        'name',
-    )
-
-
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Subcategory, SubcategoryAdmin)

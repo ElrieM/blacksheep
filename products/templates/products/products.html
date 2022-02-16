@@ -11,15 +11,20 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container-fluid">
-        <div class="row">
-            <h2>Products</h2>
-            {% for c in current_categories %}
-            <a href="{% url 'products'  %}?category={{ c.name }}">
+<div class="overlay"></div>
+<div class="container-fluid">
+    <h2>Products</h2>
+    <div class="row">
+        {% for c in current_categories %}
+        <div class="product-container col-sm-6 col-md-6, col-lg-3, col-xl-4">
+            <img class="category-img" src="https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/products/male_tshirt_skeleton.png" alt="{{ c.name }}">
+            <br>
+            <a href="{% url 'products' %}?category={{ c.name }}">
                 <span>{{ c.friendly_name }}</span>
             </a>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
+
+</div>
 {% endblock %}

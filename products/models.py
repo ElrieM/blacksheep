@@ -18,43 +18,8 @@ class Category(models.Model):
         """
         verbose_name_plural = 'Categories'
 
-    name = models.CharField(
-        verbose_name=_('Name'),
-        max_length=254
-    )
-    friendly_name = models.CharField(
-        max_length=254,
-        null=True,
-        blank=True
-    )
-
-    def __str__(self):
-        """
-        Returns category name string
-        """
-        return self.name
-
-
-class Subcategory(models.Model):
-    """
-    Subcategory model class
-    """
-
-    class Meta:
-        """
-        Plural name for class
-        """
-        verbose_name_plural = 'Subcategories'
-
-    name = models.CharField(
-        verbose_name=_('Name'),
-        max_length=254
-    )
-    friendly_name = models.CharField(
-        max_length=254,
-        null=True,
-        blank=True
-    )
+    name = models.CharField(verbose_name=_('Name'),max_length=254)
+    friendly_name = models.CharField(max_length=254,null=True,blank=True)
 
     def __str__(self):
         """
@@ -68,7 +33,6 @@ class Product(models.Model):
     Product model class
     """
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
-    subcategory = models.ForeignKey('Subcategory', null=True, blank=True, on_delete=models.SET_NULL)
     stock_code = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()

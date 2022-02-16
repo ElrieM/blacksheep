@@ -50,6 +50,15 @@ body {
     z-index: -1;
 }
 
+.product-container {
+    color:#386477;
+    border: 1px solid #386477;
+}
+
+.category-img {
+    width: 80%;
+}
+
 /* -- T-shirt design */
 
 .drawing-area{

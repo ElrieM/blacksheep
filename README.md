@@ -434,6 +434,7 @@ Heroku is a free hosting service for hosting small projects.
 - [Pexels](https://www.pexels.com/)
 - [Testing and ReadMe example](https://github.com/pmeeny/CI-MS3-https://github.com/pmeeny/CI-MS3-FootballMemories)overview/why-cypress)
 - [Header image](https://github.com/ElrieM/MS3-RecipeBundle/blob/3eb943e1db8a44dc72540c3f1a523e6976ab4384/README.md#L465)
+- [Placeholder image](https://www.freeiconspng.com/img/23499)
 
 ## 7.4. Acknowledgements
 

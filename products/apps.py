@@ -1,6 +1,13 @@
+# Imports
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# 3rd party:
 from django.apps import AppConfig
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 class ProductsConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
+    """
+    Products app configuring class
+    """
     name = 'products'

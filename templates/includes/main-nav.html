@@ -15,23 +15,23 @@
                 <a class="dropdown-item" href="{% url 'products' %}">View All</a>
                 <!-- Men section -->
                 <a class="dropdown-header">Men</a>
-                <a class="dropdown-item" href="">T-Shirts</a>
-                <a class="dropdown-item" href="">Hoodies</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=mens_tshirt">T-Shirts</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=mens_hoodies">Hoodies</a>
                 <hr class="dropdown-divider">
                 <!-- Women section -->
                 <a class="dropdown-header">Women</a>
-                <a class="dropdown-item" href="">T-Shirts</a>
-                <a class="dropdown-item" href="">Hoodies</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=ladies_tshirt">T-Shirts</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=ladies_hoodies">Hoodies</a>
                 <hr class="dropdown-divider">
                 <!-- Children section -->
                 <a class="dropdown-header">Children</a>
-                <a class="dropdown-item" href="">T-Shirts</a>
-                <a class="dropdown-item" href="">Onesie</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=kids_tshirt">T-Shirts</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=kids_onesie">Onesie</a>
                 <hr class="dropdown-divider">
                 <!-- Other-->
                 <a class="dropdown-header">Other</a>
-                <a class="dropdown-item" href="">Pillowcase</a>
-                <a class="dropdown-item" href="">Bags</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=other_pillowcase">Pillowcase</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=other_shopbag">Bags</a>
             </div>
         </li>
         <!-- Nav option 3 -->

@@ -13,16 +13,7 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container-fluid">
-    <h2>Products</h2>
-    <div class="row">
-        {% for c in current_categories %}
-        <div class="container col text-center">
-            <a href="{% url 'products' %}?category={{ c.name }}">
-                <span>{{ c.friendly_name }}</span>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
+    <h2 class="text-center">Products</h2>
     <!-- Product sorting and filtering -->
     <div class="row">
         <div class="product-container">
@@ -30,21 +21,22 @@
                 <div class="col-9">
                     <p>
                         {% if search_term or current_categories or current_sorting != 'None_None' %}
-                            <span class="small"><a href="{% url 'products' %}">Clear Filter</a> | </span>
+                            <span class="small"><a href="{% url 'products' %}">Show All</a> | </span>
                         {% endif %}
                         {{ products|length }} Products{% if search_term %} found for {{ search_term }}{% endif %}
                     </p>
                 </div>
                 <div class="col-3">
                     <div class="sort-select-wrapper">
+                        <label for="sort-selector" hidden>Sort products</label>
                         <select id="sort-selector">
                             <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...</option>
                             <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price Ascending</option>
                             <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price Descending</option>
                             <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
                             <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-                            <option value="cat_asc" {% if current_sorting == 'cat_asc' %}selected{% endif %}>Category (A-Z)</option>
-                            <option value="cat_desc" {% if current_sorting == 'cat_desc' %}selected{% endif %}>Category (Z-A)</option>
+                            <option value="category_asc" {% if current_sorting == 'cat_asc' %}selected{% endif %}>Category (A-Z)</option>
+                            <option value="category_desc" {% if current_sorting == 'cat_desc' %}selected{% endif %}>Category (Z-A)</option>
                         </select>
                     </div>
                 </div>
@@ -54,10 +46,13 @@
     <!-- Product display -->
     <div class="row">
         {% for product in products %}
-            {%if product.category %}
+            {% if product.category %}
             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                 <div class="card">
                     <!-- Product in card (header) -->
+                    <div class="card-header">
+                        <h5 class="card-title text-center">{{ product.name }}</h5>
+                    </div>
                     {% if product.image %}
                         <a href="{% url 'product_details' product.id %}?category={{ product.category.name }}">
                             <img src="{{ product.image_url }}" alt="{{ product.name }}"
@@ -70,7 +65,7 @@
                     {% endif %}
                     <!-- Product in card (body) -->
                     <div class="card-body">
-                        <h5 class="card-title text-center">{{ product.name }}</h5>
+                        <span>{{ product.category.friendly_name }}</span>
                         <a href="{% url 'product_details' product.id %}" class="btn btn-link">View</a>
                     </div>
                 </div>
@@ -80,4 +75,8 @@
     </div>
 
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'js/products.js' %}"></script>
 {% endblock %}

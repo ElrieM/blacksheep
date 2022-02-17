@@ -50,6 +50,7 @@ body {
     z-index: -1;
 }
 
+.card,
 .product-container {
     color:#386477;
 }

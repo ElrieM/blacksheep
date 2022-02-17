@@ -45,7 +45,7 @@ def product_overview(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "No search criteria entered")
+                messages.error(request,("No search criteria entered"))
                 return redirect(reverse('products'))
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
@@ -55,7 +55,7 @@ def product_overview(request):
 
     context = {
         'products': products,
-        'current_categories': Category.objects.all(),
+        'current_categories': categories,
         'search_term': query,
         'current_sorting': current_sorting,
     }

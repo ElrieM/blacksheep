@@ -31,7 +31,7 @@ class ProductAdmin(admin.ModelAdmin):
         'name',
         'price',
     )
-    
+
     ordering = ('stock_code',)
 
 class CategoryAdmin(admin.ModelAdmin):

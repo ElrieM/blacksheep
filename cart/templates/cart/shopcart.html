@@ -7,23 +7,57 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container mb-2">
-        <div class="row">
-            <div class="col">
-                <h2 class="text-center">Shopping cart</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                {% if cart_items %}
-                <div class="table-responsive"></div>
-                {% else %}
-                <p class="mb-5">Cart is Empty</p>
-                <a href="{% url 'products' %}" class="btn">Browse Products</a>
-                <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
-                {% endif %}
-            </div>
+<div class="overlay"></div>
+<div class="container mb-2">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center">Shopping cart</h2>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            {% if cart_items %}
+            <div class="table-responsive">
+                <table class="table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product Info</th>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+
+                        {% for item in cart_items %}
+                        <tr>
+                            <td class="p-3 w-25">
+                                <img class="img-fluid" src="{{ item.product.image.url }}">
+                            </td>
+                            <td class="py-3">
+                                <p class="my-0">{{ item.product.name }}</p>
+                                <p class="my-0">SKU: {{ item.product.stock_code|upper }}</p>
+                            </td>
+                            <td class="py-3">
+                                <p class="my-0">€{{ item.product.price }}</p>
+                            </td>
+                            <td class="py-3">
+                                <p class="my-0">{{ item.quantity }}</p>
+                            </td>
+                            <td class="py-3">
+                                <p class="my-0">€{{ item.product.price }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </thead>
+                </table>
+            </div>
+            {% else %}
+            <p class="mb-5">Cart is Empty</p>
+            <a href="{% url 'products' %}" class="btn">Browse Products</a>
+            <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

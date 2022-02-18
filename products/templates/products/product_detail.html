@@ -16,9 +16,9 @@
         <div class="col">
             <div class="image-container my-5">
                 {% if product.image %}
-                    <img src="{{ product.image_url }}" alt="{{ product.name }}" class="card-img-top">
+                <img src="{{ product.image_url }}" alt="{{ product.name }}" class="card-img-top">
                 {% else %}
-                    <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ product.name }}" class="card-img-top">
+                <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ product.name }}" class="card-img-top">
                 {% endif %}
             </div>
         </div>
@@ -39,6 +39,31 @@
                 </p>
                 {% endif %}
             </div>
+            <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-12">
+                        <p class="mt-3">Quantity:</p>
+                        <div class="form-group w-50">
+                            <div class="input-group">
+                                <input type="number" class="form-control qty_input" name="quantity" value="1" min="1"
+                                    max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                    <input type="submit" class="btn btn-info" value="Add to Cart">
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                        <a href="{% url 'products' %}" class="btn btn-link">Keep Shopping</a>
+                        <br>
+                        <a href="{% url 'designs' %}" class="btn btn-link">Design Your Own</a>
+                        
+                    </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+
+                </div>
+            </form>
         </div>
     </div>
 </div>

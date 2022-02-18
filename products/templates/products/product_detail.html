@@ -42,6 +42,21 @@
             <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
                 {% csrf_token %}
                 <div class="form-row">
+                    {% with product.has_sizes as s %}
+                    {% if s %}
+                        <div class="col-12">
+                            <p>Size:</p>
+                            <!-- Product size selector -->
+                            <select class="form-control w-50" name="product_size" id="id_product_size">
+                                <option value="xs">XS</option>
+                                <option value="s">S</option>
+                                <option value="m">M</option>
+                                <option value="l">L</option>
+                                <option value="xl">XL</option>
+                                <option value="xxl">XXL</option>
+                            </select>
+                        </div>
+                    {% endif %}
                     <div class="col-12">
                         <p class="mt-3">Quantity:</p>
                         <div class="form-group w-50">
@@ -53,7 +68,7 @@
                             
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col{% if s %}-12{% endif %}">
                         <hr>
                         <a href="{% url 'products' %}" class="btn btn-link">Keep Shopping</a>
                         <br>
@@ -61,7 +76,7 @@
                         
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
-
+                    {% endwith %}
                 </div>
             </form>
         </div>

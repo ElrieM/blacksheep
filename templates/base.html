@@ -89,7 +89,7 @@
                     <!-- Shopping cart -->
                     <li class="list-inline-item">
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}{% endif %} nav-link"
-                            href="#">
+                            href="{% url 'view_cart' %}">
                             <div class="text-center text-pampas">
                                 <div><i class="fas fa-shopping-cart"></i>
                                     <span class="my-0">

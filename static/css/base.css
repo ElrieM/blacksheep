@@ -62,6 +62,11 @@ body {
     max-width: 65%;
 }
 
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
 /* -- T-shirt design */
 
 .drawing-area{
@@ -96,6 +101,7 @@ body {
     user-select: none; 
     cursor: default;
 }
+
 
 /* --------------------------------- Media queries */
 

@@ -25,16 +25,11 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
 
-        stripe.PaymentIntent.modify(pid,
-                                    metadata={
-                                        'cart':
-                                        json.dumps(
-                                            request.session.get('cart', {})),
-                                        'save_info':
-                                        request.POST.get('save_info'),
-                                        'username':
-                                        request.user,
-                                    })
+        stripe.PaymentIntent.modify(pid, metadata={
+            'cart': json.dumps(request.session.get('cart', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(
@@ -100,11 +95,10 @@ def checkout(request):
                     return redirect(reverse('view_cart'))
 
             request.session['save_info'] = 'save_info' in request.POST
-            return redirect(
-                reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                        args=[order.order_number]))
         else:
-            messages.error(
-                request,
+            messages.error(request,
                 "An error occurred, please double-check your details.")
     else:
         cart = request.session.get('cart', {})

@@ -193,9 +193,13 @@
     </div>
 
     <div class="row">
-        <div class="col-12 col-lg-7">
-            <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
-            <a href="{% url 'products' %}" class="btn">Browse Products</a>
+        <div class="col-12 col-lg-7 text-right">
+            {% if from_profile %}
+                <a href="{% url 'profile' %}" class="btn">Return to Profile</a>
+            {% else %}
+                <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
+                <a href="{% url 'products' %}" class="btn">Browse Products</a>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -8,7 +8,6 @@ body {
     background-color: #386477;
     height: calc(100vh - 400px);
     font-family: 'Alegreya Sans', sans-serif;
-    color: #f4f4ee;
 }
 
 #banner-top {
@@ -93,6 +92,14 @@ body {
     
     border-bottom: 5px solid black;
   }
+
+/* Allauth form formatting */
+
+.allauth-form-inner p {
+    margin-top: 1.5rem;
+    color: #386477; /* text-secondary */
+}
+
 
 /* -- T-shirt design */
 

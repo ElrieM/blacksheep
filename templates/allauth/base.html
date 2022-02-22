@@ -1,20 +1,36 @@
-#google_oauth_app/templates/index.html
-
-{% load socialaccount %}
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Google Authentication with Django</title>
-  </head>
-  <body>
-    <h2>How to Set Up Google Authentication with Django</h2>
-    {% if user.is_authenticated %}
-       <p>Welcome, {{ user.username }} !</p>
-       <a target="_black" href="admin">admin</a>
-       <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-      {% if google_login %}
-         <a href="{% provider_login_url 'google' %}">Login with Google</a>
+
+<head>
+  <title>{% block head_title %}{% endblock %}</title>
+  {% block extra_head %}
+  {% endblock %}
+</head>
+
+<body>
+  {% block body %}
+
+  {% if messages %}
+  <div>
+    <strong>Messages:</strong>
+    <ul>
+      {% for message in messages %}
+      <li>{{message}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <div>
+    <strong>Menu:</strong>
+    <ul>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+      <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+      {% else %}
+      <li><a href="{% url 'account_login' %}">Sign In</a></li>
+      <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
       {% endif %}
-    {% endif %}
-  </body>
-</html>
+    </ul>
+
+</body>

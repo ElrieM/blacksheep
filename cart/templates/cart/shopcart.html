@@ -4,6 +4,9 @@
 
 {% block page_header %}
 <div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
 </div>
 {% endblock %}
 
@@ -19,7 +22,7 @@
         <div class="col">
             {% if cart_items %}
             <div class="table-responsive">
-                <table class="table-responsive">
+                <table class="table table-sm table-borderless">
                     <thead>
                         <tr>
                             <th scope="col">Product Info</th>
@@ -38,8 +41,11 @@
                         <td class="py-3">
                             <p class="my-0">{{ item.product.name }}</p>
                             <p class="my-0">Size:
-                                {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-                            <p class="my-0">SKU: {{ item.product.stock_code|upper }}</p>
+                                {% if item.product.has_sizes %}
+                                {{ item.size|upper }}
+                                {% else %}N/A{% endif %}
+                            </p>
+                            <p class="my-0">Stock Code: {{ item.product.stock_code|upper }}</p>
                         </td>
                         <td class="py-3">
                             <p class="my-0">€{{ item.product.price }}</p>
@@ -50,31 +56,31 @@
                                     class="form update-form">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <div class="input-group input-group-{{ item.item_id }}">
+                                        <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <button
                                                     class="decrement-qty btn btn-sm decrement-qty_{{ item.item_id }}"
-                                                    data-item_id="{{ item.item_id }}">
+                                                    data-item_id="{{ item.item_id }}" id="decrement-qty{{ item.item_id }}">
                                                     <span>
                                                         <i class="fas fa-minus fa-sm"></i>
                                                     </span>
                                                 </button>
                                             </div>
-                                            <input type="number"
-                                                class="form-control form-control-sm qty_input id_qty_{{ item.item_id }}"
+                                            <input type="number" class="form-control form-control-sm qty_input"
                                                 name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                data-item_id="{{ item.item_id }}">
+                                                data-item_id="{{ item.item_id }}"
+                                                id="id_qty_{{ item.item_id }}">
                                             <div class="input-group-append">
-                                                <button
-                                                    class="increment-qty btn btn-sm increment-qty_{{ item.item_id }}"
-                                                    data-item_id="{{ item.item_id }}">
+                                                <button class="increment-qty btn btn-sm"
+                                                    data-item_id="{{ item.item_id }}"
+                                                    id="increment-qty_{{ item.item_id }}">
                                                     <span>
                                                         <i class="fas fa-plus fa-sm"></i>
                                                     </span>
                                                 </button>
                                             </div>
                                             {% if item.product.has_sizes %}
-                                            <input type="hidden" name="product_size" value="{{ item.size }}">
+                                                <input type="hidden" name="product_size" value="{{ item.size }}">
                                             {% endif %}
                                         </div>
                                     </div>
@@ -92,12 +98,12 @@
                     <tr>
                         <td colspan="5" class="pt-5 text-right">
                             <h6>Cart Total: €{{ total|floatformat:2 }}</h6>
-                            <h6>Delivery Fee: €{{ delivery|floatformat:2 }}</h6>
+                            <h6>Delivery Costs: €{{ delivery|floatformat:2 }}</h6>
                             <h4 class="mt-4">Grand Total: €{{ grand_total|floatformat:2 }}</h4>
                             {% if free_delivery_delta > 0 %}
-                            <p class="mb-1">
-                                If you spend an extra €{{ free_delivery_delta }}, you will quality for Free Delivery!
-                            </p>
+                                <p class="mb-1">
+                                    If you spend an extra €{{ free_delivery_delta }}, you will quality for Free Delivery!
+                                </p>
                             {% endif %}
                         </td>
                     </tr>
@@ -126,9 +132,9 @@
                 </table>
             </div>
             {% else %}
-            <p class="mb-5">Cart is Empty</p>
-            <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
-            <a href="{% url 'products' %}" class="btn">Browse Products</a>
+                <p class="mb-5">Cart is Empty</p>
+                <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
+                <a href="{% url 'products' %}" class="btn">Browse Products</a>
             {% endif %}
         </div>
     </div>

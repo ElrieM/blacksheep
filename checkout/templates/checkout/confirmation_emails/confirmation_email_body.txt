@@ -1,0 +1,23 @@
+Hi {{ order.full_name }},
+
+Thank you for your order with BlackSheep Printing!
+
+Order Details:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.order_date }}
+
+Order Total: €{{ order.order_total }}
+Delivery charges: €{{ order.delivery_cost }}
+Grand Total: €{{ order.grand_total }}
+
+Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order. country }}order.
+
+Our records show your number as {{ order.phone_number }}.
+
+If you need any assistance, please contact us at {{ contact_ email }}.
+
+Best regards,
+
+BlackSheep Printing
+

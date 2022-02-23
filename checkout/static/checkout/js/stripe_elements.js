@@ -12,16 +12,12 @@ var elements = stripe.elements();
 var style = {
     base: {
         iconColor: '#c4f0ff',
-        color: '#fff',
-        fontWeight: '500',
+        color: '#000',
         fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
         fontSize: '16px',
         fontSmoothing: 'antialiased',
-        ':-webkit-autofill': {
-            color: '#fce883',
-        },
         '::placeholder': {
-            color: '#87BBFD',
+            color: '#000',
         },
     },
     invalid: {
@@ -30,9 +26,7 @@ var style = {
     },
 };
 
-var card = elements.create('card', {
-    style: style
-});
+var card = elements.create('card', {style: style});
 card.mount('#card-element');
 
 // Handle realtime validation errors on the card element
@@ -56,14 +50,13 @@ var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function (ev) {
     ev.preventDefault();
-    card.update({
-        'disabled': true
-    });
+    card.update({'disabled': true});
     $('#submit-button').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    // from using {% csrf_token %} in the form
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
@@ -84,7 +77,7 @@ form.addEventListener('submit', function (ev) {
                         line1: $.trim(form.street_address1.value),
                         line2: $.trim(form.street_address2.value),
                         city: $.trim(form.town_or_city.value),
-                        county: $.trim(form.county.value),
+                        state: $.trim(form.county.value),
                         country: $.trim(form.country.value),
                     }
                 }
@@ -96,7 +89,7 @@ form.addEventListener('submit', function (ev) {
                     line1: $.trim(form.street_address1.value),
                     line2: $.trim(form.street_address2.value),
                     city: $.trim(form.town_or_city.value),
-                    county: $.trim(form.county.value),
+                    state: $.trim(form.county.value),
                     postal_code: $.trim(form.postcode.value),
                     country: $.trim(form.country.value),
                 }
@@ -105,16 +98,14 @@ form.addEventListener('submit', function (ev) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
-                <span class="icon" role="alert">
-                    <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
+                    <span class="icon" role="alert">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
                 $('#payment-form').fadeToggle(100);
                 $('#loading-overlay').fadeToggle(100);
-                card.update({
-                    'disabled': false
-                });
+                card.update({'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
                 if (result.paymentIntent.status === 'succeeded') {

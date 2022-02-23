@@ -34,8 +34,7 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(
-            request, "Your payment cannot be processed at the moment. \
+        messages.error(request, "Your payment cannot be processed at the moment. \
             Please try again later.")
         return HttpResponse(content=e, status=400)
 
@@ -62,6 +61,7 @@ def checkout(request):
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
         }
+        
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
@@ -76,7 +76,7 @@ def checkout(request):
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
-                            quantiy=item_data,
+                            quantity=item_data,
                         )
                         order_line_item.save()
                     else:
@@ -118,8 +118,6 @@ def checkout(request):
             payment_method_types=['card'],
         )
 
-        print(intent)
-        
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -138,8 +136,6 @@ def checkout(request):
                 order_form = OrderForm()
         else:
             order_form = OrderForm()
-
-        order_form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(
@@ -169,7 +165,7 @@ def checkout_success(request, order_number):
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
-        
+
         # Save the user's info
         if save_info:
             profile_data = {
@@ -185,10 +181,9 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(
-        request, f'Order successfully completed.\
+    messages.success(request, f'Order successfully completed.\
         Your order number is {order_number}. A confirmation \
-            email will be sent {order.email} shortly.')
+        email will be sent {order.email} shortly.')
 
     if 'cart' in request.session:
         del request.session['cart']

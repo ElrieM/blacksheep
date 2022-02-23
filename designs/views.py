@@ -3,6 +3,7 @@
 # 3rd party:
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Mockup
 from .forms import MockupForm
@@ -35,10 +36,15 @@ def design_mockup(request, mockup_id):
     return render(request, 'designs/design_mockup.html', context)
 
 
+@login_required
 def add_mockup(request):
     """
     A view for adding new mockup templates. Only administrative users can make changes.
     """
+    if not request.user.is_superuser:
+        messages.error(request, "This action can only be performed by super users.")
+        return redirect(reverse('home'))
+
     if request.method == 'POST':
         form = MockupForm(request.POST, request.FILES)
         if form.is_valid():
@@ -58,10 +64,16 @@ def add_mockup(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_mockup(request, mockup_id):
     """
     A view for editing existing mockup templates. Only administrative users can make changes.
     """
+    if not request.user.is_superuser:
+        messages.error(request, "This action can only be performed by super users.")
+        return redirect(reverse('home'))
+
+
     mockup = get_object_or_404(Mockup, pk=mockup_id)
     if request.method == 'POST':
         form = MockupForm(request.POST, request.FILES, instance=mockup)
@@ -84,10 +96,15 @@ def edit_mockup(request, mockup_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_mockup(request, mockup_id):
     """
     A view to delete a mockup template.
     """
+    if not request.user.is_superuser:
+        messages.error(request, "This action can only be performed by site administrators.")
+        return redirect(reverse('home'))
+
     mockup = get_object_or_404(Mockup, pk=mockup_id)
     mockup.delete()
     messages.success(request, 'Design template removed')

@@ -1,8 +1,9 @@
 # Imports
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 3rd party:
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Internal:
 from checkout.models import Order
@@ -11,10 +12,15 @@ from .forms import UserProfileForm
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+@login_required
 def profile(request):
     """
     View to display user's profile
     """
+    if not request.user.is_authenticated:
+        messages.error(request, "Sign in required for this action.")
+        return redirect(reverse('home'))
+
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
@@ -39,17 +45,25 @@ def profile(request):
     return render(request, template, context)
 
 
+@login_required
 def admin_overview(request):
     """
     View for super users to manage products
     """
+    if not request.user.is_superuser:
+        messages.error(request, "This option is only available to site administrators.")
+        return redirect(reverse('home'))
     return render(request, 'profiles/admin_overview.html')
 
 
+@login_required
 def order_history(request, order_number):
     """
     View for previous order summary
     """
+    if not request.user.is_authenticated:
+        messages.error(request, "Sign in required for this action.")
+        return redirect(reverse('home'))
 
     order = get_object_or_404(Order, order_number=order_number)
 

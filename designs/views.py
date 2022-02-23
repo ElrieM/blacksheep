@@ -84,8 +84,12 @@ def edit_mockup(request, mockup_id):
     return render(request, template, context)
 
 
-def delete_mockup(request):
+def delete_mockup(request, mockup_id):
     """
     A view to delete a mockup template.
     """
+    mockup = get_object_or_404(Mockup, pk=mockup_id)
+    mockup.delete()
+    messages.success(request, 'Design template removed')
+
     return redirect(reverse('designs'))

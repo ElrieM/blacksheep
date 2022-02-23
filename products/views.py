@@ -8,6 +8,7 @@ from django.db.models.functions import Lower
 
 # Internal:
 from .models import Product, Category
+from .forms import ProductForm
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -80,13 +81,20 @@ def add_product(request):
     """
     A view for adding new product types and templates. Only administrative users can make changes.
     """
-    return render(request, 'products/add_product.html')
+    form = ProductForm()
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+    return render(request, template, context)
 
 
 def edit_product(request):
     """
-    A view for editing existing product types and templates. Only administrative users can make changes.
+    A view for editing existing product types and templates.
+    Only administrative users can make changes.
     """
+
     return render(request, 'products/edit_product.html')
 
 

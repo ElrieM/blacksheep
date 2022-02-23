@@ -50,7 +50,7 @@ def add_mockup(request):
                 Please check form is valid and try again')
     else:
         form = MockupForm()
-    
+
     template = 'designs/add_mockup.html'
     context = {
         'form': form,

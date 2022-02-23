@@ -100,13 +100,31 @@ def add_product(request):
     return render(request, template, context)
 
 
-def edit_product(request):
+def edit_product(request, product_id):
     """
     A view for editing existing product types and templates.
     Only administrative users can make changes.
     """
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product details updated successfully')
+            return redirect(reverse('product_details', args=[product.id]))
+        else:
+            messages.error(request, 'Product update failed. Please review form details and resubmit')
+    else:
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.name}')
 
-    return render(request, 'products/edit_product.html')
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, template, context)
 
 
 def delete_product(request):

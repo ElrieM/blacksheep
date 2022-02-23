@@ -46,10 +46,11 @@ def product_overview(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request,("No search criteria entered"))
+                messages.error(request, ("No search criteria entered"))
                 return redirect(reverse('products'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) | Q(
+                description__icontains=query)
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -81,7 +82,17 @@ def add_product(request):
     """
     A view for adding new product types and templates. Only administrative users can make changes.
     """
-    form = ProductForm()
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New product added successfully')
+            return redirect(reverse('add_product'))
+        else:
+            messages.error(request,'Adding new product failed. Please check form is valid and try again')
+    else:
+        form = ProductForm()
+
     template = 'products/add_product.html'
     context = {
         'form': form,

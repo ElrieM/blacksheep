@@ -36,7 +36,11 @@
                     {% for item in cart_items %}
                     <tr>
                         <td class="p-3 w-25">
-                            <img class="img-fluid" src="{{ item.product.image.url }}">
+                            {% if item.product.image %}
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid">
+                            {% else %}
+                                <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ item.product.name }}" class="img-fluid">
+                            {% endif %}
                         </td>
                         <td class="py-3">
                             <p class="my-0">{{ item.product.name }}</p>
@@ -60,7 +64,8 @@
                                             <div class="input-group-prepend">
                                                 <button
                                                     class="decrement-qty btn btn-sm decrement-qty_{{ item.item_id }}"
-                                                    data-item_id="{{ item.item_id }}" id="decrement-qty{{ item.item_id }}">
+                                                    data-item_id="{{ item.item_id }}"
+                                                    id="decrement-qty{{ item.item_id }}">
                                                     <span>
                                                         <i class="fas fa-minus fa-sm"></i>
                                                     </span>
@@ -68,8 +73,7 @@
                                             </div>
                                             <input type="number" class="form-control form-control-sm qty_input"
                                                 name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                data-item_id="{{ item.item_id }}"
-                                                id="id_qty_{{ item.item_id }}">
+                                                data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
                                             <div class="input-group-append">
                                                 <button class="increment-qty btn btn-sm"
                                                     data-item_id="{{ item.item_id }}"
@@ -80,7 +84,7 @@
                                                 </button>
                                             </div>
                                             {% if item.product.has_sizes %}
-                                                <input type="hidden" name="product_size" value="{{ item.size }}">
+                                            <input type="hidden" name="product_size" value="{{ item.size }}">
                                             {% endif %}
                                         </div>
                                     </div>
@@ -101,9 +105,9 @@
                             <h6>Delivery Costs: €{{ delivery|floatformat:2 }}</h6>
                             <h4 class="mt-4">Grand Total: €{{ grand_total|floatformat:2 }}</h4>
                             {% if free_delivery_delta > 0 %}
-                                <p class="mb-1">
-                                    If you spend an extra €{{ free_delivery_delta }}, you will quality for Free Delivery!
-                                </p>
+                            <p class="mb-1">
+                                If you spend an extra €{{ free_delivery_delta }}, you will quality for Free Delivery!
+                            </p>
                             {% endif %}
                         </td>
                     </tr>
@@ -132,9 +136,9 @@
                 </table>
             </div>
             {% else %}
-                <p class="mb-5">Cart is Empty</p>
-                <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
-                <a href="{% url 'products' %}" class="btn">Browse Products</a>
+            <p class="mb-5">Cart is Empty</p>
+            <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
+            <a href="{% url 'products' %}" class="btn">Browse Products</a>
             {% endif %}
         </div>
     </div>

@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col">
                 {{ message }}
-                <hr class="mt-1 mb-3">
+                <hr class="mt-1 mb-3"> 
             </div>
         </div>
         {% if grand_total and not_on_profile_page %}
@@ -21,9 +21,9 @@
             <div class="row">
                 <div class="col-3 my-1">
                     {% if item.product.image %}
-                    <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" class="w-100">
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-100">
                     {% else %}
-                    <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ item.product.name }}" class="w-100">
+                        <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ item.product.name }}" class="w-100">
                     {% endif %}
                 </div>
                 <div class="col-9">

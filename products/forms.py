@@ -10,7 +10,7 @@ from .models import Product, Category
 
 class ProductForm(forms.ModelForm):
     """
-    Product management form
+    Class for product management form
     """
 
     class Meta:

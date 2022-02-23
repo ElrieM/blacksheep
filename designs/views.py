@@ -2,9 +2,10 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 3rd party:
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
 
 from .models import Mockup
-
+from .forms import MockupForm
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -26,7 +27,6 @@ def design_mockup(request, mockup_id):
     """
     A view with selected product type in background, canvas overlay for design input and export design file
     """
-
     mockup = get_object_or_404(Mockup, pk=mockup_id)
 
     context = {
@@ -39,7 +39,23 @@ def add_mockup(request):
     """
     A view for adding new mockup templates. Only administrative users can make changes.
     """
-    return render(request, 'designs/add_mockup.html')
+    if request.method == 'POST':
+        form = MockupForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New design template added successfully')
+            return redirect(reverse('add_mockup'))
+        else:
+            messages.error(request, 'An error occurred when attempting to add new design template. \
+                Please check form is valid and try again')
+    else:
+        form = MockupForm()
+    
+    template = 'designs/add_mockup.html'
+    context = {
+        'form': form,
+    }
+    return render(request, template, context)
 
 
 def edit_mockup(request):

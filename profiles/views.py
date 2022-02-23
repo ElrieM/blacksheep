@@ -39,6 +39,13 @@ def profile(request):
     return render(request, template, context)
 
 
+def admin_overview(request):
+    """
+    View for super users to manage products
+    """
+    return render(request, 'profiles/admin_overview.html')
+
+
 def order_history(request, order_number):
     """
     View for previous order summary

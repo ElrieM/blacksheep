@@ -21,17 +21,17 @@
                     <div class="card">
                         <!-- Design template in card (header) -->
                         <div class="card-header">
-                            <h5 class="card-title text-center">{{ m.friendly_name }}</h5>
+                            <h5 class="card-title text-center">{{ m.name }}</h5>
                         </div>
                         {% if m.image %}
-                        <a href="{% url 'design_mockup' m.id %}">
-                            <img class="card-img-top" src="{{ m.image_url }}" alt="{{ m.name }}">
-                        </a>
+                            <a href="{% url 'design_mockup' m.id %}">
+                                <img class="card-img-top" src="{{ m.image_url }}" alt="{{ m.name }}">
+                            </a>
                         {% else %}
-                        <a href="{% url 'design_mockup' m.id %}">
-                            <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ m.name }}"
-                                class="card-img-top">
-                        </a>
+                            <a href="{% url 'design_mockup' m.id %}">
+                                <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ m.name }}"
+                                    class="card-img-top">
+                            </a>
                         {% endif %}
                         <!-- Design template in card (body) -->
                         <div class="card-body">

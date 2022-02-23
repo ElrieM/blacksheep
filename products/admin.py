@@ -18,7 +18,6 @@ class ProductAdmin(admin.ModelAdmin):
         'has_sizes',
         'price',
         'image',
-        'image2',
         'image_url',
     )
     list_filter = (

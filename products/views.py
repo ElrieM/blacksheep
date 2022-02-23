@@ -85,11 +85,12 @@ def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            product = form.save()
             messages.success(request, 'New product added successfully')
-            return redirect(reverse('add_product'))
+            return redirect(reverse('product_details', args=[product.id]))
         else:
-            messages.error(request,'Adding new product failed. Please check form is valid and try again')
+            messages.error(request,'Adding new product failed. \
+                Please check form is valid and try again')
     else:
         form = ProductForm()
 
@@ -113,7 +114,8 @@ def edit_product(request, product_id):
             messages.success(request, 'Product details updated successfully')
             return redirect(reverse('product_details', args=[product.id]))
         else:
-            messages.error(request, 'Product update failed. Please review form details and resubmit')
+            messages.error(request, 'Product update failed. \
+                Please review form details and resubmit')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
@@ -127,8 +129,12 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
-def delete_product(request):
+def delete_product(request, product_id):
     """
     A view to delete a product and template.
     """
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product removed')
+
     return redirect(reverse('products'))

@@ -70,8 +70,7 @@
                                     </button>
                                 </div>
                                 <input type="number" class="form-control qty_input id_qty_{{ product.id }}"
-                                    name="quantity" value="1" min="1" max="99" 
-                                    data-item_id="{{ product.id }}">
+                                    name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}">
                                 <div class="input-group-append">
                                     <button class="increment-qty btn increment-qty_{{ product.id }}"
                                         data-item_id="{{ product.id }}">
@@ -81,7 +80,12 @@
                                     </button>
                                 </div>
                                 <input type="submit" class="btn btn-info" value="Add to Cart">
+                                <br>
                             </div>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'edit_product' product.id %}" class="btn btn-link">Edit</a>
+                                <a href="{% url 'delete_product' product.id %}" class="btn btn-link">Delete</a>
+                                {% endif %}
                         </div>
                     </div>
                     <div class="col{% if s %}-12{% endif %}">

@@ -18,3 +18,7 @@ $('#sort-selector').change(function() {
         window.location.replace(currentUrl);
     }
 });
+
+$('#conf-del').click(function() {
+    alert('Are you sure you want to delete?');
+});

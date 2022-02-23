@@ -1,4 +1,4 @@
-# Imports 
+# Imports
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 3rd party:
 from django.shortcuts import render, redirect, reverse, get_object_or_404
@@ -58,11 +58,30 @@ def add_mockup(request):
     return render(request, template, context)
 
 
-def edit_mockup(request):
+def edit_mockup(request, mockup_id):
     """
     A view for editing existing mockup templates. Only administrative users can make changes.
     """
-    return render(request, 'designs/edit_mockup.html')
+    mockup = get_object_or_404(Mockup, pk=mockup_id)
+    if request.method == 'POST':
+        form = MockupForm(request.POST, request.FILES, instance=mockup)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Design template details updated successfully')
+            return redirect(reverse('design_mockup', args=[mockup.id]))
+        else:
+            messages.error(request, 'Design template update failed. Please review form details and resubmit')
+    else:
+        form = MockupForm(instance=mockup)
+        messages.info(request, f'You are editing {mockup.name}')
+
+    template = 'designs/edit_mockup.html'
+    context = {
+        'form': form,
+        'mockup': mockup,
+    }
+
+    return render(request, template, context)
 
 
 def delete_mockup(request):

@@ -94,14 +94,6 @@
             "markers": "python_version >= '3'",
             "version": "==2.0.12"
         },
-        "crispy-bootstrap5": {
-            "hashes": [
-                "sha256:ca5d2afc2a5d1cf12b8d057886a81002cdf7793afcbe0ce006c2294069c1f387",
-                "sha256:e8c50daaf266d6127c7414f5669d5f2467b640d08b045ed9dd57e351d30609ae"
-            ],
-            "index": "pypi",
-            "version": "==0.6"
-        },
         "cryptography": {
             "hashes": [
                 "sha256:0a817b961b46894c5ca8a66b599c745b9a3d9f822725221f0e0fe49dc043a3a3",

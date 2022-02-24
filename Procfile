@@ -1,1 +1,1 @@
-web: gunicorn ci-ms4-blacksheepprint.wsgi:application
+web: gunicorn blacksheep.wsgi:application

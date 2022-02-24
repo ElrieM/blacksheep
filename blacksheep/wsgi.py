@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blacksheep.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ci-ms4-blacksheep.settings')
 
 application = get_wsgi_application()

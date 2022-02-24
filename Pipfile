@@ -10,7 +10,6 @@ djangorestframework = "*"
 django-cors-headers = "*"
 social-auth-app-django = "*"
 crispy-bootstrap5 = "*"
-gunicorn = "*"
 
 [dev-packages]
 

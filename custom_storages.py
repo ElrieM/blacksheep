@@ -7,14 +7,14 @@ from storages.backends.s3boto3 import S3Boto3Storage
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Class StaticStorage(S3Boto3Storage):
+class StaticStorage(S3Boto3Storage):
     """
     Class for AWS boto3 storage for static files
     """
     location = settings.STATICFILES_LOCATION
 
 
-Class MediaStorage(S3Boto3Storage):
+class MediaStorage(S3Boto3Storage):
     """
     Class for AWS boto3 storage for media files
     """

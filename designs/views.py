@@ -26,13 +26,15 @@ def designs(request):
 
 def design_mockup(request, mockup_id):
     """
-    A view with selected product type in background, canvas overlay for design input and export design file
+    A view with selected product type in background, canvas overlay for
+    design input and export design file
     """
     mockup = get_object_or_404(Mockup, pk=mockup_id)
 
     context = {
         'mockup': mockup,
     }
+    
     return render(request, 'designs/design_mockup.html', context)
 
 

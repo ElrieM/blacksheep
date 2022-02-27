@@ -8,44 +8,52 @@
     </div>
 </div>
 {% endblock %}
+{% block extra_css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'designs/css/designs.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="overlay"></div>
-
-<div class="row">
-
-    <!-- Adapted from https://ourcodeworld.com/articles/read/1016/how-to-create-your-own-t-shirt-designer-using-fabricjs-in-javascript -->
-    <div class="col-6 col-sm-12">
-
-        <!-- Create the container of the tool -->
-        <div id="tshirt-div my-5">
-            {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top">
-            {% else %}
-            <img id="tshirt-backgroundpicture" src="{{ MEDIA_URL }}/background_tshirt.png" />
-            {% endif %}
-
-            <div id="drawingArea" class="drawing-area">
-                <div class="canvas-container">
-                    <canvas id="tshirt-canvas" width="200" height="400"></canvas>
-                </div>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center md-4">Design</h2>
+            <hr>
         </div>
     </div>
-    <!-- Image editing tools -->
-    <div class="col-6 col-sm-12">
-        <p>Select and press the <kbd>DEL</kbd> key to remove design elements.</p>
+    <div class="row">
+        <!-- Adapted from https://ourcodeworld.com/articles/read/1016/how-to-create-your-own-t-shirt-designer-using-fabricjs-in-javascript -->
+        <div class="col-12 col-md-7">
+            <!-- Create the container of the tool -->
+            <div id="tshirt-div">
+                {% if mockup.image %}
+                <img id="tshirt-backgroundpicture" src="{{ mockup.image.url }}" alt="{{ mockup.name }}"
+                    class="card-img-top">
+                {% else %}
+                <img id="tshirt-backgroundpicture" src="{{ MEDIA_URL }}/{{ mockup.name }}" />
+                {% endif %}
 
-        <!-- The select that will allow the user to pick one of the static designs -->
-        <br>
-        <label for="tshirt-design">T-Shirt Design:</label>
-        <select id="tshirt-design">
-            <option value="">Select one of our designs ...</option>
-            <option value="{{ MEDIA_URL }}/batman.png">Batman</option>
-        </select>
+                <div id="drawingArea" class="drawing-area">
+                    <div class="canvas-container">
+                        <canvas id="tshirt-canvas" width="200" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Image editing tools -->
+            <p>Select and press the <kbd>DEL</kbd> key to remove design elements.</p>
+
+            <!-- The select that will allow the user to pick one of the static designs -->
+            <br>
+            <label for="tshirt-design">T-Shirt Design:</label>
+            <select id="tshirt-design">
+                <option value="">Select one of our designs ...</option>
+                {% for option in elements %}
+                <option value="{{ element.name }">Batman</option>
+                {% endfor %}
+            </select>
 
         <!-- The Select that allows the user to change the color of the T-Shirt -->
-        <br><br>
+        <br>
         <label for="tshirt-color">T-Shirt Color:</label>
         <select id="tshirt-color">
             <!-- You can add any color with a new option and definings its hex code -->
@@ -56,105 +64,143 @@
             <option value="#ff0">Yellow</option>
         </select>
 
-        <br><br>
+        <br>
         <label for="tshirt-custompicture">Upload your own design:</label>
         <input type="file" id="tshirt-custompicture" />
+        </div>
 
-        <form action="" method="POST" class="form form-update">
-            {% csrf_token %}
-            <div class="form-group w-50">
-                <div class="input-group input-group-{{ product.id }}">
-                    <div class="input-group-prepend">
-                        <button class="decrement-qty btn decrement-qty_{{ product.id }}"
-                            data-item_id="{{ product.id }}">
-                            <span class="icon">
-                                <i class="fas fa-minus"></i>
-                            </span>
-                        </button>
+        <div class="col-12 col-md-5">
+            <form class="form" action="{% url 'add_to_cart' mockup.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    {% with mockup.has_sizes as s %}
+                    {% if s %}
+                    <div class="col-12">
+                        <p>Size:</p>
+                        <!-- Product size selector -->
+                        <select class="form-control w-50" name="product_size" id="id_product_size">
+                            <option value="xs">XS</option>
+                            <option value="s">S</option>
+                            <option value="m">M</option>
+                            <option value="l">L</option>
+                            <option value="xl">XL</option>
+                            <option value="xxl">XXL</option>
+                        </select>
                     </div>
-                    <input type="number" class="form-control qty_input id_qty_{{ product.id }}" name="quantity"
-                        value="1" min="1" max="99" data-item_id="{{ product.id }}">
-                    <div class="input-group-append">
-                        <button class="increment-qty btn increment-qty_{{ product.id }}"
-                            data-item_id="{{ product.id }}">
-                            <span class="icon">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                        </button>
+                    {% endif %}
+                    <div class="col-12">
+                        <p class="mt-3">Quantity:</p>
+                        <div class="form-group w-50">
+                            <div class="input-group input-group-{{ mockup.id }}">
+                                <div class="input-group-prepend">
+                                    <button class="decrement-qty btn decrement-qty_{{ mockup.id }}"
+                                        data-item_id="{{ mockup.id }}">
+                                        <span class="icon">
+                                            <i class="fas fa-minus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <input type="number" class="form-control qty_input id_qty_{{ mockup.id }}"
+                                    name="quantity" value="1" min="1" max="99" data-item_id="{{ mockup.id }}">
+                                <div class="input-group-append">
+                                    <button class="increment-qty btn increment-qty_{{ mockup.id }}"
+                                        data-item_id="{{ mockup.id }}">
+                                        <span class="icon">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <input type="submit" class="btn btn-info" value="Add to Cart">
+                                <br>
+                            </div>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'edit_product' mockup.id %}" class="btn btn-link">Edit</a>
+                                <a href="{% url 'delete_product' mockup.id %}" class="btn btn-link">Delete</a>
+                                {% endif %}
+                        </div>
                     </div>
-                    <input type="submit" class="btn btn-info" value="Add to Cart">
+                    <div class="col{% if s %}-12{% endif %}">
+                        <hr>
+                        <a href="{% url 'products' %}" class="btn btn-link">Keep Shopping</a>
+                        <br>
+                        <a href="{% url 'designs' %}" class="btn btn-link">Design Your Own</a>
 
+                    </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    {% endwith %}
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+</div>
 
-        {% endblock %}
+{% endblock %}
 
-        {% block postloadjs %}
-        <!-- Include Fabric.js in the page -->
-        <script src="{{ STATIC_URL }}js/fabric.min.js"></script>
-        <script>
-            let canvas = new fabric.Canvas('tshirt-canvas');
+{% block postloadjs %}
+<!-- Include Fabric.js in the page -->
+<script src="{{ STATIC_URL }}designs/js/fabric.min.js" type="text/javascript">
+                    </script>
+                    <script>
+                        let canvas = new fabric.Canvas('tshirt-canvas');
 
-            function updateTshirtImage(imageURL) {
-                fabric.Image.fromURL(imageURL, function (img) {
-                    img.scaleToHeight(300);
-                    img.scaleToWidth(300);
-                    canvas.centerObject(img);
-                    canvas.add(img);
-                    canvas.renderAll();
-                });
-            }
+                        function updateTshirtImage(imageURL) {
+                            fabric.Image.fromURL(imageURL, function (img) {
+                                img.scaleToHeight(300);
+                                img.scaleToWidth(300);
+                                canvas.centerObject(img);
+                                canvas.add(img);
+                                canvas.renderAll();
+                            });
+                        }
 
-            // Update the TShirt color according to the selected color by the user
-            document.getElementById("tshirt-color").addEventListener("change", function () {
-                document.getElementById("tshirt-div").style.backgroundColor = this.value;
-            }, false);
+                        // Update the TShirt color according to the selected color by the user
+                        document.getElementById("tshirt-color").addEventListener("change", function () {
+                            document.getElementById("tshirt-div").style.backgroundColor = this.value;
+                        }, false);
 
-            // Update the TShirt color according to the selected color by the user
-            document.getElementById("tshirt-design").addEventListener("change", function () {
+                        // Update the TShirt color according to the selected color by the user
+                        document.getElementById("tshirt-design").addEventListener("change", function () {
 
-                // Call the updateTshirtImage method providing as first argument the URL
-                // of the image provided by the select
-                updateTshirtImage(this.value);
-            }, false);
+                            // Call the updateTshirtImage method providing as first argument the URL
+                            // of the image provided by the select
+                            updateTshirtImage(this.value);
+                        }, false);
 
-            // When the user clicks on upload a custom picture
-            document.getElementById('tshirt-custompicture').addEventListener("change", function (e) {
-                var reader = new FileReader();
+                        // When the user clicks on upload a custom picture
+                        document.getElementById('tshirt-custompicture').addEventListener("change", function (e) {
+                            var reader = new FileReader();
 
-                reader.onload = function (event) {
-                    var imgObj = new Image();
-                    imgObj.src = event.target.result;
+                            reader.onload = function (event) {
+                                var imgObj = new Image();
+                                imgObj.src = event.target.result;
 
-                    // When the picture loads, create the image in Fabric.js
-                    imgObj.onload = function () {
-                        var img = new fabric.Image(imgObj);
+                                // When the picture loads, create the image in Fabric.js
+                                imgObj.onload = function () {
+                                    var img = new fabric.Image(imgObj);
 
-                        img.scaleToHeight(300);
-                        img.scaleToWidth(300);
-                        canvas.centerObject(img);
-                        canvas.add(img);
-                        canvas.renderAll();
-                    };
-                };
+                                    img.scaleToHeight(300);
+                                    img.scaleToWidth(300);
+                                    canvas.centerObject(img);
+                                    canvas.add(img);
+                                    canvas.renderAll();
+                                };
+                            };
 
-                // If the user selected a picture, load it
-                if (e.target.files[0]) {
-                    reader.readAsDataURL(e.target.files[0]);
-                }
-            }, false);
+                            // If the user selected a picture, load it
+                            if (e.target.files[0]) {
+                                reader.readAsDataURL(e.target.files[0]);
+                            }
+                        }, false);
 
-            // When the user selects a picture that has been added and press the DEL key
-            // The object will be removed !
-            document.addEventListener("keydown", function (e) {
-                var keyCode = e.keyCode;
+                        // When the user selects a picture that has been added and press the DEL key
+                        // The object will be removed !
+                        document.addEventListener("keydown", function (e) {
+                            var keyCode = e.keyCode;
 
-                if (keyCode == 46) {
-                    console.log("Removing selected element on Fabric.js on DELETE key !");
-                    canvas.remove(canvas.getActiveObject());
-                }
-            }, false);
-        </script>
+                            if (keyCode == 46) {
+                                console.log("Removing selected element on Fabric.js on DELETE key !");
+                                canvas.remove(canvas.getActiveObject());
+                            }
+                        }, false);
+                    </script>
 
-        {% endblock %}
+                    {% endblock %}

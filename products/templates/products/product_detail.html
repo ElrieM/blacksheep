@@ -32,7 +32,7 @@
                 {% if product.category %}
                 <p class="mt-1 mb-0">
                     <span>Category:
-                        <a href="{% url 'products' %}?category={{ product.category.name }}">
+                        <a href="{% url 'products' %}?category={{ product.category_name }}">
                             {{product.category.friendly_name}}
                         </a>
                     </span>
@@ -96,6 +96,7 @@
 
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    <input type="hidden" name="source" value="product">
                     {% endwith %}
                 </div>
             </form>

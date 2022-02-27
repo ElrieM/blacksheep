@@ -10,7 +10,7 @@ from .forms import MockupForm
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-def design_overview(request):
+def designs(request):
     """
     A view to show categories and design for design template.
     User selects category, then product, which loads design page.
@@ -21,7 +21,7 @@ def design_overview(request):
         'mockup': mockups,
     }
 
-    return render(request, 'designs/design_overview.html', context)
+    return render(request, 'designs/designs.html', context)
 
 
 def design_mockup(request, mockup_id):

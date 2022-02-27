@@ -12,141 +12,149 @@
 {% block content %}
 <div class="overlay"></div>
 
-<!-- Create the container of the tool -->
-<div id="tshirt-div">
-    <!-- 
-                    Initially, the image will have the background tshirt that has transparency
-                    So we can simply update the color with CSS or JavaScript dinamically
-                -->
-    <img id="tshirt-backgroundpicture" src="{{ MEDIA_URL }}/background_tshirt.png" />
+<div class="row">
 
-    <div id="drawingArea" class="drawing-area">
-        <div class="canvas-container">
-            <canvas id="tshirt-canvas" width="200" height="400"></canvas>
+    <!-- Adapted from https://ourcodeworld.com/articles/read/1016/how-to-create-your-own-t-shirt-designer-using-fabricjs-in-javascript -->
+    <div class="col-6 col-sm-12">
+
+        <!-- Create the container of the tool -->
+        <div id="tshirt-div my-5">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top">
+            {% else %}
+            <img id="tshirt-backgroundpicture" src="{{ MEDIA_URL }}/background_tshirt.png" />
+            {% endif %}
+
+            <div id="drawingArea" class="drawing-area">
+                <div class="canvas-container">
+                    <canvas id="tshirt-canvas" width="200" height="400"></canvas>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<br>
+    <!-- Image editing tools -->
+    <div class="col-6 col-sm-12">
+        <p>Select and press the <kbd>DEL</kbd> key to remove design elements.</p>
 
-<p>To remove a loaded picture on the T-Shirt select it and press the <kbd>DEL</kbd> key.</p>
+        <!-- The select that will allow the user to pick one of the static designs -->
+        <br>
+        <label for="tshirt-design">T-Shirt Design:</label>
+        <select id="tshirt-design">
+            <option value="">Select one of our designs ...</option>
+            <option value="{{ MEDIA_URL }}/batman.png">Batman</option>
+        </select>
 
-<!-- The select that will allow the user to pick one of the static designs -->
-<br>
-<label for="tshirt-design">T-Shirt Design:</label>
-<select id="tshirt-design">
-    <option value="">Select one of our designs ...</option>
-    <option value="{{ MEDIA_URL }}/batman.png">Batman</option>
-</select>
+        <!-- The Select that allows the user to change the color of the T-Shirt -->
+        <br><br>
+        <label for="tshirt-color">T-Shirt Color:</label>
+        <select id="tshirt-color">
+            <!-- You can add any color with a new option and definings its hex code -->
+            <option value="#fff">White</option>
+            <option value="#000">Black</option>
+            <option value="#f00">Red</option>
+            <option value="#008000">Green</option>
+            <option value="#ff0">Yellow</option>
+        </select>
 
-<!-- The Select that allows the user to change the color of the T-Shirt -->
-<br><br>
-<label for="tshirt-color">T-Shirt Color:</label>
-<select id="tshirt-color">
-    <!-- You can add any color with a new option and definings its hex code -->
-    <option value="#fff">White</option>
-    <option value="#000">Black</option>
-    <option value="#f00">Red</option>
-    <option value="#008000">Green</option>
-    <option value="#ff0">Yellow</option>
-</select>
+        <br><br>
+        <label for="tshirt-custompicture">Upload your own design:</label>
+        <input type="file" id="tshirt-custompicture" />
 
-<br><br>
-<label for="tshirt-custompicture">Upload your own design:</label>
-<input type="file" id="tshirt-custompicture" />
+        <form action="" method="POST" class="form form-update">
+            {% csrf_token %}
+            <div class="form-group w-50">
+                <div class="input-group input-group-{{ product.id }}">
+                    <div class="input-group-prepend">
+                        <button class="decrement-qty btn decrement-qty_{{ product.id }}"
+                            data-item_id="{{ product.id }}">
+                            <span class="icon">
+                                <i class="fas fa-minus"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <input type="number" class="form-control qty_input id_qty_{{ product.id }}" name="quantity"
+                        value="1" min="1" max="99" data-item_id="{{ product.id }}">
+                    <div class="input-group-append">
+                        <button class="increment-qty btn increment-qty_{{ product.id }}"
+                            data-item_id="{{ product.id }}">
+                            <span class="icon">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <input type="submit" class="btn btn-info" value="Add to Cart">
 
-<form action="" method="POST" class="form form-update">
-    {% csrf_token %}
-    <div class="form-group w-50">
-        <div class="input-group input-group-{{ product.id }}">
-            <div class="input-group-prepend">
-                <button class="decrement-qty btn decrement-qty_{{ product.id }}" data-item_id="{{ product.id }}">
-                    <span class="icon">
-                        <i class="fas fa-minus"></i>
-                    </span>
-                </button>
+                </div>
             </div>
-            <input type="number" class="form-control qty_input id_qty_{{ product.id }}" name="quantity" value="1"
-                min="1" max="99" data-item_id="{{ product.id }}">
-            <div class="input-group-append">
-                <button class="increment-qty btn increment-qty_{{ product.id }}" data-item_id="{{ product.id }}">
-                    <span class="icon">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                </button>
-            </div>
-            <input type="submit" class="btn btn-info" value="Add to Cart">
-            
-        </div>
-    </div>
-</form>
+        </form>
 
-{% endblock %}
+        {% endblock %}
 
-{% block postloadjs %}
-<!-- Include Fabric.js in the page -->
-<script src="{{ STATIC_URL }}js/fabric.min.js"></script>
-<script>
-    let canvas = new fabric.Canvas('tshirt-canvas');
+        {% block postloadjs %}
+        <!-- Include Fabric.js in the page -->
+        <script src="{{ STATIC_URL }}js/fabric.min.js"></script>
+        <script>
+            let canvas = new fabric.Canvas('tshirt-canvas');
 
-    function updateTshirtImage(imageURL) {
-        fabric.Image.fromURL(imageURL, function (img) {
-            img.scaleToHeight(300);
-            img.scaleToWidth(300);
-            canvas.centerObject(img);
-            canvas.add(img);
-            canvas.renderAll();
-        });
-    }
+            function updateTshirtImage(imageURL) {
+                fabric.Image.fromURL(imageURL, function (img) {
+                    img.scaleToHeight(300);
+                    img.scaleToWidth(300);
+                    canvas.centerObject(img);
+                    canvas.add(img);
+                    canvas.renderAll();
+                });
+            }
 
-    // Update the TShirt color according to the selected color by the user
-    document.getElementById("tshirt-color").addEventListener("change", function () {
-        document.getElementById("tshirt-div").style.backgroundColor = this.value;
-    }, false);
+            // Update the TShirt color according to the selected color by the user
+            document.getElementById("tshirt-color").addEventListener("change", function () {
+                document.getElementById("tshirt-div").style.backgroundColor = this.value;
+            }, false);
 
-    // Update the TShirt color according to the selected color by the user
-    document.getElementById("tshirt-design").addEventListener("change", function () {
+            // Update the TShirt color according to the selected color by the user
+            document.getElementById("tshirt-design").addEventListener("change", function () {
 
-        // Call the updateTshirtImage method providing as first argument the URL
-        // of the image provided by the select
-        updateTshirtImage(this.value);
-    }, false);
+                // Call the updateTshirtImage method providing as first argument the URL
+                // of the image provided by the select
+                updateTshirtImage(this.value);
+            }, false);
 
-    // When the user clicks on upload a custom picture
-    document.getElementById('tshirt-custompicture').addEventListener("change", function (e) {
-        var reader = new FileReader();
+            // When the user clicks on upload a custom picture
+            document.getElementById('tshirt-custompicture').addEventListener("change", function (e) {
+                var reader = new FileReader();
 
-        reader.onload = function (event) {
-            var imgObj = new Image();
-            imgObj.src = event.target.result;
+                reader.onload = function (event) {
+                    var imgObj = new Image();
+                    imgObj.src = event.target.result;
 
-            // When the picture loads, create the image in Fabric.js
-            imgObj.onload = function () {
-                var img = new fabric.Image(imgObj);
+                    // When the picture loads, create the image in Fabric.js
+                    imgObj.onload = function () {
+                        var img = new fabric.Image(imgObj);
 
-                img.scaleToHeight(300);
-                img.scaleToWidth(300);
-                canvas.centerObject(img);
-                canvas.add(img);
-                canvas.renderAll();
-            };
-        };
+                        img.scaleToHeight(300);
+                        img.scaleToWidth(300);
+                        canvas.centerObject(img);
+                        canvas.add(img);
+                        canvas.renderAll();
+                    };
+                };
 
-        // If the user selected a picture, load it
-        if (e.target.files[0]) {
-            reader.readAsDataURL(e.target.files[0]);
-        }
-    }, false);
+                // If the user selected a picture, load it
+                if (e.target.files[0]) {
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            }, false);
 
-    // When the user selects a picture that has been added and press the DEL key
-    // The object will be removed !
-    document.addEventListener("keydown", function (e) {
-        var keyCode = e.keyCode;
+            // When the user selects a picture that has been added and press the DEL key
+            // The object will be removed !
+            document.addEventListener("keydown", function (e) {
+                var keyCode = e.keyCode;
 
-        if (keyCode == 46) {
-            console.log("Removing selected element on Fabric.js on DELETE key !");
-            canvas.remove(canvas.getActiveObject());
-        }
-    }, false);
-</script>
+                if (keyCode == 46) {
+                    console.log("Removing selected element on Fabric.js on DELETE key !");
+                    canvas.remove(canvas.getActiveObject());
+                }
+            }, false);
+        </script>
 
-{% endblock %}
+        {% endblock %}

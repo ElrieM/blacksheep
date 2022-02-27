@@ -25,7 +25,7 @@ class Category(models.Model):
         """
         Returns category name string
         """
-        return self.name
+        return str(self.name)
 
     def get_friendly_name(self):
         """
@@ -50,4 +50,4 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)

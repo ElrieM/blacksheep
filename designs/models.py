@@ -1,12 +1,9 @@
 # Imports
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 3rd party:
-from contextlib import nullcontext
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
-# Internal:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class Mockup(models.Model):
@@ -36,6 +33,22 @@ class Mockup(models.Model):
 
     def __str__(self):
         """
-        Returns category name string
+        Returns design template name string
         """
-        return self.name
+        return str(self.name)
+
+
+class Elements(models.Model):
+    """
+    Class for design elements
+    """
+    name = models.CharField(max_length=254)
+    file_id = models.CharField(max_length=254, null=True, blank=True)
+    image_url = models.URLField(max_length=1024, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        """
+        Returns design template name string
+        """
+        return str(self.name)

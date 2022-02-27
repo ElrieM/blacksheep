@@ -9,7 +9,7 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.design_overview, name="designs"),
+    path('', views.designs, name="designs"),
     path('<int:mockup_id>/', views.design_mockup, name="design_mockup"),
     path('add/', views.add_mockup, name="add_mockup"),
     path('edit/<int:mockup_id>/', views.edit_mockup, name="edit_mockup"),

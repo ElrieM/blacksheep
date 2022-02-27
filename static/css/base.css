@@ -127,6 +127,15 @@ body {
 
 /* --------------------------------- Media queries */
 
-@media (min-width: 992px) {
+@media (max-width: 576px) {
+    .navbar-brand {
+        top: 90px;
+        left: 10px;
+        position: fixed;
+    }
     
+    #nav-bg {
+        max-height: 220px;
+        overflow-y: scroll;
+    }
 }

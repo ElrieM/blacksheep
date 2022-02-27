@@ -1,41 +1,38 @@
-<div class="collapse navbar-collapse" id="main-nav">
-    <ul class="navbar-nav w-auto mx-auto">
-        <!-- Nav option 1 -->
+<!-- Nav option 1 -->
+<div class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="products-link" data-bs-toggle="dropdown" aria-expanded="false">
+    Products</a>
+    <ul class="navbar-nav-scroll dropdown-menu" aria-labelledby="products-link">
+        <!-- All-->
         <li class="nav-item">
-            <a class="nav-link" href="#" id="about-link">About</a>
+            <a class="dropdown-item" href="{% url 'products' %}">View All</a>
         </li>
-        <!-- Nav option 2 -->
-        <li class="nav-item dropdown">
-            <a class="btn dropdown-toggle nav-link" href="#" id="products-link" data-bs-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                Products
-            </a>
-            <div class="dropdown-menu" aria-labelledby="products-link">
-                <!-- All-->
-                <a class="dropdown-item" href="{% url 'products' %}">View All</a>
-                <!-- Men section -->
-                <a class="dropdown-header">Men</a>
-                <a class="dropdown-item" href="{% url 'products' %}?category=Male T-Shirts">T-Shirts</a>
-                <a class="dropdown-item" href="{% url 'products' %}?category=Male Hoodies">Hoodies</a>
-                <hr class="dropdown-divider">
-                <!-- Women section -->
-                <a class="dropdown-header">Women</a>
-                <a class="dropdown-item" href="{% url 'products' %}?category=Female T-Shirts">T-Shirts</a>
-                <a class="dropdown-item" href="{% url 'products' %}?category=Female Hoodies">Hoodies</a>
-                <hr class="dropdown-divider">
-                <!-- Children section -->
-                <a class="dropdown-header">Children</a>
-                <a class="dropdown-item" href="{% url 'products' %}?category=Child T-Shirt">T-Shirts</a>
-                <a class="dropdown-item" href="{% url 'products' %}?category=Baby Onesie">Onesie</a>
-                <hr class="dropdown-divider">
-                <!-- Other-->
-                <a class="dropdown-header">Other</a>
-                <a class="dropdown-item" href="{% url 'products' %}?category=Shopping Bags">Bags</a>
-            </div>
-        </li>
-        <!-- Nav option 3 -->
+        <!-- Men section -->
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'designs' %}">Design</a>
+            <a class="dropdown-header">Men</a>
+            <a class="dropdown-item" href="{% url 'products' %}?category=Male T-Shirts">T-Shirts</a>
+            <a class="dropdown-item" href="{% url 'products' %}?category=Male Hoodies">Hoodies</a>
+        </li>
+        <!-- Women section -->
+        <li class="nav-item">
+            <a class="dropdown-header">Women</a>
+            <a class="dropdown-item" href="{% url 'products' %}?category=Female T-Shirts">T-Shirts</a>
+            <a class="dropdown-item" href="{% url 'products' %}?category=Female Hoodies">Hoodies</a>
+        </li>
+        <!-- Children section -->
+        <li class="nav-item">
+            <a class="dropdown-header">Children</a>
+            <a class="dropdown-item" href="{% url 'products' %}?category=Child T-Shirt">T-Shirts</a>
+            <a class="dropdown-item" href="{% url 'products' %}?category=Baby Onesie">Onesie</a>
+        </li>
+        <!-- Other-->
+        <li class="nav-item">
+            <a class="dropdown-header">Other</a>
+            <a class="dropdown-item" href="{% url 'products' %}?category=Shopping Bags">Bags</a>
         </li>
     </ul>
+</div>
+<!-- Nav option 2 -->
+<div class="nav-item">
+    <a class="nav-link" href="{% url 'designs' %}">Design</a>
 </div>

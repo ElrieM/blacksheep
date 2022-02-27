@@ -4,7 +4,7 @@
 from django.contrib import admin
 
 # internal:
-from .models import Mockup, Elements
+from .models import Mockup
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class MockupAdmin(admin.ModelAdmin):
@@ -18,16 +18,4 @@ class MockupAdmin(admin.ModelAdmin):
         'image',
     )
 
-
-class ElementsAdmin(admin.ModelAdmin):
-    """
-    Design elements admin class
-    """
-    list_display = (
-        'name',
-        'file_id',
-        'image',
-    )
-    
 admin.site.register(Mockup)
-admin.site.register(Elements)

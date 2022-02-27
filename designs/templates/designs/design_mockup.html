@@ -8,6 +8,7 @@
     </div>
 </div>
 {% endblock %}
+
 {% block extra_css %}
     <link type="text/css" rel="stylesheet" href="{% static 'designs/css/designs.css' %}">
 {% endblock %}
@@ -27,33 +28,21 @@
             <!-- Create the container of the tool -->
             <div id="tshirt-div">
                 {% if mockup.image %}
-                <img id="tshirt-backgroundpicture" src="{{ mockup.image.url }}" alt="{{ mockup.name }}"
-                    class="card-img-top">
+                    <img id="tshirt-backgroundpicture" src="{{ mockup.image.url }}" alt="{{ mockup.name }}">
                 {% else %}
-                <img id="tshirt-backgroundpicture" src="{{ MEDIA_URL }}/{{ mockup.name }}" />
+                    <img id="tshirt-backgroundpicture" src="{{ MEDIA_URL }}/{{ mockup.name }}" />
                 {% endif %}
 
                 <div id="drawingArea" class="drawing-area">
                     <div class="canvas-container">
-                        <canvas id="tshirt-canvas" width="200" height="400"></canvas>
+                        <canvas id="tshirt-canvas" width="155" height="320"></canvas>
                     </div>
                 </div>
             </div>
             <!-- Image editing tools -->
             <p>Select and press the <kbd>DEL</kbd> key to remove design elements.</p>
 
-            <!-- The select that will allow the user to pick one of the static designs -->
-            <br>
-            <label for="tshirt-design">T-Shirt Design:</label>
-            <select id="tshirt-design">
-                <option value="">Select one of our designs ...</option>
-                {% for option in elements %}
-                <option value="{{ element.name }">Batman</option>
-                {% endfor %}
-            </select>
-
         <!-- The Select that allows the user to change the color of the T-Shirt -->
-        <br>
         <label for="tshirt-color">T-Shirt Color:</label>
         <select id="tshirt-color">
             <!-- You can add any color with a new option and definings its hex code -->
@@ -136,71 +125,6 @@
 {% endblock %}
 
 {% block postloadjs %}
-<!-- Include Fabric.js in the page -->
-<script src="{{ STATIC_URL }}designs/js/fabric.min.js" type="text/javascript">
-                    </script>
-                    <script>
-                        let canvas = new fabric.Canvas('tshirt-canvas');
-
-                        function updateTshirtImage(imageURL) {
-                            fabric.Image.fromURL(imageURL, function (img) {
-                                img.scaleToHeight(300);
-                                img.scaleToWidth(300);
-                                canvas.centerObject(img);
-                                canvas.add(img);
-                                canvas.renderAll();
-                            });
-                        }
-
-                        // Update the TShirt color according to the selected color by the user
-                        document.getElementById("tshirt-color").addEventListener("change", function () {
-                            document.getElementById("tshirt-div").style.backgroundColor = this.value;
-                        }, false);
-
-                        // Update the TShirt color according to the selected color by the user
-                        document.getElementById("tshirt-design").addEventListener("change", function () {
-
-                            // Call the updateTshirtImage method providing as first argument the URL
-                            // of the image provided by the select
-                            updateTshirtImage(this.value);
-                        }, false);
-
-                        // When the user clicks on upload a custom picture
-                        document.getElementById('tshirt-custompicture').addEventListener("change", function (e) {
-                            var reader = new FileReader();
-
-                            reader.onload = function (event) {
-                                var imgObj = new Image();
-                                imgObj.src = event.target.result;
-
-                                // When the picture loads, create the image in Fabric.js
-                                imgObj.onload = function () {
-                                    var img = new fabric.Image(imgObj);
-
-                                    img.scaleToHeight(300);
-                                    img.scaleToWidth(300);
-                                    canvas.centerObject(img);
-                                    canvas.add(img);
-                                    canvas.renderAll();
-                                };
-                            };
-
-                            // If the user selected a picture, load it
-                            if (e.target.files[0]) {
-                                reader.readAsDataURL(e.target.files[0]);
-                            }
-                        }, false);
-
-                        // When the user selects a picture that has been added and press the DEL key
-                        // The object will be removed !
-                        document.addEventListener("keydown", function (e) {
-                            var keyCode = e.keyCode;
-
-                            if (keyCode == 46) {
-                                console.log("Removing selected element on Fabric.js on DELETE key !");
-                                canvas.remove(canvas.getActiveObject());
-                            }
-                        }, false);
-                    </script>
-
-                    {% endblock %}
+    <script src="{{ STATIC_URL }}designs/js/fabric.min.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}designs/js/designs.js" type="text/javascript"></script>
+{% endblock %}

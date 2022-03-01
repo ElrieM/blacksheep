@@ -1,3 +1,4 @@
+/* base */
 html {
     height: 100%;
 }
@@ -10,6 +11,7 @@ body {
     font-family: 'Alegreya Sans', sans-serif;
 }
 
+/* header */
 #banner-top {
     background-color: #7DA074;
     font-family: 'Alegreya', serif;
@@ -22,11 +24,6 @@ body {
 .nav-link {
     color: #111;
     font-family: 'Alegreya', serif;
-}
-
-.text-pampas,
-.text-light {
-    color: #f4f4ee;
 }
 
 .container.header-container {
@@ -50,6 +47,13 @@ body {
     z-index: -1;
 }
 
+/* index */
+
+.text-pampas,
+.text-light {
+    color: #f4f4ee;
+}
+
 .card,
 .container,
 .product-details-container,
@@ -67,9 +71,10 @@ body {
     cursor: pointer;
 }
 
-.btn-info {
+.btn-green {
     background-color: #f4f4ee;
     color:#7DA074;
+    border:#7DA074 3px solid;
 }
 
 /* -- Bootstrap toasts */

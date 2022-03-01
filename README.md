@@ -11,7 +11,7 @@ Two user types' credentials have been included below:
 
 With this website, users are able to create custom clothing. From standard templates, users can add content from a library of images, their own text, or even upload their own designs to use.
 
-![mockup](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/readme/amiresponsive.png)
+![mockup](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/amiresponsive.png)
 
 ## Contents <!-- omit in toc -->
 

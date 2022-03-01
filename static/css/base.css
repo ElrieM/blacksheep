@@ -24,7 +24,8 @@ body {
     font-family: 'Alegreya', serif;
 }
 
-.text-pampas {
+.text-pampas,
+.text-light {
     color: #f4f4ee;
 }
 
@@ -64,6 +65,11 @@ body {
 .update-link,
 .remove-item {
     cursor: pointer;
+}
+
+.btn-info {
+    background-color: #f4f4ee;
+    color:#7DA074;
 }
 
 /* -- Bootstrap toasts */

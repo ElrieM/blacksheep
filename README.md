@@ -9,7 +9,7 @@ Two user types' credentials have been included below:
 | General | User1 | User1 |
 (Case sensitive)
 
-With this website, users are able to create custom clothing. From standard templates, users can add content from a library of images, their own text, or even upload their own designs to use.
+With this website, users are able to create custom clothing. From standard templates, users can choose from pre-made clothing, or upload images to customise their clothing.
 
 ![mockup](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/amiresponsive.png)
 
@@ -54,43 +54,43 @@ With this website, users are able to create custom clothing. From standard templ
 
 ## 1.1 Strategy Plane
 
-With this website, users customise templates for clothing and apparel with images from a library or self-upload, or text with the available fonts.
+With this website, users customise templates for clothing and apparel with uploaded images, or choose from pre-designed clothing.
 
-Users can track their order from start to finish - designing, submitting, paying, tracking status and saving designs to order again at a later time.
+Users can track their order from start to finish - designing*, submitting, paying, tracking status and saving designs to order again at a later time*.
+
+'* only when creating a custom item of clothing.
 
 ### Target audience
 
-- Anyone looking to order a customised t-shirt.
-- Anyone looking to make a personalised printed gift.
+- Anyone looking to order a customised clothing.
+- Anyone looking to add their designs to clothing.
 
 ## 1.2 Scope Plane
 
 ### 1.2.1 Requirements and functional specifications
 
 - Header and Footer
-  - Header is split into teaser bar (special offer for no shipping fees), text and image logo that returns to landing page, navbar with links to about, design and products page, buttons for user account and shopping basket with total.
+  - Header is split into teaser bar (special offer for no shipping fees), company name above logo, image logo that returns to landing page, navbar with links to design and (pre-designed) products page, buttons for user account and shopping basket with total.
   - On small and medium device sizes: Text and image logo, icons for user account, shopping card and total and search menu, with hamburger menu for about, design and products pages.
   - Products button navigates to:
     - Categories (men, ladies, kids, other)
     - Sub-categories under each (t-shirts, sweatshirts, etc.)
   - User account button navigates to:
     - Super User only: Admin;
-    - Logged In User: Profile, Orders, Saved Designs, Log Out;
+    - Logged In User: Profile, Log Out;
     - Logged Out User: Log In and Register.
   - Footer with icons, navigates to Twitter, FaceBook and Pinterest.
 - Landing page
   - Visible when signed out or signed out
 - Administrator
   - Maintain content
-  - Track order status
-  - Manage orders
+  - Track order status ?
 - Products page
   - Visible to all site visitors
-  - Splits 4 categories
-  - Further split into sub-categories
-  - Navigates to design page
+  - Navigates to product detail, (superuser) edit and delete pages
 - Design page
   - Visible to all site visitors
+  - Navigates to design page, (superuser) edit and delete templates (mockups)
   - Upload of content only for registered for users - prompt to sign up / in
   - Template with a canvas area, where customisation occurs
   - Control panel for customising chosen apparel
@@ -98,7 +98,7 @@ Users can track their order from start to finish - designing, submitting, paying
   - Only available to signed in users
   - Contains personal information (contact details), editable
   - Shows order history, with option to reorder
-  - Saved design
+  - Saved designs
 - User authentication
   - Sign in required to get access to user profile area
   - Sign in required to upload custom designs
@@ -106,7 +106,6 @@ Users can track their order from start to finish - designing, submitting, paying
   - Sign out
   - Register new credentials
   - Register / sign up with Google account
-  - Register / sign up with Facebook account
   - Reset password from Sign in page
 - Shopping cart
   - Checkout as guest

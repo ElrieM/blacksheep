@@ -62,8 +62,8 @@ body {
 }
 
 .card-img, .card-img-top{
-    max-height: 65%;
-    max-width: 65%;
+    max-height: 200px;
+    max-width: 200px;
 }
 
 .update-link,

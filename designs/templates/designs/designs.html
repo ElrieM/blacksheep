@@ -1,58 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
-
 {% block content %}
-<div class="overlay"></div>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h2 class="text-center md-4">Choose a Product for Your Design</h2>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center md-4">Choose a Product for Your Design</h2>
+                <hr>
+            </div>
             <div class="row">
                 {% for m in mockup %}
-                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
-                    <div class="card">
-                        <!-- Design template in card (header) -->
-                        <div class="card-header">
-                            <h5 class="card-title text-center">{{ m.name }}</h5>
-                        </div>
-                        {% if m.image %}
-                            <a href="{% url 'design_mockup' m.id %}">
-                                <img class="card-img-top" src="{{ m.image_url }}" alt="{{ m.name }}">
-                            </a>
-                        {% else %}
-                            <a href="{% url 'design_mockup' m.id %}">
-                                <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ m.name }}"
-                                    class="card-img-top">
-                            </a>
-                        {% endif %}
-                        <!-- Design template in card (body) -->
-                        <div class="card-body">
-                            <a href="{{ m.friendly_name }}"></a>
-                            {% if request.user.is_superuser %}
-                                <a href="{% url 'edit_mockup' m.id %}" class="btn btn-link">Edit</a>
-                                <a href="{% url 'delete_mockup' m.id %}" class="btn btn-link">Delete</a>
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <!-- Design template in card (header) -->
+                            <div class="card-header">
+                                <h5 class="card-title text-center">{{ m.name }}</h5>
+                            </div>
+                            {% if m.image %}
+                                <a href="{% url 'design_mockup' m.id %}">
+                                    <img class="card-img-top" src="{{ m.image_url }}" alt="{{ m.name }}">
+                                </a>
+                            {% else %}
+                                <a href="{% url 'design_mockup' m.id %}">
+                                    <img src="{{ MEDIA_URL }}no-image-icon.png"
+                                         alt="{{ m.name }}"
+                                         class="card-img-top">
+                                </a>
                             {% endif %}
-                        </div>
-                        <div class="card-footer">
-                            <p class="text-center mb-0">
-                                <a class="btn btn-link text-center" href="{% url 'design_mockup' m.id %}">Start
+                            <!-- Design template in card (body) -->
+                            <div class="card-body">
+                                <a href="{{ m.friendly_name }}"></a>
+                                {% if request.user.is_superuser %}
+                                    <a href="{% url 'edit_mockup' m.id %}" class="btn btn-link">Edit</a>
+                                    <a href="{% url 'delete_mockup' m.id %}" class="btn btn-link">Delete</a>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer">
+                                <p class="text-center mb-0">
+                                    <a class="btn btn-link text-center"
+                                       href="{% url 'design_mockup' m.id %}">Start
                                     Design</a>
-                            </p>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </div>
     </div>
-
 </div>
 {% endblock %}

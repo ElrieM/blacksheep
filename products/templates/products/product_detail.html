@@ -1,79 +1,106 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
-
 {% block content %}
-<div class="overlay"></div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="image-container my-5">
-                {% if product.image %}
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top">
-                {% else %}
-                <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ product.name }}" class="card-img-top">
-                {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center md-4">{{ product.name }}</h2>
             </div>
         </div>
-        <div class="col">
-            <div class="product-details-container mb-5 mt-md-5">
-                <h3 class="mb-0">{{ product.name }}</h3>
-                <p class="mt-3">{{ product.description }}</p>
-                <p class="mb-0">
-                    <span>Price: €{{ product.price }}</span>
-                </p>
-                {% if product.category %}
+        <div class="image-container my-5">
+            {% if product.image %}
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}"
+                     class="card-img-top">
+            {% else %}
+                <img src="{{ MEDIA_URL }}no-image-icon.png"
+                     alt="{{ product.name }}"
+                     class="card-img-top">
+            {% endif %}
+        </div>
+    </div>
+    <div class="col">
+        <div class="product-details-container mb-5 mt-md-5">
+            <p class="mt-3">
+                {{ product.description }}
+            </p>
+            <p class="mb-0">
+                <span>Price: €{{ product.price }}</span>
+            </p>
+            {% if product.category %}
                 <p class="mt-1 mb-0">
                     <span>Category:
-                        <a href="{% url 'products' %}?category={{ product.category_name }}">
-                            {{product.category.friendly_name}}
-                        </a>
+                        <a href="{% url 'products' %}?category={{ product.category_name }}">{{ product.category.friendly_name }}</a>
                     </span>
                 </p>
-                {% endif %}
-            </div>
-            <form class="form" action="{% url 'add_to_cart' product.id %}" method="POST">
-                {% csrf_token %}
-                <div class="form-row">
-                    {% with product.has_sizes as s %}
+            {% endif %}
+        </div>
+        <form class="form"
+              action="{% url 'add_to_cart' product.id %}"
+              method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                {% with product.has_sizes as s %}
                     {% if s %}
-                    <div class="col-12">
-                        <p>Size:</p>
-                        <!-- Product size selector -->
-                        <select class="form-control w-50" name="product_size" id="id_product_size">
-                            <option value="xs">XS</option>
-                            <option value="s">S</option>
-                            <option value="m">M</option>
-                            <option value="l">L</option>
-                            <option value="xl">XL</option>
-                            <option value="xxl">XXL</option>
-                        </select>
-                    </div>
+                        <div class="col-12">
+                            <p>
+                                Size:
+                            </p>
+                            <!-- Product size selector -->
+                            <select class="form-control w-50" name="product_size" id="id_product_size">
+                                <option value="xs">
+                                    XS
+                                </option>
+                                <option value="s">
+                                    S
+                                </option>
+                                <option value="m">
+                                    M
+                                </option>
+                                <option value="l">
+                                    L
+                                </option>
+                                <option value="xl">
+                                    XL
+                                </option>
+                                <option value="xxl">
+                                    XXL
+                                </option>
+                            </select>
+                        </div>
                     {% endif %}
                     <div class="col-12">
-                        <p class="mt-3">Quantity:</p>
+                        <p class="mt-3">
+                            Quantity:
+                        </p>
                         <div class="form-group w-50">
                             <div class="input-group input-group-{{ product.id }}">
                                 <div class="input-group-prepend">
                                     <button class="decrement-qty btn decrement-qty_{{ product.id }}"
-                                        data-item_id="{{ product.id }}">
+                                            data-item_id="{{ product.id }}">
                                         <span class="icon">
                                             <i class="fas fa-minus"></i>
                                         </span>
                                     </button>
                                 </div>
-                                <input type="number" class="form-control qty_input id_qty_{{ product.id }}"
-                                    name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}">
+                                <input type="number"
+                                       class="form-control qty_input id_qty_{{ product.id }}"
+                                       name="quantity"
+                                       value="1"
+                                       min="1"
+                                       max="99"
+                                       data-item_id="{{ product.id }}">
                                 <div class="input-group-append">
                                     <button class="increment-qty btn increment-qty_{{ product.id }}"
-                                        data-item_id="{{ product.id }}">
+                                            data-item_id="{{ product.id }}">
                                         <span class="icon">
                                             <i class="fas fa-plus"></i>
                                         </span>
@@ -85,26 +112,23 @@
                             {% if request.user.is_superuser %}
                                 <a href="{% url 'edit_product' product.id %}" class="btn btn-link">Edit</a>
                                 <a href="{% url 'delete_product' product.id %}" class="btn btn-link">Delete</a>
-                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col{% if s %}-12{% endif %}">
                         <hr>
-                        <a href="{% url 'products' %}" class="btn btn-link">Keep Shopping</a>
-                        <br>
-                        <a href="{% url 'designs' %}" class="btn btn-link">Design Your Own</a>
-
+                        <a href="{% url 'products' %}" class="btn btn-green">Keep Shopping</a>
+                        <a href="{% url 'designs' %}" class="btn btn-green">Design Your Own</a>
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                    {% endwith %}
-                </div>
-            </form>
-        </div>
+                {% endwith %}
+            </div>
+        </form>
     </div>
 </div>
+</div>
 {% endblock %}
-
 {% block postloadjs %}
-{{ block.super }}
-<script src="{% static 'js/cart.js' %}" type="text/javascript"></script>
+    {{ block.super }}
+    <script src="{% static 'js/cart.js' %}" type="text/javascript"></script>
 {% endblock %}

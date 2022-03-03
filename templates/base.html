@@ -108,14 +108,14 @@
             </div>
         </div>
         <!-- navbar adapted from https://getbootstrap.com/docs/5.1/components/navbar/ -->
-        <div id="nav-bg" class="row py-lg-1d-lg-flex">
+        <div class="nav-bg row py-lg-1d-lg-flex">
             <!-- Logo, displays on all devices -->
             <div class="col-3 col-lg-4 my-auto py-1 text-center">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{% static 'favicon/logo.png' %}" alt="logo" width="50" height="50">
                 </a>
             </div>
-            <div class="col-6 d-lg-none">
+            <div class="col-6 d-lg-none text-center">
                 <h5 class="mb-0 my-3"><strong>BlackSheep Printing</strong></h5>
             </div>
             <!-- Menu - Adapted from boutique-ado template -->
@@ -168,6 +168,12 @@
 
     {% block content %}
     {% endblock %}
+
+    <footer class="container-fluid fixed-bottom p-0">
+        <div class="nav-bg text-center text-pampas">
+            <a href="{% url 'terms' %}" class="nav-link">Terms and Conditions</a>
+        </div>
+    </footer>
 
     {% block postloadjs %}
     <script type="text/javascript">

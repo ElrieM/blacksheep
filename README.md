@@ -425,6 +425,8 @@ Heroku is a free hosting service for hosting small projects.
 ## 7.2. Content
 
 - Created favicon from logo using [favicon.cc](https://www.favicon.cc/)
+- Address https://www.coolgenerator.com/nl-address-generator
+- Terms and conditions 
 
 ## 7.3. Media
 

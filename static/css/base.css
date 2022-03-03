@@ -12,12 +12,13 @@ body {
 }
 
 /* header */
-#banner-top {
+#banner-top,
+footer {
     background-color: #7DA074;
     font-family: 'Alegreya', serif;
 }
 
-#nav-bg {
+.nav-bg {
     background-color: #2CC4D5;
 }
 
@@ -31,7 +32,7 @@ body {
 }
 
 .container-text {
-    background-image: linear-gradient(#7DA074, #2CC4D5,#855682);;
+    background-image: linear-gradient(#7DA074, #2CC4D5);;
     padding: 10px 5px;
     margin: 1em;
     border-radius: 40px;
@@ -49,8 +50,20 @@ body {
 
 /* index */
 
-.text-pampas,
+.text-green {
+    color: #7DA074;
+}
+
+.text-purple {
+    color:#855682
+}
+
 .text-light {
+    color: #f4f4ee;
+    text-shadow: 3px 1px #7DA074;
+}
+
+.text-pampas {
     color: #f4f4ee;
 }
 
@@ -73,7 +86,7 @@ body {
 
 .btn-green {
     background-color: #f4f4ee;
-    color:#7DA074;
+    color:#000;
     border:#7DA074 3px solid;
 }
 
@@ -138,7 +151,20 @@ body {
 
 /* --------------------------------- Media queries */
 
-@media (max-width: 576px) {
+/* Extra small devices (phones, 600px and down) */
+@media (max-width: 600px) {
+
+    body {
+        width: fit-content;
+        background: url('/media/home-bg.png') no-repeat left center fixed;
+        background-size: 210%;
+        background-color: #386477;
+    }
+
+    .container.header-container {
+        height: 220px;
+    }
+
     .navbar-brand {
         top: 90px;
         left: 10px;
@@ -149,4 +175,19 @@ body {
         max-height: 220px;
         overflow-y: scroll;
     }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media (max-width: 990px) and (min-width: 600px) {
+    body {
+        width: unset;
+        background: url('/media/home-bg.png') no-repeat left center fixed;
+        background-size: 210%;
+        background-color: #386477;
+    }
+
+    .container.header-container {
+        height: 240px;
+    }
+
 }

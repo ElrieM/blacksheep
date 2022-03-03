@@ -84,7 +84,8 @@ def edit_mockup(request, mockup_id):
             messages.success(request, 'Design template details updated successfully')
             return redirect(reverse('design_mockup', args=[mockup.id]))
         else:
-            messages.error(request, 'Design template update failed. Please review form details and resubmit')
+            messages.error(request, 'Design template update failed.\
+                Please review form details and resubmit')
     else:
         form = MockupForm(instance=mockup)
         messages.info(request, f'You are editing {mockup.name}')

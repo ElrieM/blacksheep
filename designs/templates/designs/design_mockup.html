@@ -78,7 +78,7 @@
                                         Size:
                                     </p>
                                     <!-- Product size selector -->
-                                    <select class="form-control w-50" name="product_size" id="id_product_size">
+                                    <select class="form-control w-50" name="mockup_size" id="id_mockup_size">
                                         <option value="xs">
                                             XS
                                         </option>
@@ -129,12 +129,13 @@
                                                 </span>
                                             </button>
                                         </div>
+                                        <input type="hidden" name="product_or_design" value="design">
                                         <input type="submit" class="btn btn-info" value="Add to Cart">
                                         <br>
                                     </div>
                                     {% if request.user.is_superuser %}
-                                        <a href="{% url 'edit_product' mockup.id %}" class="btn btn-link">Edit</a>
-                                        <a href="{% url 'delete_product' mockup.id %}" class="btn btn-link">Delete</a>
+                                        <a href="{% url 'edit_mockup' mockup.id %}" class="btn btn-link">Edit</a>
+                                        <a href="{% url 'delete_mockup' mockup.id %}" class="btn btn-link">Delete</a>
                                     {% endif %}
                                 </div>
                             </div>

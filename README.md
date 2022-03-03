@@ -1,6 +1,6 @@
-<h1 align="center">Recipe Bundle</h1>
+<h1 align="center">BlackSheep Printing</h1>
 
-[View the live project here.](#)
+[View the live project here.](https://ci-ms4-blacksheepprint.herokuapp.com/)
 
 Two user types' credentials have been included below:
 | User type | Username | Password |
@@ -9,7 +9,7 @@ Two user types' credentials have been included below:
 | General | User1 | User1 |
 (Case sensitive)
 
-With this website, users are able to create custom clothing. From standard templates, users can choose from pre-made clothing, or upload images to customise their clothing.
+With this website, users are able to buy pre-created clothing, or create custom clothing from uploaded images.
 
 ![mockup](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/amiresponsive.png)
 

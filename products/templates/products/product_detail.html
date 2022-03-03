@@ -121,6 +121,7 @@
                                 <a href="{% url 'designs' %}" class="btn btn-green">Design Your Own</a>
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            <input type="hidden" name="product_or_design" value="product">
                         {% endwith %}
                     </div>
                 </form>

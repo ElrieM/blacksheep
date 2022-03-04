@@ -45,10 +45,29 @@ document.getElementById('tshirt-custompicture').addEventListener("change", funct
 // When the user selects a picture that has been added and press the DEL key
 // The object will be removed !
 document.addEventListener("keydown", function (e) {
-    var keyCode = e.keyCode;
+    var keyCode = e.key;
 
     if (keyCode == 46) {
         console.log("Removing selected element on Fabric.js on DELETE key !");
         canvas.remove(canvas.getActiveObject());
     }
 }, false);
+
+// Define as node the T-Shirt Div
+    
+function saveDesign() {
+    var node = document.getElementById('tshirt-div');
+
+    domtoimage.toPng(node).then(function (dataUrl) {
+    // Print the data URL of the picture in the Console
+    console.log(dataUrl);
+
+    // You can for example to test, add the image at the end of the document
+    var img = new Image();
+    img.src = dataUrl;
+    localStorage.setItem('design', dataUrl);
+}).catch(function (error) {
+    console.error('oops, something went wrong!', error);
+
+});
+}

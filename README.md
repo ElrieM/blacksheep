@@ -56,13 +56,13 @@ With this website, users are able to buy pre-created clothing, or create custom 
 
 With this website, users customise templates for clothing and apparel with uploaded images, or choose from pre-designed clothing.
 
-Users can track their order from start to finish - designing*, submitting, paying, tracking status and saving designs to order again at a later time*.
+Users can track their order from start to finish - designing*, submitting, paying, and tracking status.
 
 '* only when creating a custom item of clothing.
 
 ### Target audience
 
-- Anyone looking to order a customised clothing.
+- Anyone looking to order a custom clothing.
 - Anyone looking to add their designs to clothing.
 
 ## 1.2 Scope Plane
@@ -70,13 +70,13 @@ Users can track their order from start to finish - designing*, submitting, payin
 ### 1.2.1 Requirements and functional specifications
 
 - Header and Footer
-  - Header is split into teaser bar (special offer for no shipping fees), company name above logo, image logo that returns to landing page, navbar with links to design and (pre-designed) products page, buttons for user account and shopping basket with total.
-  - On small and medium device sizes: Text and image logo, icons for user account, shopping card and total and search menu, with hamburger menu for about, design and products pages.
+  - Header is split into teaser bar (special offer to qualify for free delivery), company name above logo, image logo that returns to landing page, navbar with links to design and (pre-designed) products page, buttons for user account and shopping basket with total.
+  - On small and medium device sizes: Text and image logo, icons for user account, shopping card and total and search menu, with hamburger menu for design and products pages.
   - Products button navigates to:
     - Categories (men, ladies, kids, other)
     - Sub-categories under each (t-shirts, sweatshirts, etc.)
   - User account button navigates to:
-    - Super User only: Admin;
+    - Super User only: Admin View;
     - Logged In User: Profile, Log Out;
     - Logged Out User: Log In and Register.
   - Footer with icons, navigates to Twitter, FaceBook and Pinterest.
@@ -198,7 +198,7 @@ Steps taken integration:
 - Page header navigates to Landing page, Admin page (Admin user only), Collection page and Sign Out page (if signed in), Sign In page and Register page (if not signed in).
 - Sign In page navigates to Register page and Reset page.
 - Sign Out page navigates to Register page.
-- Page footer navigates to social media links (Pinterest, FaceBook and Twitter).
+- Page footer navigates to terms and conditions of usage.
 
 ### 1.4.2 Wireframes
 

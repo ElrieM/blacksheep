@@ -136,7 +136,7 @@
             <!-- Search bar -->
             <div class="col-12 col-lg-4 my-auto py-1 text-right">
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
@@ -170,8 +170,34 @@
     {% endblock %}
 
     <footer class="container-fluid fixed-bottom p-0">
-        <div class="nav-bg text-center text-pampas">
-            <a href="{% url 'terms' %}" class="nav-link">Terms and Conditions</a>
+        <div class="row nav-bg">
+            <div class="col-4">
+
+            </div>
+            <div class="col-4">
+                <div class="text-center text-pampas">
+                    <a href="{% url 'terms' %}" class="nav-link">Terms and Conditions</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="text-end text-pampas">
+                    <div class="nav-link">Let's Connect:
+                        <br>
+                        <a aria-label="social-media-link" href="https://www.facebook.com/" target="_blank"
+                            rel="noopener">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a aria-label="social-media-link" href="https://www.twitter.com/" target="_blank"
+                            rel="noopener">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a aria-label="social-media-link" href="https://www.pinterest.com/" target="_blank"
+                            rel="noopener">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 

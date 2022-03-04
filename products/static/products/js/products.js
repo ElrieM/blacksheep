@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 $('#sort-selector').change(function() {
     var selector = $(this);
     var currentUrl = new URL(window.location);
@@ -21,4 +23,9 @@ $('#sort-selector').change(function() {
 
 $('#conf-del').click(function() {
     alert('Are you sure you want to delete?');
+});
+
+$('#new-image').change(function() {
+    var file = $('#new-image')[0].files[0];
+    $('#filename').text(`Image will be set to: ${file.name}`);
 });

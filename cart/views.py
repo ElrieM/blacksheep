@@ -46,11 +46,11 @@ def add_to_cart(request, item_id):
             else:
                 cart[item_id] = {'items_by_size': {size: quantity}}
                 messages.success(request,
-                                f'Added additional {product.name} to cart')
+                                f'Added {product.name} to cart')
         else:
             if item_id in list(cart.keys()):
                 cart[item_id] += quantity
-                messages.success(request, f'Added {product.name} to cart')
+                messages.success(request, f'Added additional {product.name} to cart')
             else:
                 cart[item_id] = quantity
                 messages.success(request, f'{product.name} added to cart')

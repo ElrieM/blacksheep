@@ -64,7 +64,11 @@
             <label for="tshirt-custompicture">Upload your own design:</label>
             <input type="file" id="tshirt-custompicture" />
             <br>
+            {% if request.user.is_authenticated %}
             <a type="submit" id="saveDesignBtn" class="btn btn-green">Save your design</a>
+            {% else %}
+            <p><small><a href="{% url 'account_login' %}">Log in</a> to save custom design</small></p>
+            {% endif %}
         </div>
         <div class="col-12 col-md-5">
             <form class="form" action="{% url 'add_to_cart' mockup.id %}" method="POST">

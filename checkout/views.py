@@ -26,7 +26,7 @@ def cache_checkout_data(request):
     User checkout data cached
     """
     try:
-        pid = request.POST.get("client_secret").split("_secret")[0]
+        pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
 
         stripe.PaymentIntent.modify(
@@ -88,7 +88,7 @@ def checkout(request):
                         )
                         order_line_item.save()
                     else:
-                        for size, quantity in item_data["items_by_size"].items():
+                        for size, quantity in item_data['items_by_size'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,

@@ -24,8 +24,9 @@ def add_to_cart(request, item_id):
     product_or_design = request.POST.get('product_or_design')
     size = None
 
-    if product_or_design == "product":
+    if product_or_design == "product": # Adding pre-made products
         product = get_object_or_404(Product, pk=item_id)
+
         if 'product_size' in request.POST:
             size = request.POST['product_size']
         cart = request.session.get('cart', {})
@@ -55,7 +56,7 @@ def add_to_cart(request, item_id):
                 cart[item_id] = quantity
                 messages.success(request, f'{product.name} added to cart')
 
-    elif product_or_design == "design":
+    else: # Adding mockup
         mockup = get_object_or_404(Mockup, pk=item_id)
 
         if 'mockup_size' in request.POST:
@@ -86,7 +87,6 @@ def add_to_cart(request, item_id):
             else:
                 cart[item_id] = quantity
                 messages.success(request, f'{mockup.name} added to cart')
-
 
     request.session['cart'] = cart
     return redirect(redirect_url)

@@ -137,12 +137,12 @@
                             {% endif %}
                         </div>
                     </div>
-                    <input id="design-image" type="file" name="image" accept="image/*" class="border-dark">
                     <div class="col{% if s %}-12{% endif %} text-center">
                         <hr>
                         <a href="{% url 'products' %}" class="btn btn-green">Keep Shopping</a>
                         <a href="{% url 'designs' %}" class="btn btn-green">Design Your Own</a>
                     </div>
+                    <input type="hidden" name="saved_design" id="saved_design">
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     <input type="hidden" name="product_or_design" value="design">
                     {% endwith %}

@@ -59,17 +59,16 @@ var node = document.getElementById('tshirt-div');
 var saveBtn = document.getElementById('saveDesignBtn');
 
 var designCount = 0;
-saveBtn.addEventListener('click', function(e){
+saveBtn.addEventListener('click', function (e) {
     designCount += 1;
 
-    domtoimage.toPng(node).then(function (dataUrl) {
+    document.getElementById('saved_design').value = domtoimage.toPng(node).then(function (dataUrl) {
         console.log(dataUrl);
 
         var img = new Image();
         img.src = dataUrl;
-        sessionStorage.setItem('design', dataUrl);
     }).catch(function (error) {
         console.error('oops, something went wrong!', error);
     });
-    
+
 });

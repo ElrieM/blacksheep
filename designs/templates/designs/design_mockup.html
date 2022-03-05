@@ -12,10 +12,10 @@
 {% endblock %}
 {% block content %}
 <div class="overlay"></div>
-<div class="container">
+<div class="container container-content">
     <div class="row">
         <div class="col">
-            <h2 class="text-center md-4">Design</h2>
+            <h2 class="text-center md-4">{{ mockup.name }}</h2>
             <hr>
         </div>
     </div>
@@ -31,7 +31,7 @@
                 {% endif %}
                 <div id="drawingArea" class="drawing-area">
                     <div class="canvas-container">
-                        <canvas id="tshirt-canvas" width="155" height="320"></canvas>
+                        <canvas id="tshirt-canvas" width="135" height="265"></canvas>
                     </div>
                 </div>
             </div>
@@ -130,11 +130,10 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="col{% if s %}-12{% endif %}">
+                    <div class="col{% if s %}-12{% endif %} text-center">
                         <hr>
-                        <a href="{% url 'products' %}" class="btn btn-link">Keep Shopping</a>
-                        <br>
-                        <a href="{% url 'designs' %}" class="btn btn-link">Design Your Own</a>
+                        <a href="{% url 'products' %}" class="btn btn-green">Keep Shopping</a>
+                        <a href="{% url 'designs' %}" class="btn btn-green">Design Your Own</a>
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     <input type="hidden" name="product_or_design" value="design">

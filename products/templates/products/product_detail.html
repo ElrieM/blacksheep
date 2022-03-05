@@ -23,9 +23,9 @@
                     {% if product.image %}
                         <img src="{{ product.image.url }}"
                              alt="{{ product.name }}"
-                             class="card-img-top">
+                             class="product-img">
                     {% else %}
-                        <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ product.name }}">
+                        <img class="product-img" src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ product.name }}">
                     {% endif %}
                 </div>
             </div>
@@ -115,7 +115,7 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <div class="col{% if s %}-12{% endif %}">
+                            <div class="col{% if s %}-12{% endif %} text-center">
                                 <hr>
                                 <a href="{% url 'products' %}" class="btn btn-green">Keep Shopping</a>
                                 <a href="{% url 'designs' %}" class="btn btn-green">Design Your Own</a>

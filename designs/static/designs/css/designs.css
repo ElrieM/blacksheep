@@ -5,28 +5,28 @@
     top: 60px;
     left: 85px;
     z-index: 10;
-    width: 155px;
-    height: 320px;
+    width: 135px;
+    height: 265px;
 }
 
 .canvas-container{
-    width: 155px; 
-    height: 320px; 
+    width: 135px; 
+    height: 265px; 
     position: relative; 
     user-select: none;
 }
 
 #tshirt-div{
-    width: 329px;
-    height: 400px;
+    width: 300px;
+    height: 350px;
     position: relative;
     background-color: #fff;
 }
 
 #canvas {
     position: absolute;
-    width: 155px;
-    height: 155px;
+    width: 135px;
+    height: 135px;
     left: 0px;
     top: 0px;
     user-select: none; 
@@ -34,6 +34,6 @@
 }
 
 #tshirt-backgroundpicture {
-    height: 400px;
-    width: 329px;
+    height: 350px;
+    width: 300px;
 }

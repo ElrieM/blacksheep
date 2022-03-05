@@ -79,6 +79,16 @@ footer {
     max-width: 200px;
 }
 
+.admin-forms {
+    overflow: overlay;
+    padding-bottom: 6rem;
+}
+
+.product-img {
+    max-height: 400px;
+    max-width: 400px;
+}
+
 .update-link,
 .remove-item {
     cursor: pointer;
@@ -88,6 +98,10 @@ footer {
     background-color: #f4f4ee;
     color:#000;
     border:#7DA074 3px solid;
+}
+
+.container-content {
+    padding-bottom: 6rem;
 }
 
 /* -- Bootstrap toasts */

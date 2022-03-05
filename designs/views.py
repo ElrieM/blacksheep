@@ -34,7 +34,7 @@ def design_mockup(request, mockup_id):
     context = {
         'mockup': mockup,
     }
-    
+
     return render(request, 'designs/design_mockup.html', context)
 
 

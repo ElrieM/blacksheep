@@ -59,7 +59,7 @@ def add_to_cart(request, item_id):
         mockup = get_object_or_404(Mockup, pk=item_id)
 
         if 'mockup_size' in request.POST:
-           size = request.POST['mockup_size']
+            size = request.POST['mockup_size']
         cart = request.session.get('cart', {})
 
         if size:
@@ -134,7 +134,7 @@ def edit_cart(request, item_id):
 
 def remove_from_cart(request, item_id):
     """ Remove item from shopping cart """
-    
+
     try:
         product = get_object_or_404(Product, pk=item_id)
         size = None

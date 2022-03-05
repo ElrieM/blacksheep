@@ -54,20 +54,22 @@ document.addEventListener("keydown", function (e) {
 }, false);
 
 // Define as node the T-Shirt Div
-    
-function saveDesign() {
-    var node = document.getElementById('tshirt-div');
+
+var node = document.getElementById('tshirt-div');
+var saveBtn = document.getElementById('saveDesignBtn');
+
+var designCount = 0;
+saveBtn.addEventListener('click', function(e){
+    designCount += 1;
 
     domtoimage.toPng(node).then(function (dataUrl) {
-    // Print the data URL of the picture in the Console
-    console.log(dataUrl);
+        console.log(dataUrl);
 
-    // You can for example to test, add the image at the end of the document
-    var img = new Image();
-    img.src = dataUrl;
-    localStorage.setItem('design', dataUrl);
-}).catch(function (error) {
-    console.error('oops, something went wrong!', error);
-
+        var img = new Image();
+        img.src = dataUrl;
+        sessionStorage.setItem('design', dataUrl);
+    }).catch(function (error) {
+        console.error('oops, something went wrong!', error);
+    });
+    
 });
-}

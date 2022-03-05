@@ -72,20 +72,20 @@
         <div class="row">
             {% for product in products %}
                 {% if product.category %}
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
                         <div class="card">
                             <!-- Product in card (header) -->
                             <div class="card-header">
                                 <h5 class="card-title text-center">{{ product.name }}</h5>
                             </div>
                             {% if product.image %}
-                                <a href="{% url 'product_details' product.id %}?category={{ product.name }}">
+                                <a class="text-center" href="{% url 'product_details' product.id %}?category={{ product.name }}">
                                     <img src="{{ product.image.url }}"
                                          alt="{{ product.name }}"
                                          class="card-img-top">
                                 </a>
                             {% else %}
-                                <a href="{% url 'product_details' product.id %}">
+                                <a class="text-center"  href="{% url 'product_details' product.id %}">
                                     <img src="{{ MEDIA_URL }}no-image-icon.png"
                                          alt="{{ product.name }}"
                                          class="card-img-top">

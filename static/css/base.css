@@ -89,6 +89,10 @@ footer {
     max-width: 400px;
 }
 
+.img-fluid {
+    max-width:50%;
+}
+
 .update-link,
 .remove-item {
     cursor: pointer;
@@ -102,6 +106,11 @@ footer {
 
 .container-content {
     padding-bottom: 6rem;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
 }
 
 /* -- Bootstrap toasts */
@@ -189,6 +198,11 @@ footer {
         max-height: 220px;
         overflow-y: scroll;
     }
+
+    .img-fluid {
+        max-width: 100%;
+    }
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

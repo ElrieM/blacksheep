@@ -17,18 +17,18 @@
             </div>
             <div class="row">
                 {% for m in mockup %}
-                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mb-3">
                         <div class="card">
                             <!-- Design template in card (header) -->
                             <div class="card-header">
                                 <h5 class="card-title text-center">{{ m.name }}</h5>
                             </div>
                             {% if m.image %}
-                                <a href="{% url 'design_mockup' m.id %}">
+                                <a href="{% url 'design_mockup' m.id %}" class="text-center">
                                     <img class="card-img-top" src="{{ m.image_url }}" alt="{{ m.name }}">
                                 </a>
                             {% else %}
-                                <a href="{% url 'design_mockup' m.id %}">
+                                <a href="{% url 'design_mockup' m.id %}" class="text-center">
                                     <img src="{{ MEDIA_URL }}no-image-icon.png"
                                          alt="{{ m.name }}"
                                          class="card-img-top">

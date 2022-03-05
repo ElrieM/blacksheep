@@ -10,7 +10,7 @@
 {% endblock %}
 {% block content %}
     <div class="overlay"></div>
-    <div class="container">
+    <div class="container container-content">
         <div class="row">
             <div class="col">
                 <h2 class="text-center md-4">Shopping cart</h2>
@@ -118,7 +118,7 @@
                                 </tr>
                             {% endfor %}
                             <tr>
-                                <td colspan="5" class="pt-5 text-right">
+                                <td colspan="5" class="pt-2 text-end">
                                     <h6>Cart Total: €{{ total|floatformat:2 }}</h6>
                                     <h6>Delivery Costs: €{{ delivery|floatformat:2 }}</h6>
                                     <h4 class="mt-4">Grand Total: €{{ grand_total|floatformat:2 }}</h4>
@@ -130,7 +130,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="5" class="text-right">
+                                <td colspan="5" class="text-end">
                                     <a href="{% url 'products' %}" class="btn btn-green">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>

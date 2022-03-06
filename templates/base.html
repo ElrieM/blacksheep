@@ -1,208 +1,223 @@
 {% load static %}
-
 <!-- Copied from https://getbootstrap.com/docs/5.1/getting-started/introduction/ -->
 <!doctype html>
 <html lang="en">
-
-<head>
-
-    {% block meta %}
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" , shrink-to-fit="no">
-    {% endblock %}
-
-    {% block extra_meta %}
-    {% endblock %}
-
-    {% block corecss %}
-    <link type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-        crossorigin="anonymous">
-    <link type="text/css"
-        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;1,300&family=Alegreya:ital,wght@0,500;1,500&display=swap"
-        rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% endblock %}
-
-    {% block extra_css %}
-    {% endblock %}
-
-    {% block corejs %}
-    <script type="text/javascript" src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <!-- Stripe -->
-    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
-    {% endblock %}
-
-    {% block extra_js %}
-    {% endblock %}
-
-    <!-- Favicon, created with https://favicon.io/favicon-generator/ -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
-
-    <title>BlackSheep Printing {% block extra_title %}{% endblock %}</title>
-</head>
-
-<body>
-    <header class="container-flex fixed-top">
-        <div id="banner-top" class="row py-lg-0 d-lg-flex">
-            <!-- Banner -->
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <span class="d-none d-lg-block mb-0 text-pampas">BlackSheep Printing</span>
-            </div>
-            <!-- Delivery message -->
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center">
-                <span class="mb-0 text-pampas">Free Delivery on Orders Exceeding €{{ free_delivery_threshold }}!</span>
-            </div>
-            <!-- User and Basket buttons -->
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                    <!-- User-->
-                    <li class="list-inline-item dropdown">
-                        <a href="#" role="button" id="user-options" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" class="text-pampas nav-link">
-                            <div class="text-center">
-                                <i class="fas fa-user"></i>
-                                <span class="my-0">Account</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="user-options">
-                            {% if request.user.is_authenticated %}
-                            <a href="{% url 'profile' %}" class="dropdown-item">User Profile</a>
-                            {% if request.user.is_superuser %}
-                            <a href="{% url 'admin_overview' %}" class="dropdown-item">Admin View</a>
-                            {% endif %}
-                            <a href="{% url 'account_logout' %}" class="dropdown-item">Log Out</a>
-                            {% else %}
-                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                            <a href="{% url 'account_login' %}" class="dropdown-item">Log In</a>
-                            {% endif %}
-                        </div>
-                    </li>
-                    <!-- Shopping cart -->
-                    <li class="list-inline-item">
-                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}{% endif %} nav-link"
-                            href="{% url 'view_cart' %}">
-                            <div class="text-center text-pampas">
-                                <div><i class="fas fa-shopping-cart"></i>
-                                    <span class="my-0">
-                                        {% if grand_total %}
-                                        €{{ grand_total|floatformat:2 }}
-                                        {% else %}
-                                        €0.00
-                                        {% endif %}
-                                    </span>
+    <head>
+        {% block meta %}
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <meta charset="utf-8">
+            <meta name="viewport"
+                  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% endblock %}
+        {% block extra_meta %}{% endblock %}
+        {% block corecss %}
+            <link type="text/css"
+                  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+                  rel="stylesheet"
+                  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                  crossorigin="anonymous">
+            <link type="text/css"
+                  href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;1,300&family=Alegreya:ital,wght@0,500;1,500&display=swap"
+                  rel="stylesheet">
+            <link type="text/css" rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% endblock %}
+        {% block extra_css %}{% endblock %}
+        {% block corejs %}
+            <script src="https://kit.fontawesome.com/e9c73d7092.js"
+                    crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                    crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+            </script>
+            <!-- Stripe -->
+            <script src="https://js.stripe.com/v3/"></script>
+        {% endblock %}
+        {% block extra_js %}{% endblock %}
+        <!-- Favicon, created with https://favicon.io/favicon-generator/ -->
+        <link rel="apple-touch-icon"
+              sizes="180x180"
+              href="{% static 'favicon/apple-touch-icon.png' %}">
+        <link rel="icon"
+              type="image/png"
+              sizes="32x32"
+              href="{% static 'favicon/favicon-32x32.png' %}">
+        <link rel="icon"
+              type="image/png"
+              sizes="16x16"
+              href="{% static 'favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+        <title>BlackSheep Printing
+            {% block extra_title %}{% endblock %}
+        </title>
+    </head>
+    <body>
+        <header class="container-flex fixed-top">
+            <div id="banner-top" class="row py-lg-0 d-lg-flex">
+                <!-- Banner -->
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+                    <span class="d-none d-lg-block mb-0 text-pampas">BlackSheep Printing</span>
+                </div>
+                <!-- Delivery message -->
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center">
+                    <span class="mb-0 text-pampas">Free Delivery on Orders Exceeding €{{ free_delivery_threshold }}!</span>
+                </div>
+                <!-- User and Basket buttons -->
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                    <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                        <!-- User-->
+                        <li class="list-inline-item dropdown">
+                            <a href="#"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false"
+                               class="text-pampas nav-link">
+                                <div class="text-center">
+                                    <i class="fas fa-user"></i>
+                                    <span class="my-0">Account</span>
                                 </div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="user-options">
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'profile' %}" class="dropdown-item">User Profile</a>
+                                    {% if request.user.is_superuser %}
+                                        <a href="{% url 'admin_overview' %}" class="dropdown-item">Admin View</a>
+                                    {% endif %}
+                                    <a href="{% url 'account_logout' %}" class="dropdown-item">Log Out</a>
+                                {% else %}
+                                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                    <a href="{% url 'account_login' %}" class="dropdown-item">Log In</a>
+                                {% endif %}
                             </div>
-                        </a>
-                    </li>
-                </ul>
+                        </li>
+                        <!-- Shopping cart -->
+                        <li class="list-inline-item">
+                            <a class="{% if grand_total %}text-info font-weight-bold{% else %}{% endif %} nav-link"
+                               href="{% url 'view_cart' %}">
+                                <div class="text-center text-pampas">
+                                    <div>
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span class="my-0">
+                                            {% if grand_total %}
+                                                €{{ grand_total|floatformat:2 }}
+                                            {% else %}
+                                                €0.00
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!-- navbar adapted from https://getbootstrap.com/docs/5.1/components/navbar/ -->
-        <div class="nav-bg row py-lg-1d-lg-flex">
-            <!-- Logo, displays on all devices -->
-            <div class="col-3 col-lg-4 my-auto py-1 text-center">
-                <a class="navbar-brand" href="{% url 'home' %}">
-                    <img src="{% static 'favicon/logo.png' %}" alt="logo" width="50" height="50">
-                </a>
+            <!-- navbar adapted from https://getbootstrap.com/docs/5.1/components/navbar/ -->
+            <div class="nav-bg row py-lg-1d-lg-flex">
+                <!-- Logo, displays on all devices -->
+                <div class="col-3 col-lg-4 my-auto py-1 text-center">
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        <img src="{% static 'favicon/logo.png' %}"
+                             alt="logo"
+                             width="50"
+                             height="50">
+                    </a>
+                </div>
+                <div class="col-6 d-lg-none text-center">
+                    <h5 class="mb-0 my-3">
+                        <strong>BlackSheep Printing</strong>
+                    </h5>
+                </div>
+                <!-- Menu - Adapted from boutique-ado template -->
+                <div class="col-3 col-lg-4 my-auto py-1">
+                    <nav class="navbar navbar-expand-lg w-100">
+                        <button class="navbar-toggler"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#main-nav"
+                                aria-controls="main-nav"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">Menu</span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="main-nav">
+                            <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                                {% include 'includes/main-nav.html' %}
+                                {% include 'includes/mobile-top-header.html' %}
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- Search bar -->
+                <div class="col-12 col-lg-4 my-auto py-1 text-right">
+                    <form class="d-flex">
+                        <input class="form-control"
+                               type="search"
+                               placeholder="Search"
+                               aria-label="Search">
+                        <button class="btn" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
-            <div class="col-6 d-lg-none text-center">
-                <h5 class="mb-0 my-3"><strong>BlackSheep Printing</strong></h5>
+        </header>
+        {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                    {% with message.level as level %}
+                        {% if level == 40 %}
+                            {% include 'includes/toasts/toast_error.html' %}
+                        {% elif level == 30 %}
+                            {% include 'includes/toasts/toast_warning.html' %}
+                        {% elif level == 25 %}
+                            {% include 'includes/toasts/toast_success.html' %}
+                        {% else %}
+                            {% include 'includes/toasts/toast_success.html' %}
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
             </div>
-            <!-- Menu - Adapted from boutique-ado template -->
-            <div class="col-3 col-lg-4 my-auto py-1">
-                <nav class="navbar navbar-expand-lg w-100">
-                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#main-nav"
-                        aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon">Menu</span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="main-nav">
-                        <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                            {% include 'includes/main-nav.html' %}
-                            {% include 'includes/mobile-top-header.html' %}
+        {% endif %}
+        {% block page_header %}{% endblock %}
+        {% block content %}{% endblock %}
+        <footer class="container-fluid fixed-bottom p-0">
+            <div class="row nav-bg">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="text-center text-pampas">
+                        <a href="{% url 'terms' %}" class="nav-link">Terms and Conditions</a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-end text-pampas">
+                        <div class="nav-link">
+                            Let's Connect:
+                            <br>
+                            <a aria-label="social-media-link"
+                               href="https://www.facebook.com/"
+                               target="_blank"
+                               rel="noopener">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a aria-label="social-media-link"
+                               href="https://www.twitter.com/"
+                               target="_blank"
+                               rel="noopener">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a aria-label="social-media-link"
+                               href="https://www.pinterest.com/"
+                               target="_blank"
+                               rel="noopener">
+                                <i class="fab fa-pinterest"></i>
+                            </a>
                         </div>
                     </div>
-                </nav>
-            </div>
-            <!-- Search bar -->
-            <div class="col-12 col-lg-4 my-auto py-1 text-right">
-                <form class="d-flex">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </header>
-
-    {% if messages %}
-    <div class="message-container">
-        {% for message in messages %}
-        {% with message.level as level %}
-        {% if level == 40 %}
-        {% include 'includes/toasts/toast_error.html' %}
-        {% elif level == 30 %}
-        {% include 'includes/toasts/toast_warning.html' %}
-        {% elif level == 25 %}
-        {% include 'includes/toasts/toast_success.html' %}
-        {% else %}
-        {% include 'includes/toasts/toast_success.html' %}
-        {% endif %}
-        {% endwith %}
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    {% block page_header %}
-    {% endblock %}
-
-    {% block content %}
-    {% endblock %}
-
-    <footer class="container-fluid fixed-bottom p-0">
-        <div class="row nav-bg">
-            <div class="col-4">
-
-            </div>
-            <div class="col-4">
-                <div class="text-center text-pampas">
-                    <a href="{% url 'terms' %}" class="nav-link">Terms and Conditions</a>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="text-end text-pampas">
-                    <div class="nav-link">Let's Connect:
-                        <br>
-                        <a aria-label="social-media-link" href="https://www.facebook.com/" target="_blank"
-                            rel="noopener">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a aria-label="social-media-link" href="https://www.twitter.com/" target="_blank"
-                            rel="noopener">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a aria-label="social-media-link" href="https://www.pinterest.com/" target="_blank"
-                            rel="noopener">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    {% block postloadjs %}
-    <script type="text/javascript">
+        </footer>
+        {% block postloadjs %}
+            <script>
         var toastElList = [].slice.call(document.querySelectorAll('.toast'))
         var toastList = toastElList.map(function (toastEl) {
             let option = {
@@ -213,10 +228,7 @@
             let bsToast = new bootstrap.Toast(toastEl, option);
             bsToast.show();
         })
-        console.log(toastElList);
-    </script>
-    {% endblock %}
-
-</body>
-
+            </script>
+        {% endblock %}
+    </body>
 </html>

@@ -170,7 +170,7 @@ footer {
 
 .custom-checkbox .custom-controlinput:checked~.custom-control-label::before {
     background-color: #386477;
-    border-color: #386477;
+    border-color: #275d74;
 }
 
 /* --------------------------------- Media queries */

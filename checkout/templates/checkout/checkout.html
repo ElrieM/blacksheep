@@ -36,9 +36,9 @@
                 <div class="col-2 mb-1">
                     <a href="{% url 'product_details' item.product.id %}">
                         {% if product.image %}
-                        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="card-img-top">
+                        <img src="{{ product.image_url }}" alt="{{ product.friendly_name }}" class="card-img-top">
                         {% else %}
-                        <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ product.name }}" class="card-img-top">
+                        <img src="{{ MEDIA_URL }}no-image-icon.png" alt="{{ product.friendly_name }}" class="card-img-top">
                         {% endif %}
                     </a>
                 </div>

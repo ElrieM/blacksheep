@@ -1,161 +1,174 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
 {% block extra_css %}
-<link type="text/css" rel="stylesheet" href="{% static 'designs/css/designs.css' %}">
+    <link type="text/css"
+          rel="stylesheet"
+          href="{% static 'designs/css/designs.css' %}">
 {% endblock %}
 {% block content %}
-<div class="overlay"></div>
-<div class="container container-content">
-    <div class="row">
-        <div class="col">
-            <h2 class="text-center md-4">{{ mockup.name }}</h2>
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <!-- Adapted from https://ourcodeworld.com/articles/read/1016/how-to-create-your-own-t-shirt-designer-using-fabricjs-in-javascript -->
-        <div class="col-12 col-md-7">
-            <!-- Create the container of the tool -->
-            <div id="tshirt-div">
-                {% if mockup.image %}
-                <img id="tshirt-backgroundpicture" src="{{ mockup.image.url }}" alt="{{ mockup.name }}">
-                {% else %}
-                <img id="tshirt-backgroundpicture" src="{{ MEDIA_URL }}/{{ mockup.name }}" />
-                {% endif %}
-                <div id="drawingArea" class="drawing-area">
-                    <div class="canvas-container">
-                        <canvas id="tshirt-canvas" width="135" height="265"></canvas>
-                    </div>
-                </div>
+    <div class="overlay"></div>
+    <div class="container container-content">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center md-4">{{ mockup.name }}</h2>
+                <hr>
             </div>
-            <!-- Image editing tools -->
-            <span>
-                Select and press the <kbd>DEL</kbd> key to remove design elements.
-            </span>
-            <br>
-            <!-- The Select that allows the user to change the color of the T-Shirt -->
-            <label for="tshirt-color">T-Shirt Color:</label>
-            <select id="tshirt-color">
-                <!-- You can add any color with a new option and definings its hex code -->
-                <option value="#fff">
-                    White
-                </option>
-                <option value="#000">
-                    Black
-                </option>
-                <option value="#f00">
-                    Red
-                </option>
-                <option value="#008000">
-                    Green
-                </option>
-                <option value="#ff0">
-                    Yellow
-                </option>
-            </select>
-            <br>
-            <label for="tshirt-custompicture">Upload your own design:</label>
-            <input type="file" id="tshirt-custompicture" />
-            <br>
-            {% if request.user.is_authenticated %}
-            <a type="submit" id="saveDesignBtn" class="btn btn-green">Save your design</a>
-            {% else %}
-            <p><small><a href="{% url 'account_login' %}">Log in</a> to save custom design</small></p>
-            {% endif %}
         </div>
-        <div class="col-12 col-md-5">
-            <form class="form" action="{% url 'add_to_cart' mockup.id %}" method="POST">
-                {% csrf_token %}
-                <div class="form-row">
-                    {% with mockup.has_sizes as s %}
-                    {% if s %}
-                    <div class="col-12">
-                        <p>
-                            Size:
-                        </p>
-                        <!-- Product size selector -->
-                        <select class="form-control w-50" name="mockup_size" id="id_mockup_size">
-                            <option value="xs">
-                                XS
-                            </option>
-                            <option value="s">
-                                S
-                            </option>
-                            <option value="m">
-                                M
-                            </option>
-                            <option value="l">
-                                L
-                            </option>
-                            <option value="xl">
-                                XL
-                            </option>
-                            <option value="xxl">
-                                XXL
-                            </option>
-                        </select>
-                    </div>
+        <div class="row">
+            <!-- Adapted from https://ourcodeworld.com/articles/read/1016/how-to-create-your-own-t-shirt-designer-using-fabricjs-in-javascript -->
+            <div class="col-12 col-md-7">
+                <!-- Create the container of the tool -->
+                <div id="tshirt-div">
+                    {% if mockup.image %}
+                        <img id="tshirt-backgroundpicture"
+                             src="{{ mockup.image.url }}"
+                             alt="{{ mockup.name }}">
+                    {% else %}
+                        <img id="tshirt-backgroundpicture"
+                             src="{{ MEDIA_URL }}/{{ mockup.name }}"
+                             alt="{{ mockup.name }}">
                     {% endif %}
-                    <div class="col-12">
-                        <p class="mt-3">
-                            Quantity:
-                        </p>
-                        <div class="form-group w-50">
-                            <div class="input-group input-group-{{ mockup.id }}">
-                                <div class="input-group-prepend">
-                                    <button class="decrement-qty btn decrement-qty_{{ mockup.id }}"
-                                        data-item_id="{{ mockup.id }}">
-                                        <span class="icon">
-                                            <i class="fas fa-minus"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <input type="number" class="form-control qty_input id_qty_{{ mockup.id }}"
-                                    name="quantity" value="1" min="1" max="99" data-item_id="{{ mockup.id }}">
-                                <div class="input-group-append">
-                                    <button class="increment-qty btn increment-qty_{{ mockup.id }}"
-                                        data-item_id="{{ mockup.id }}">
-                                        <span class="icon">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <input type="hidden" name="product_or_design" value="design">
-                                <input type="submit" class="btn btn-info" value="Add to Cart")>
-                                <br>
-                            </div>
-                            {% if request.user.is_superuser %}
-                            <a href="{% url 'edit_mockup' mockup.id %}" class="btn btn-link">Edit</a>
-                            <a href="{% url 'delete_mockup' mockup.id %}" class="btn btn-link">Delete</a>
-                            {% endif %}
+                    <div id="drawingArea" class="drawing-area">
+                        <div class="canvas-container">
+                            <canvas id="tshirt-canvas" width="135" height="265"></canvas>
                         </div>
                     </div>
-                    <div class="col{% if s %}-12{% endif %} text-center">
-                        <hr>
-                        <a href="{% url 'products' %}" class="btn btn-green">Keep Shopping</a>
-                        <a href="{% url 'designs' %}" class="btn btn-green">Design Your Own</a>
-                    </div>
-                    <input type="hidden" name="saved_design" id="saved_design">
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                    <input type="hidden" name="product_or_design" value="design">
-                    {% endwith %}
                 </div>
-            </form>
+                <!-- Image editing tools -->
+                <span>
+                    Select and press the <kbd>DEL</kbd> key to remove design elements.
+                </span>
+                <br>
+                <!-- The Select that allows the user to change the color of the T-Shirt -->
+                <label for="tshirt-color">T-Shirt Color:</label>
+                <select id="tshirt-color">
+                    <!-- You can add any color with a new option and definings its hex code -->
+                    <option value="#fff">
+                        White
+                    </option>
+                    <option value="#000">
+                        Black
+                    </option>
+                    <option value="#f00">
+                        Red
+                    </option>
+                    <option value="#008000">
+                        Green
+                    </option>
+                    <option value="#ff0">
+                        Yellow
+                    </option>
+                </select>
+                <br>
+                <label for="tshirt-custompicture">Upload your own design:</label>
+                <input type="file" id="tshirt-custompicture" />
+                <br>
+                {% if request.user.is_authenticated %}
+                    <a type="submit" id="saveDesignBtn" class="btn btn-green">Save your design</a>
+                {% else %}
+                    <p>
+                        <small><a href="{% url 'account_login' %}">Log in</a> to save custom design</small>
+                    </p>
+                {% endif %}
+            </div>
+            <div class="col-12 col-md-5">
+                <form class="form" action="{% url 'add_to_cart' mockup.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        {% with mockup.has_sizes as s %}
+                            {% if s %}
+                                <div class="col-12">
+                                    <p>
+                                        Size:
+                                    </p>
+                                    <!-- Product size selector -->
+                                    <select class="form-control w-50" name="mockup_size" id="id_mockup_size">
+                                        <option value="xs">
+                                            XS
+                                        </option>
+                                        <option value="s">
+                                            S
+                                        </option>
+                                        <option value="m">
+                                            M
+                                        </option>
+                                        <option value="l">
+                                            L
+                                        </option>
+                                        <option value="xl">
+                                            XL
+                                        </option>
+                                        <option value="xxl">
+                                            XXL
+                                        </option>
+                                    </select>
+                                </div>
+                            {% endif %}
+                            <div class="col-12">
+                                <p class="mt-3">
+                                    Quantity:
+                                </p>
+                                <div class="form-group w-50">
+                                    <div class="input-group input-group-{{ mockup.id }}">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn decrement-qty_{{ mockup.id }}"
+                                                    data-item_id="{{ mockup.id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-minus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <input type="number"
+                                               class="form-control qty_input id_qty_{{ mockup.id }}"
+                                               name="quantity"
+                                               value="1"
+                                               min="1"
+                                               max="99"
+                                               data-item_id="{{ mockup.id }}">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn increment-qty_{{ mockup.id }}"
+                                                    data-item_id="{{ mockup.id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-plus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <input type="hidden" name="product_or_design" value="design">
+                                        <input type="submit" class="btn btn-info" value="Add to Cart">
+                                        <br>
+                                    </div>
+                                    {% if request.user.is_superuser %}
+                                        <a href="{% url 'edit_mockup' mockup.id %}" class="btn btn-link">Edit</a>
+                                        <a href="{% url 'delete_mockup' mockup.id %}" class="btn btn-link">Delete</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col{% if s %}-12{% endif %} text-center">
+                                <hr>
+                                <a href="{% url 'products' %}" class="btn btn-green">Keep Shopping</a>
+                                <a href="{% url 'designs' %}" class="btn btn-green">Design Your Own</a>
+                            </div>
+                            <input type="hidden" name="saved_design" id="saved_design">
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            <input type="hidden" name="product_or_design" value="design">
+                        {% endwith %}
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
 {% block postloadjs %}
-{{ block.super }}
-<script src="{{ STATIC_URL }}designs/js/fabric.min.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}designs/js/dom-to-image.min.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}designs/js/designs.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}cart/js/cart.js" type="text/javascript"></script>
+    {{ block.super }}
+    <script src="{{ STATIC_URL }}designs/js/fabric.min.js"></script>
+    <script src="{{ STATIC_URL }}designs/js/dom-to-image.min.js"></script>
+    <script src="{{ STATIC_URL }}designs/js/designs.js"></script>
+    <script src="{{ STATIC_URL }}cart/js/cart.js"></script>
 {% endblock %}

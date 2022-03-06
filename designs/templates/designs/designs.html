@@ -36,7 +36,6 @@
                             {% endif %}
                             <!-- Design template in card (body) -->
                             <div class="card-body">
-                                <a href="{{ m.friendly_name }}"></a>
                                 {% if request.user.is_superuser %}
                                     <a href="{% url 'edit_mockup' m.id %}" class="btn btn-link">Edit</a>
                                     <a href="{% url 'delete_mockup' m.id %}" class="btn btn-link">Delete</a>
@@ -55,5 +54,4 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

@@ -10,7 +10,7 @@
 function handleEnableDisable(itemId, size) {
     var currentValue;
     if (size) {
-        currentValue = partseInt($(`.size_${itemId}_${size}`).val());
+        currentValue = parseInt($(`.size_${itemId}_${size}`).val());
     } else {
         currentValue = parseInt($(`.id_qty_${itemId}`).val());
     }

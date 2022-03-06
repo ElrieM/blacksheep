@@ -81,7 +81,7 @@ footer {
 }
 
 .admin-forms {
-    overflow: overlay;
+    overflow: scroll;
     padding-bottom: 6rem;
 }
 

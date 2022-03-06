@@ -81,27 +81,24 @@ Users can track their order from start to finish - designing*, submitting, payin
     - Logged Out User: Log In and Register.
   - Footer with icons, navigates to Twitter, FaceBook and Pinterest.
 - Landing page
-  - Visible when signed out or signed out
+  - Visible whether signed in or signed out
 - Administrator
   - Maintain content
-  - Track order status ?
 - Products page
   - Visible to all site visitors
   - Navigates to product detail, (superuser) edit and delete pages
 - Design page
   - Visible to all site visitors
   - Navigates to design page, (superuser) edit and delete templates (mockups)
-  - Upload of content only for registered for users - prompt to sign up / in
+  - Upload of content only for registered for users
   - Template with a canvas area, where customisation occurs
   - Control panel for customising chosen apparel
 - User profile page
   - Only available to signed in users
   - Contains personal information (contact details), editable
   - Shows order history, with option to reorder
-  - Saved designs
 - User authentication
   - Sign in required to get access to user profile area
-  - Sign in required to upload custom designs
   - Sign in required as super user for administration
   - Sign out
   - Register new credentials
@@ -117,19 +114,21 @@ Users can track their order from start to finish - designing*, submitting, payin
 #### Site Visitor Goals
 
   1. As a Site Visitor, I want to easily navigate the website's pages from the header and footer.
-  2. As a Site Visitor, I want to be able to browse through examples of previously completed work.
-  3. As a Site Visitor, I want to be able to search through images to select for my designs.
-  4. As a Site Visitor, I want to be able add my designs to a template for visual confirmation.
-  5. As a Site Visitor, I want to be able to track the status of my orders.
-  6. As a Site Visitor, I want to be able to edit my contact details.
-  7. As a Site Visitor, I want to be able to contact site owners.
+  2. As a Site Visitor, I want to be able to browse through available products.
+  3. As a Site Visitor, I want to be able to upload and move images for my designs.
+  4. As a Site Visitor, I want to be able to view my past orders.
+  5. As a Site Visitor, I want to be able to edit my contact details.
+  6. As a Site Visitor, I want to be able to pay for my order securely.
+  7. As a Site Visitor, I want to be able to add products to and edit contents of my shopping cart.
+  8. As a Site Visitor, I want to be able to search through products.
+  9. As a Site Visitor, I want to be able to filter products by category, price and name.
 
 #### Site Owner Goals
 
-  8. As the Site Owner, I want to make it easy and convenient for users to send suggestions for improvement or bug reports to a dedicated mailbox, thereby improving the chances of them returning.
-  9. As the Site Owner, I want to restrict content uploads to registered users.
-  10. As the Site Owner, I want to view a record of orders in various states.
-  11. As the Site Owner, I want to be able to easily add new images or fonts.
+  10. As the Site Owner, I want to restrict content uploads to registered users.
+  11. As the Site Owner, I want to view a record of orders in various states.
+  12. As the Site Owner, I want to be able to easily add or edit design templates and details.
+  13. As the Site Owner, I want to be able to easily add or edit products and details.
 
 ## 1.3 Structure Plane
 
@@ -139,28 +138,29 @@ The website consists of the following pages:
 
 - Landing page: First web page and home page.
 - Register page: Register username and password.
-- Sign in page: Allows returning (registered) visitors to sign in, choice between email, Facebook or Google login.
+- Sign in page: Allows returning (registered) visitors to sign in, choice between email, or Google login.
 - Admin page: Restricted to super user - view all orders, edit content and fonts, edit orders.
 - Product page: Preview of categories and subcategories.
-- Product design page: Page with template, canvas and controls for custom content.
+- Design page: Page with template, canvas and controls for custom content.
 - Shopping cart page: Overview of order with link to checkout.
 - Checkout page: Add delivery details and payment credentials, call from profile if registered and signed in.
 - Checkout success page: Confirmation of order completion and payment.
 - Profile page: Contact details, previous orders and saved designs.
-- Saved designs page: Detailed view of previous designs, option to edit (redirect to design page).
 - Order history page: Detailed overview of past orders.
 - Contact page: Contact form with subject options.
 - 404 error page: Displays when incorrect URL entered.
 - 400 and 500 error pages: Display when errors occur on the website.
 
-### Code Structure:
+### Code Structure
 
 - Django Framework used to construct / build the website.
 - Project structure (apps):
-  - Home - Landing page.
-  - Product - Product overview, Product design.
-  - Profile - Contact details, order tracking, saved designs.
-  - Checkout - Shopping cart, checkout, checkout success.
+  - Home - Landing page, adapted from Code Institute's Boutique Ado walkthrough project.
+  - Product - Product overview, Product details, Product admin (edit, delete), adapted from Code Institute's Boutique Ado walkthrough project.
+  - Design - Design overview, Design customisation, Design template admin (edit, delete), adapted from Code Institute's Boutique Ado walkthrough project.
+  - Profile - Contact details, order tracking, adapted from Code Institute's Boutique Ado walkthrough project, and admin view.
+  - Checkout - Checkout, checkout success, adapted from Code Institute's Boutique Ado walkthrough project.
+  - Cart - Shopping cart, adapted from Code Institute's Boutique Ado walkthrough project.
 
 - Additional content:
   - Manage.py
@@ -168,14 +168,117 @@ The website consists of the following pages:
   - Static
     - CSS
     - JS
+  - Media - locally stored images
   - Custom storage - AWS
+  - Google oauth app - files for Google oauth login
   - Procfile - required to run application
   - Requirements.txt - required apps to run
+  - Pipfile and Pipfile.lock - required apps to run
+  - Readme - readme documentation
+  - Testing - testing documentation
 
 ### Database
 
-- Deployed to a [SQLite](https://www.sqlite.org/index.html) database
+- Front-end consists of HTML5, CSS3, supplemented wtih Bootstrap 5 and JavaScript.
+- Back-end consists of Python-based Django framework and Postgres database for Heroku deployed site.
 
+- Local development database: [SQLite3](https://www.sqlite.org/index.html)
+- Deployed site database: [PostgreSQL](https://www.postgresql.org/)
+
+#### Database model
+
+![Overview of tables, fields and data types in models](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/db-model.png)
+
+#### Models
+
+##### User Model
+
+- Forms part of allauth model.
+- Fields included:
+  - username
+  - password
+  - first name
+  - last name
+  - email address
+  - (is) active
+  - staff status
+  - superuser status
+
+#### User Profile Model
+
+- Forms part of user profile model
+- Fields included:
+  - user
+  - default phone number
+  - default street address 1
+  - default street address 2
+  - default town or city
+  - default county
+  - default postcode
+  - default country
+
+#### Order Model
+
+- Contains past order information
+- Fields included:
+  - order number
+  - user profile
+  - full name
+  - email
+  - phone number
+  - street address 1
+  - street address 2
+  - town or city
+  - county
+  - postcode
+  - country
+  - order date
+  - delivery cost
+  - order total
+  - grand total
+  - original cart
+  - stripe pid
+
+#### Order Line Items Model
+
+- Contains details at each order line
+- Fields included:
+  - order (number)
+  - product
+  - product size
+  - quantity
+  - line item total
+
+#### Category Model
+
+- Contains product category list
+- Fields included:
+  - (category) name
+  - friendly name
+
+#### Product Model
+
+- Contains products and details
+- Fields included:
+  - category
+  - stock code
+  - (product) name
+  - (product) description
+  - has sizes
+  - price
+  - image url
+  - image
+
+#### Design Model
+
+- Contains templates
+- Fields included:
+  - (template) name
+  - friendly name
+  - image url
+  - image
+  - base price
+  - has sizes
 
 ## Amazon Web Services S3 bucket
 
@@ -185,9 +288,9 @@ Steps taken integration:
 
 1. Created user account with AWS
 2. Created an IAM user -  [detailed steps](https://docs.aws.amazon.com/AmazonS3/latest/userguide/setting-up-s3.html)
-![S3_IAM](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/readme/AWS_S3_2.png)
+![S3_IAM](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/AWS_S3_2.png)
 3. Created S3 bucket named ms3recipebundle - [detailed steps](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html)
-![S3_landing](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/readme/AWS_S3_1.png)
+![S3_landing](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/AWS_S3_1.png)
 4. Imported Python library, [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html), as console to create, configure and manage AWS services.
 5. Assigned s3 variables (bucket name, url, access and security keys) in util.py file.
 
@@ -202,9 +305,18 @@ Steps taken integration:
 
 ### 1.4.2 Wireframes
 
-- Home / Landing page ![view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/index_v1.png)
-- Products page ![view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/products_v1.png)
-- Design page ![view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/design_v1.png)
+| App | Page | Link |
+| ---- | ---- | ---- |
+| Home | Index | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/index_v2.png) |
+| Products | Overview | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/products_v2.png) |
+| Products | Detail | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/products_detail_V1.png) |
+| Designs | Overview | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/design_V2.png) |
+| Designs | Detail | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/design_detail_V1.png) |
+| Checkout | Checkout | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/checkout_V1.png) |
+| Checkout | Checkout Success | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/checkout_success_V1.png) |
+| Cart | Shopping Cart | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/cart_V1.png) |
+| Profiles | Profile | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/profile_V1.png) |
+| Profiles | Admin Overview | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/admin_overview_V1.png) |
 
 ## 1.5 Surface Plane
 
@@ -212,7 +324,7 @@ Steps taken integration:
 
 - The colour scheme was generated from the header image.
 
-- The main colours for the themes were generated with the [colormind.io](http://colormind.io/) Website Colors tool 
+- The main colours for the themes were generated with the [colormind.io](http://colormind.io/) Website Colors tool
   - #F4F4EE Pampas - Light background colour and light-on-dark text
   - #7DA074 Amulet - Light accent, used for teaser banner
   - #2CC4D5 Scooter - Main brand colour, used for header and footer
@@ -425,8 +537,8 @@ Heroku is a free hosting service for hosting small projects.
 ## 7.2. Content
 
 - Created favicon from logo using [favicon.cc](https://www.favicon.cc/)
-- Address https://www.coolgenerator.com/nl-address-generator
-- Terms and conditions 
+- Address [coolgenerator](https://www.coolgenerator.com/nl-address-generator)
+- Terms and conditions [policymaker.io](https://policymaker.io/)
 
 ## 7.3. Media
 

@@ -24,7 +24,7 @@
         {% block extra_css %}{% endblock %}
         {% block corejs %}
             <script src="https://kit.fontawesome.com/e9c73d7092.js"
-                    crossorigin="anonymous"></script>
+                    crossorigin="anonymous" rel=preconnect></script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"
                     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
                     crossorigin="anonymous"></script>
@@ -118,7 +118,7 @@
                 <div class="col-3 col-lg-4 my-auto py-1 text-center">
                     <a class="navbar-brand" href="{% url 'home' %}">
                         <img src="{% static 'favicon/logo.png' %}"
-                             alt="logo"
+                             alt="logo image, returns to home"
                              width="50"
                              height="50">
                     </a>
@@ -154,7 +154,7 @@
                                type="search"
                                placeholder="Search"
                                aria-label="Search">
-                        <button class="btn" type="submit">
+                        <button class="btn" type="submit" alt="search button">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>

@@ -79,7 +79,7 @@
                                 <h5 class="card-title text-center">{{ product.name }}</h5>
                             </div>
                             {% if product.image %}
-                                <a class="text-center" href="{% url 'product_details' product.id %}?category={{ product.name }}">
+                                <a class="text-center" href="{% url 'product_details' product.id %}?category={{ product.category }}">
                                     <img src="{{ product.image.url }}"
                                          alt="{{ product.name }}"
                                          class="card-img-top">

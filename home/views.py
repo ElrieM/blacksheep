@@ -14,4 +14,4 @@ def terms(request):
     """
     View to return terms and conditions
     """
-    return render(request, 'home/terms.html')
+    return render(request, 'terms.html')

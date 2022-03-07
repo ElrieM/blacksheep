@@ -157,8 +157,8 @@
                     <p class="mb-5">
                         Cart is Empty
                     </p>
-                    <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
-                    <a href="{% url 'products' %}" class="btn">Browse Products</a>
+                    <a href="{% url 'designs' %}" class="btn btn-green">Design Your Own</a>
+                    <a href="{% url 'products' %}" class="btn btn-green">Browse Products</a>
                 {% endif %}
             </div>
         </div>
@@ -167,4 +167,5 @@
 {% block postloadjs %}
     {{ block.super }}
     <script src="{{ STATIC_URL }}cart/js/cart.js"></script>
+    <script src="{{ STATIC_URL }}products/js/products.js"></script>
 {% endblock %}

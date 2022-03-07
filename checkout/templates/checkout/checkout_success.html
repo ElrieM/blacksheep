@@ -29,7 +29,7 @@
                 <!-- Order information section -->
                 <div class="row">
                     <div class="col">
-                        Order Info:
+                        <h5>Order Info:</h5>
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
                 <!-- Delivery info section -->
                 <div class="row">
                     <div class="col">
-                        Delivery To:
+                        <h5>Delivery To:</h5>
                     </div>
                 </div>
 
@@ -164,7 +164,7 @@
                 <!-- Billing info section -->
                 <div class="row">
                     <div class="col">
-                        Billing Info:
+                        <h5>Billing Info:</h5>
                     </div>
                 </div>
 
@@ -202,10 +202,10 @@
     <div class="row">
         <div class="col-12 col-lg-7 text-right">
             {% if from_profile %}
-                <a href="{% url 'profile' %}" class="btn">Return to Profile</a>
+                <a href="{% url 'profile' %}" class="btn btn-green">Return to Profile</a>
             {% else %}
-                <a href="{% url 'designs' %}" class="btn">Design Your Own</a>
-                <a href="{% url 'products' %}" class="btn">Browse Products</a>
+                <a href="{% url 'designs' %}" class="btn btn-green">Design Your Own</a>
+                <a href="{% url 'products' %}" class="btn btn-green">Browse Products</a>
             {% endif %}
         </div>
     </div>

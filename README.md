@@ -5,9 +5,11 @@
 Two user types' credentials have been included below:
 | User type | Username | Password |
 | --- | --- | --- |
-| Admin | Admin | Admin |
-| General | User1 | User1 |
+| Admin | Admin | Django2022 |
+| General | User1 | Django22 |
 (Case sensitive)
+
+For Stripe payment user testing, use card details from ![here](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/stripe_payment_test.png)
 
 With this website, users are able to buy pre-created clothing, or create custom clothing from uploaded images.
 
@@ -79,11 +81,12 @@ Users can track their order from start to finish - designing*, submitting, payin
     - Super User only: Admin View;
     - Logged In User: Profile, Log Out;
     - Logged Out User: Log In and Register.
-  - Footer with icons, navigates to Twitter, FaceBook and Pinterest.
+  - Footer with icons, navigates to Terms and Conditions, Twitter, FaceBook and Pinterest.
 - Landing page
   - Visible whether signed in or signed out
-- Administrator
-  - Maintain content
+- Admin View
+  - Navigates to products or designs add / edit pages
+  - Removes products or design templates
 - Products page
   - Visible to all site visitors
   - Navigates to product detail, (superuser) edit and delete pages
@@ -107,6 +110,8 @@ Users can track their order from start to finish - designing*, submitting, payin
 - Shopping cart
   - Checkout as guest
   - Sign in to register
+- Checkout
+  - Pay online with secure payment
 - Contact form with options to report bugs, make suggestions or other.
 
 ### 1.2.2 User Stories
@@ -127,7 +132,7 @@ Users can track their order from start to finish - designing*, submitting, payin
 
   10. As the Site Owner, I want to restrict content uploads to registered users.
   11. As the Site Owner, I want to view a record of orders in various states.
-  12. As the Site Owner, I want to be able to easily add or edit design templates and details.
+  12. As the Site Owner, I want to be able to easily add or edit design templates. and details.
   13. As the Site Owner, I want to be able to easily add or edit products and details.
 
 ## 1.3 Structure Plane
@@ -355,7 +360,8 @@ Steps taken integration:
 - [HTML 5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
-- [Python](https://www.python.org/)
+- [Python 3.10](https://www.python.org/)
+- [Django](https://djangoproject.com/)
 
 ## 2.2 Frameworks, Libraries & Programs Used
 
@@ -407,17 +413,25 @@ Steps taken integration:
 
 - Terms for register form obtained from free template [from](https://policymaker.io/terms-conditions-ready)
 
-### - [Paint 11.2110.0.0](https://support.microsoft.com/en-us/windows/get-microsoft-paint-a6b9578c-ed1c-5b09-0699-4ed8115f9aa9)
-
-- Used to create placeholder image and user testing files.
-
 ### - [Snipping Tool 11.2109.37.0](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b)
 
 - Used for screenshots during testing.
 
+### - [Lunapic](https://www2.lunapic.com/editor/)
+
+- Used to create products.
+
 ### - [colormind.io](http://colormind.io/image/)
 
 - Used to generate colour palette for website.
+
+### [dbdiagram](https://dbdiagram.io/)
+
+- Used to generate database schematic.
+
+### [TempMail](http://temp-mail.org/en/)
+
+- Used temporary email for testing.
 
 # 3. Features
 
@@ -429,11 +443,22 @@ Steps taken integration:
 
 ## 3.2 Features Left to Implement
 
+- Adding text to designs
+- Being able to view order at different statuses
+- Being able to access previous designs
+- Being able to order from previous designs
+- Contact form for special print jobs or to report bugs / issues
+
 # 4. Testing
 
 ## [Click here to go to testing](TESTING.md)
 
 # 5. APIs
+
+- Fabric.js for t-shirt customisation
+- DomToImage for exporting t-shirt canvas to png file
+- Stripe for online payments management
+- Google OAuth api
 
 # 6. Deployment
 
@@ -465,17 +490,21 @@ Alternatively, click [here](https://docs.github.com/en/github/creating-cloning-a
 ### Create env.py
 
 - Create env.py file in root folder, with the following parameters
-    os.environ.setdefault("IP", [user input])
-    os.environ.setdefault("PORT",  [user input])
-    os.environ.setdefault("SECRET_KEY",  [user input])
-    os.environ.setdefault("MONGO_URI",  [user input])
-    os.environ.setdefault("MONGO_DBNAME",  [user input])
+    os.environ.setdefault("SECRET_KEY", [user input])
     os.environ.setdefault("AWS_ACCESS_KEY_ID",  [user input])
-    os.environ.setdefault("AWS_SECRET_ACCESS_KEY",  [user input])
+    os.environ.setdefault("AWS_SECRET_ACCESS_KEY", [user_input])
+    os.environ.setdefault("SECRET_KEY",  [user input])
+    os.environ.setdefault("DATABASE_URL",  [user input])
+    os.environ.setdefault("EMAIL_HOST_PASS",  [user input])
+    os.environ.setdefault("EMAIL_HOST_USER",  [user input])
+    os.environ.setdefault("STRIPE_PUBLIC_KEY",  [user input])
+    os.environ.setdefault("STRIPE_SECRET_KEY",  [user input])
+    os.environ.setdefault("STRIPE_WH_SECRET",  [user input])
+    os.environ.setdefault("USE_AWS",  True)
 
 - Install packages per requirements.txt file
 
-- Run application with CLI (PIP / PIPENV, depending on environment, run)  python3 app.py
+- Run application in remote environment (PIPENV or VENV) with command python3 manage.py runserver
 
 ## 6.2 - Heroku
 
@@ -489,8 +518,16 @@ Heroku is a free hosting service for hosting small projects.
 - Log in to Heroku from CLI.
 - Prepare and clone app - clone Github Repository.
 - Deploy with heroku create and git push heroku main.
-- Define a Procfile.
+- Create a Procfile, containing:
+ web: gunicorn blacksheep.wsgi:application
 - Declare app dependencies in requirements.txt (pip install -r requirements.txt)
+- In Heroku > Resources > Add-ons: Heroku Postgres
+- Get url for remote database: Heroku config
+- In settings.py:
+  Copy Databases and comment out (ctrl + /) first
+  Replace {} with dj_database_url.parse(<postgres://…>)
+  Import dj_database_url
+- Python3 manage.py showmigrations, then python3 manage.py migrate
 - Create new application with unique name.
 - Navigate to Deploy, and connect to GitHub. Select repo, and then branch.
 - Configure Config Vars - same parameters as in env.py file mentioned above.
@@ -498,41 +535,35 @@ Heroku is a free hosting service for hosting small projects.
 - Open App.
 - For more [details, visit here](https://devcenter.heroku.com/articles/getting-started-with-python)
 
-### Deploy to AWS (Amazon Web Services)
+### Deployed to AWS (Amazon Web Services)
 
-1. Create AWS user account [here](https://aws.amazon.com/).
-2. Create new user on IAM console [here](https://console.aws.amazon.com/).
-3. Set AmazonS3FullAccess for user and note AWS Access and Secret keys.
-4. On AWS S3 console, create a new bucket. Bucket name can be updated in the util.py file.
-5. Set bucket policy, [see here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html) for details and to generate policies. There is also an option to have policies generated from the bucket policies page.
-6. Update util.py variables with bucket details from AWS:
+1. Create an account on aws.amazon.com
+2. In S3 application, create S3 bucket named 'blacksheepprint' (same as Heroku app name)
+3. Make public by unchecking "Block all public access setting"
+4. Adjust settings:
+  4.1 Properties > Static website hosting > Use this bucket to host a website
+  4.2 Permissions > CORS configuration > ![https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/aws_cors_config.png]
+  4.3 Permissions > Bucket policy editor > Policy generator >
+  ![https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/aws_cors_config.png]
+  Paste into Bucket Policy
+  4.4 Add "/*" to end of Resource details
+  4.5 Change Actions to GetObjects
+  4.6 Permissions > Access Control List > Everyone (public access) > List
+5. Set up AWS IAM
 
-    s3_bucket_name = "ms3recipebundle"
-    s3_bucket_url = "http://ms3recipebundle.s3.amazonaws.com/"
+For details on how to set up AWS S3, [see](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html)
 
-### Set up MongoDB
-
-1. Create new user account [here](https://www.mongodb.com/).
-2. Create data cluster, see [here](https://docs.mongodb.com/manual/tutorial/getting-started/) for details.
-3. Click on "Browse Collections", then create 5 collections:
-   - users
-   - cuisines
-   - types
-   - diet
-   - recipes
-4. Under Security > Database Access, create user with read and write access.
-5. Under Security > Network Access, allow network access from the application's IP address.
-6. Under Deployment > Database, click on Connect. Database is now connected to app.
-7. In env.py, update MONGO_URI, MONGO_DBName and SECRET key and deploy to Heroku.
+For details on who to set up AWS IAM, [see](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html)
 
 # 7. Credits
 
 ## 7.1. Code
 
-- Bootstrap 5: Bootstrap Library used to make the site responsive using the Bootstrap Grid System
+- Bootstrap 5.1: Bootstrap Library used to make the site responsive using the Bootstrap Grid System
 - [Form autocomplete](https://www.chromium.org/developers/design-documents/form-styles-that-chromium-understands)
 - [AWS file uploading](https://gist.github.com/leongjinqwen/9d9a2d58bf2fb923658820559a88a5ec)
 - [Using FabricJS for t-shirt printing website](https://ourcodeworld.com/articles/read/1016/how-to-create-your-own-t-shirt-designer-using-fabricjs-in-javascript)
+- [Setting up Google OAuth](https://devnote.in/how-to-set-up-google-authentication-with-django/)
 
 ## 7.2. Content
 
@@ -545,11 +576,21 @@ Heroku is a free hosting service for hosting small projects.
 - [Font Awesome](http://fontawesome.com)
 - [Google Fonts](https://fonts.google.com/)
 - [Pexels](https://www.pexels.com/)
-- [Testing and ReadMe example](https://github.com/pmeeny/CI-MS3-https://github.com/pmeeny/CI-MS3-FootballMemories)overview/why-cypress)
-- [Header image](https://github.com/ElrieM/MS3-RecipeBundle/blob/3eb943e1db8a44dc72540c3f1a523e6976ab4384/README.md#L465)
+- [Testing and ReadMe example](https://github.com/pmeeny/CI-MS4-LoveRugby)
 - [Placeholder image](https://www.freeiconspng.com/img/23499)
+- [Templates and Products created with mockups from](https://www.pngegg.com/)
 
-## 7.4. Acknowledgements
+## 7.4. Other
+
+- [Deploying to Postgres](https://dev.to/giftedstan/heroku-how-to-deploy-a-django-app-with-postgres-in-5-minutes-5lk)
+- [Customising 404 page](https://levelup.gitconnected.com/django-customize-404-error-page-72c6b6277317)
+- [Using Pipenv](https://docs.python-guide.org/dev/virtualenvs/)
+- [Understanding AllAuth](https://learndjango.com/tutorials/django-allauth-tutorial)
+- [Understanding AllAuth social apps](http://www.sarahhagstrom.com/2013/09/the-missing-django-allauth-tutorial/#Create_and_configure_a_Facebook_app)
+- [Understanding X-Frame](https://docs.djangoproject.com/en/3.2/ref/clickjacking/#how-to-use-it)
+- [Django cookies](https://stackoverflow.com/questions/1622793/django-cookies-how-can-i-set-them)
+
+## 7.5. Acknowledgements
 
 - My mentor for guidance and support.
 - My partner for advice and patience.

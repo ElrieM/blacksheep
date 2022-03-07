@@ -40,111 +40,128 @@ The following tools were used to validate every page of project to ensure there 
 
 - Pages tested:
   
-| Page | Outcome | Link |
-| --- | --- | --- |
-| Home | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-home.png) |
-| Sign in | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-singin.png) |
-| Sign up | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-singup.png) |
-| Reset  | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-reset.png) |
-| Admin | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-admin.png) |
-| Add cuisine | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-add_cuisine.png) |
-| Edit cuisine | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-edit_cuisine.png) |
-| Add mealtype | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-add_mealtype.png) |
-| Edit mealtype | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-edit_mealtype.png) |
-| Add diet | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-add_diet.png) |
-| Edit diet | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-edit_diet.png) |
-| Collection | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-collection.png) |
-| View recipe | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-view_recipe.png) |
-| Add recipe | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-add_recipe.png) |
-| Edit recipe | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-edit_recipe.png) |
-| Contact | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-contact.png) |
-| Error (404) | No errors | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/html-error_pages.png) |
-  
+| App | Page | Outcome | Link |
+| --- | --- | --- | --- |
+| Home | Index | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_index.png) |
+| Home | Terms | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_terms.png) |
+| Product | Overview | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_products.png) |
+| Products | Detail | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_product_detail.png) |
+| Products | Add | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_add_product.png) |
+| Products | Edit | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_edit_product.png) |
+| Designs | Overview | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_designs.png) |
+| Designs | Detail | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_design_mockup.png) |
+| Designs | Add | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_add_mockup.png) |
+| Designs | Edit | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_edit_mockup.png) |
+| Checkout | Checkout | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_checkout.png) |
+| Checkout | Checkout Success | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_checkout_success.png) |
+| Cart | Shopping Cart | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_cart.png) |
+| Profiles | Profile | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_profile.png) |
+| Profiles | Admin View | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/html_admin.png) |
+
 ### 4.1.2 CSS - W3C CSS Validator
 
 - All errors / warnings relate to Bootstrap template CSS.
 - Summary of result:
 - No errors or warnings from CSS style file unrelated to Bootstrap;
 - Errors from Bootstrap 5.1 (unused / unrecognised errors); and
-- Report can be found [here](http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Fci-ms3-recipebook.herokuapp.com%2Fhome&profile=css3svg&usermedium=all&warning=1&vextwarning=).
+- Report can be found [here](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/css.png).
   
 ### 4.1.3 Accessibility - WAVE Web Accessibility Evaluation Tool
 
 - Pages tested:
   
-| Page | Result - Errors | Result - Warnings | Link |
-| --- | --- | --- | --- |
-| Home | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/home.png) |
-| Sign in | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/singin.png) |
-| Sign up | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/singup.png) |
-| Reset  | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/reset_password.png) |
-| Admin | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/admin.png) |
-| Add cuisine | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/add_cuisine.png) |
-| Edit cuisine | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/edit_cuisine.png) |
-| Add mealtype | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/add_mealtype.png) |
-| Edit mealtype | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/edit_mealtype.png) |
-| Add diet | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/add_diet.png) |
-| Edit diet | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/edit_diet.png) |
-| Collection | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/collection.png) |
-| View recipe | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/view_recipe.png) |
-| Add recipe | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/add_recipe.png) |
-| Edit recipe | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/edit_recipe.png) |
-| Contact | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/contact.png) |
-| Error (404) | No errors | None | ![results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/error_pages.png) |
+| App | Page | Result - Errors | Result - Warnings | Link |
+| --- | --- | --- | --- | --- |
+| Home | Index | No errors | No warnings | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_index.png) |
+| Home | Terms | No errors | Missed heading level, redundant link (ref for attribution) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_terms.png) |
+| Product | Overview | No errors | Missed heading level warning, ignored for aesthetic | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_products.png) |
+| Products | Detail | No errors | Missed heading level and redundant link for login  prompt (ignored) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_product_detail.png) |
+| Products | Add | Missing form label | Missing heading level and skipped heading level | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_add_product.png) |
+| Products | Edit | No errors | Missed heading level and skipped heading level, redundant link to product details - ignored | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_edit_product.png) |
+| Designs | Overview | No errors | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_designs.png) |
+| Designs | Detail | No errors | Missed heading level and skipped heading level, redundant link to product details - ignored | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_design_mockup.png) |
+| Designs | Add | Missing form label | Missing heading level and skipped heading level | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_add_mockup.png) |
+| Designs | Edit | Missing form label | Missing heading level and skipped heading level | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_edit_mockup.png) |
+| Checkout | Checkout | Missing form label, empty heading | Missed and skipped heading level | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_checkout.png) |
+| Checkout | Checkout Success | No errors | Missing first level heading | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_checkout_success.png) |
+| Cart | Shopping Cart | Missing form label, empty table header (ignored) | Missed and skipped heading level | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_cart.png) |
+| Profiles | Profile | Missing form label - ignored (Django crispy forms) | missing label, missing first heading level | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_profile.png) |
+| Profiles | Admin View | No errors | Missed heading level, redundant link (ignored, goes to different page) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/wave_admin.png) |
 
 ### 4.1.4 Performance - Chrome Lighthouse
 
 - Pages tested (mobile and desktop tested on each):
 
-| Page | Scores - Desktop | Scores - Mobile |
-| --- | --- |  --- |
-| Home | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-home.png) | [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-home.png) |
-| Sign in | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-singin.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-singin.png) |
-| Sign up | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-singup.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-signup.png) |
-| Reset  | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-reset.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-reset.png) |
-| Admin | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-admin.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-admin.png) |
-| Add cuisine | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-add_cuisine.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-add)cuisine.png) |
-| Edit cuisine | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-edit_cuisine.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-edit_cuisine.png) |
-| Add mealtype | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-add_mealtype.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-add_mealtype.png) |
-| Edit mealtype | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-edit_mealtype.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-edit_mealtype.png) |
-| Add diet | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-add_diet.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-add_diet.png) |
-| Edit diet | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-edit_diet.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-edit_diet.png) |
-| Collection | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-contact.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-contact.png) |
-| View recipe | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-view_recipe.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-view_recipe.png) |
-| Add recipe | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-add_recipe.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-add_recipe.png) |
-| Edit recipe | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-edit_recipe.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-edit_recipe.png) |
-| Contact | ![Desktop results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhd-contact.png)| [Mobile results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/lhm-contact.png) |
+| App | Page | Scores - Desktop | Scores - Mobile |
+| --- | --- | --- |  --- |
+| Home | Index | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_index.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_index.png) |
+| Home | Terms | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_terms.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_terms.png) |
+| Product | Overview | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_products.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_products.png) |
+| Products | Detail | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_product_detail.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_product_detail.png) |
+| Products | Add | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_add_product.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_add_product.png) |
+| Products | Edit | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_edit_product.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_edit_product.png) |
+| Designs | Overview | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_designs.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_designs.png) |
+| Designs | Detail | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_design_mockup.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_design_mockup.png) |
+| Designs | Add | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_add_mockup.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_add_mockup.png) |
+| Designs | Edit | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_edit_mockup.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_edit_mockup.png) |
+| Checkout | Checkout | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_checkout.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_checkout.png) |
+| Checkout | Checkout Success | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_checkout_success.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_checkout_success.png) |
+| Cart | Shopping Cart | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_cart.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_cart.png) |
+| Profiles | Profile | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_profile.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_profile.png) |
+| Profiles | Admin View | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_desktop_admin.png) | [view](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/readme/lighthouse_mobile_admin.png) |
 
 ### 4.1.5 JSHint
 
 - Pages tested (mobile and desktop tested on each):
 
-| Page | Results | Link |
-| --- | --- | --- |
-| scripts.js | No issues | [results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/jshint-contact-form_js.png) |
-| contact-form.js | Undefined emailJS ignored. No issues | [results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/jshint-contact-form_js.png) |
+| App | Page | Results | Link |
+| --- | --- | --- | --- |
+| Products | products.js |No issues | [results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/jshint_products.png) |
+| Profiles | countryfield.js |No issues | [results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/jshint_countryfield.png) |
+| Designs | designs.js |No issues | [results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/jshint_designs.png) |
+| Checkout | stripe_elements.js |No issues | [results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/jshint_stripe_elements.png) |
+| Cart | cart.js |No issues | [results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/jshint_cart.png) |
 
-### 4.1.6 User Experience testing  
+### 4.1.6 PEP8 testing
+
+PyLint was installed and problems continuously monitored in terminal.
+
+| Errors found: | Comments |
+| --- | --- |
+| Class ... has no 'objects' member | Related to database content, no further action required |
+| Catching too general exception Exception | No action required, intention to catch errors |
+| Unused Http404 imported from django.http | No action required, import for custom error pages |
+| Missing module docstring | Ignored, docstrings included where relevant |
+
+### 4.1.7User Experience testing  
 
 #### User Story 1. As a Site Visitor, I want to easily navigate the website's pages from the header and footer <!-- omit in toc -->
 
 1.1 Header with Navigation Bar
 
-- Requirements considered
-  - Simple header with Logo that returns to landing page, navbar with links and dropdown for user account management.
-  - Hamburger menu on small and medium device sizes.
-  - Navbar navigates to Home (landing page), Collection page and Sign Out page (only available when signed in), Sign In page and Register page (only available when signed out), and Administration page (only available to Admin user) and contact page.
+- Requirements considered:
+  - Header and Footer
+    - Header is split into teaser bar (special offer to qualify for free delivery), company name above logo, image logo that returns to landing page, navbar with links to design and (pre-designed) products page, buttons for user account and shopping basket with total.
+    - On small and medium device sizes: Text and image logo, icons for user account, shopping card and total and search menu, with hamburger menu for design and products pages.
+    - Products button navigates to:
+      - Categories (men, ladies, kids, other)
+      - Sub-categories under each (t-shirts, sweatshirts, etc.)
+    - User account button navigates to:
+      - Super User only: Admin View;
+      - Logged In User: Profile, Log Out;
+      - Logged Out User: Log In and Register.
+    - Footer with icons, navigates to Terms and Conditions, Twitter, FaceBook and Pinterest.
 
 - Tests
 
 | Step | Expected Result | Devices | Test Result |
 | --- | --- | --- | --- |
-| Click on Home | Navigates to Home page | Desktop, Tablet, Mobile| All passed |
-| Click on NavBar | Navigates to Home page | Desktop, Tablet, Mobile| All passed |
-| Click on Account > Sign In | Navigates to Sign In page | Desktop, Tablet, Mobile| All passed |
-| Click on Account > select Register | Navigates to Sign Up | Desktop, Tablet, Mobile| All passed |
-| Click on Contact | Navigates to Contact page | Desktop, Tablet, Mobile| All passed |
-| Sign in as Admin, Click on Administrator | Navigates to Administration page | Desktop, Tablet, Mobile| All passed |
+| Click on logo (navbrand) | Navigates to Home page | Desktop, Tablet, Mobile| All passed |
+| Click on Products > View All | Navigates to Products page | Desktop, Tablet, Mobile| All passed |
+| Click on Designs | Navigates to Designs page | Desktop, Tablet, Mobile| All passed |
+| Click on Account > select Register | Navigates to Register page | Desktop, Tablet, Mobile| All passed |
+| Click on Account > Login | Navigates to Login page | Desktop, Tablet, Mobile| All passed |
+| Sign in as Admin, Click on Admin View | Navigates to Administration page, not visible to "general" users | Desktop, Tablet, Mobile| All passed |
 | Sign in as User1 | No Administration page option to click | Desktop, Tablet, Mobile| All passed |
 | Click on Collection | Navigates to recipe Collection page | Desktop, Tablet, Mobile| All passed |
 | Click on Account > Sign Out | Signs out and redirects to home page | Desktop, Tablet, Mobile| All passed |
@@ -152,7 +169,7 @@ The following tools were used to validate every page of project to ensure there 
 1.2 Footer with navigation links
 
 - Requirements considered
-  - Footer with icons, navigates to Twitter, FaceBook and Pinterest.
+  - Footer with icons, navigates to Twitter, FaceBook and Pinterest and terms and conditions.
 
 - Tests
   | Step | Expected Result | Devices | Test Result |
@@ -160,6 +177,7 @@ The following tools were used to validate every page of project to ensure there 
   | Click on Twitter icon | Opens new browser with Twitter landing page | Desktop, Tablet, Mobile| All passed |
   | Click on Pinterest icon | Opens new browser with Pinterest landing page | Desktop, Tablet, Mobile| All passed |
   | Click on FaceBook icon | Opens new browser with FaceBook landing page | Desktop, Tablet, Mobile| All passed |
+  | Click on Terms | Opens on Terms page in same browser | Desktop, Tablet, Mobile | All passed |
 
 1.3 Landing page
 
@@ -172,105 +190,115 @@ The following tools were used to validate every page of project to ensure there 
   | Sign in as Admin, Click on Home | Navigates to landing page | Desktop, Tablet, Mobile| All passed |
   | Sign in as User1 | Navigates to landing page | Desktop, Tablet, Mobile| All passed |
 
-    ![Results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/user_story-1.png)
+    [Results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/user_story-1.png)
 
-#### User Story 2. As a Site Visitor, I want to be able to view a collection of recipes and User Story 9. As the Site Owner, I want to restrict recipe-related features to registered users.<!-- omit in toc -->
+#### As a Site Visitor, I want to be able to browse through available products.<!-- omit in toc -->
 
 - Requirements considered
-  - Button to Add new recipes
-  - Buttons to Remove recipes
-  - Buttons to Edit recipes
-  - Only available to signed in users
+  - Products page
+    - Visible to all site visitors
+    - Navigates to product detail, (superuser) edit and delete pages
 
 - Tests
   | Step | Expected Result | Devices | Test Result |
   | --- | --- | --- | --- |
-  | Sign in as Admin, click on Collection page | See list of recipes with buttons | Desktop, Tablet, Mobile| All passed |
-  | Sign in as User1, click on Collection page | See list of recipes with buttons | Desktop, Tablet, Mobile| All passed |
-  | Not singed in | No Collection page button and not able to view from direct URL input | Desktop, Tablet, Mobile| All passed |
-  | Sign in as User1, click on Collection page | See list of recipes with buttons | Desktop, Tablet, Mobile| All passed |
+  | All Users (signed in / not), click on Products > View All page | See overview of all products with links to detailed pages | Desktop, Tablet, Mobile| All passed |
+  | Signed in as Admin, click on Products > View All page | See buttons to Edit or Remove at the bottom of each product | Desktop, Tablet, Mobile| All passed |
+  | Signed in as User1, click on Products > View All page | No buttons to Edit or Remove at the bottom of each product | Desktop, Tablet, Mobile| All passed |
+  | All Users, click on a product to view details | See product image or placeholder image, price, description, add to cart, add between 1 and 99 items to cart from page | Desktop, Tablet, Mobile | All passed |
+  | All Users, click on cart | See products added in cart with images or placeholder images, quantity and prices | Desktop, Tablet, Mobile | All passed |
 
-    ![Results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/user_story-2,8.png)
+    [Results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/user_story-2.png)
 
-#### User Story 3. As a Site Visitor, I want to be able to search by names or ingredients. <!-- omit in toc -->
+#### User Story 3. As a Site Visitor, I want to be able to upload and move images for my designs. <!-- omit in toc -->
 
 - Requirements considered
-  - Search by ingredients or name
+  - Design page
+    - Visible to all site visitors
+    - Navigates to design page, (superuser) edit and delete templates (mockups)
+    - Upload of content only for registered for users
+    - Template with a canvas area, where customisation occurs
+    - Control panel for customising chosen apparel
 
 - Tests
   | Step | Expected Result | Devices | Test Result |
   | --- | --- | --- | --- |
-  | Sign in as Admin, from Collection page, input Chickpeas (ingredient and in name of one recipe) | See list of recipes with chickpeas in name or ingredients | Desktop, Tablet, Mobile| All passed |
-  | Sign in as User1, from Collection page, input Chickpeas (ingredient and in name of one recipe) | See list of recipes with chickpeas in name or ingredients | Desktop, Tablet, Mobile| All passed |
-  | From Collection page, input apples (ingredient not currently in name of one recipe) | No results found returned | Desktop, Tablet, Mobile| All passed |
+  | All Users (signed in / not), click on Design page | See overview of templates with links to customisation pages | Desktop, Tablet, Mobile| All passed |
+  | Signed in as Admin, click on Design page | See buttons to Edit or Remove at the bottom of each template | Desktop, Tablet, Mobile| All passed |
+  | Signed in as User1, click on Design page | No buttons to Edit or Remove at the bottom of each template | Desktop, Tablet, Mobile| All passed |
+  | All users, click on template | See template, buttons to upload or change colour, price, add to cart, add between 1 and 99 items to cart from page | Desktop, Tablet, Mobile | All passed |
+  | All Users, click on cart | See designs added in cart with images or placeholder images, quantity and prices | Desktop, Tablet, Mobile | Added product instead of design, to be resolved in future version |
 
- ![Results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/user_story-3.png)
+ [Results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/user_story-3.png)
 
-#### User Story 4. As a Site Visitor, I want to be able to add new recipes <!-- omit in toc -->
+#### User Story 4. As a Site Visitor, I want to be able to view my past orders. <!-- omit in toc -->
 
 - Requirements considered
-  - Add new recipes to database
+  - User profile page
+    - Only available to signed in users
+    - Shows order history, with option to reorder
 
 - Tests
   | Step | Expected Result | Devices | Test Result |
   | --- | --- | --- | --- |
-  | From Collections page, click on Add button | Redirects to Add Recipe | Desktop, Tablet, Mobile| All passed |
-  | Complete all fieds | Returns successfully submitted message on submission | Desktop, Tablet, Mobile| All passed |  
-  | Automatic redirect to Collection page | New recipe appears in Collection page list | Desktop, Tablet, Mobile| All passed |
+  | Signed in user, click on Account > User Profile | Display list of previous orders | Desktop, Tablet, Mobile| All passed |
+  | Signed in user, on User Profile page > select a past order | See order details | Desktop, Tablet, Mobile| All passed |
+  | User not signed in, attempt to navigate to User Profile URI | Error and redirect link to landing page | All passed |
 
-  ![Results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/user_story-4.png)
+  [Results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/user_story-4.png)
 
-#### User Story 5. As a Site Visitor, I want to be able to edit my recipes. <!-- omit in toc -->
-
-- Requirements considered
-  - Edit recipes, Admin can edit all, User can only edit what they've created
-
-  | Step | Expected Result | Devices | Test Result |
-  | --- | --- | --- | --- |
-  | From Collections page, click on Edit button | Redirects to Edit Recipe page| Desktop, Tablet, Mobile| All passed |
-  | Edit fieds | Database content pre-populated. Returns successfully submitted message on submission | Desktop, Tablet, Mobile| All passed |  
-  | Automatic redirect to Collection page | Edited recipe appears in Collection page list | Desktop, Tablet, Mobile| All passed |
-
-![Results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/user_story-5.png)
-
-#### User Story 6.  As a Site Visitor, I want to be able to remove recipes I no longer want to share on the site. <!-- omit in toc -->
-
-6.1 Challenge game page
+#### User Story 5. As a Site Visitor, I want to be able to edit my contact details. <!-- omit in toc -->
 
 - Requirements considered
-  - Remove recipes, Admin can remove all, User can only remove what they've created
+  - User profile page
+    - Only available to signed in users
+    - Contains personal information (contact details), editable
 
 - Tests
   | Step | Expected Result | Devices | Test Result |
   | --- | --- | --- | --- |
-  | From Collections page, click on Delete button | Recipe no longer appears on page| Desktop, Tablet, Mobile| All passed |
-  | Signed in as Admin, from Collections page, see where Delete button appears | Delete button appears on all options | Desktop, Tablet, Mobile| All passed |
-  | Signed in as User1, from Collections page, see where Delete button appears | Delete button appears on options created by User1 only | Desktop, Tablet, Mobile| All passed |
+  | Signed in user, click on Account > User Profile | Display saved details | Desktop, Tablet, Mobile| All passed |
+  | Signed in user, on User Profile page > edit details, click save | Changed details saved | Desktop, Tablet, Mobile| All passed |
+  | User not signed in, attempt to navigate to User Profile URI | Error and redirect link to landing page | All passed |
 
-  ![Results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/user_story-6.png)
+[Results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/user_story-5.png)
 
-#### User Story 7. As a Site Visitor, I want to be able to contact site owners and User Story 8. As the Site Owner, I want to make it easy and convenient for users to send suggestions for improvement or bug reports to a dedicated mailbox, thereby improving the chances of them returning <!-- omit in toc -->
+#### User Story 6.  As a Site Visitor, I want to be able to pay for my order securely. <!-- omit in toc -->
+
+- Requirements considered
+  - Checkout
+    - Pay online with secure payment
+
+- Tests
+  | Step | Expected Result | Devices | Test Result |
+  | --- | --- | --- | --- |
+  | Any user, from cart page > click Secure Checkout | | Desktop, Tablet, Mobile| All passed |
+  | Any user,  Using test card details (see Readme for details), click on Complete Order | Order summary, showing order details, error if incorrect card details used | Order summary doesn't show order details |
+
+  [Results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/user_story-6.png)
+
+#### User Story 7.As a Site Visitor, I want to be able to add products to and edit contents of my shopping cart. <!-- omit in toc -->
 
 - Requirements considered
   - Contact form with options to report bugs, make suggestions or other.
 
+Tested as part of User Story 2 and User Story 3.
+
+#### 8. As a Site Visitor, I want to be able to search through products. <!-- omit in toc -->
+
 - Tests
   | Step | Expected Result | Devices | Test Result |
   | --- | --- | --- | --- |
-  | Send test query from contact page | Sends email with emailJS to test inbox and displays message of successful sending | Desktop, Tablet, Mobile | Error message on submission |
+  | Any user, from Products page > enter search term | | Desktop, Tablet, Mobile| Search initially worked, insufficient time to resolve |
 
-  ![Results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/user_story-7.png)
+#### 9. As a Site Visitor, I want to be able to filter products by category, price and name. <!-- omit in toc -->
 
+- Tests
+  | Step | Expected Result | Devices | Test Result |
+  | --- | --- | --- | --- |
+  | Any user, from Products page > selection all options from Filter to test | Filter by price ascending / descending, category etc. | Desktop, Tablet, Mobile| All passed |
 
-#### 8. As the Site Owner, I want to make it easy and convenient for users to send suggestions for improvement or bug reports to a dedicated mailbox, thereby improving the chances of them returning.  <!-- omit in toc -->
-
-Tested with User Story 7.
-
-#### 9. As the Site Owner, I want to restrict recipe-related features to registered users <!-- omit in toc -->
-
-Tested with User Story 2.
-
-## User Story 10. As the Site Owner, I want to be able to easily add, edit or remove recipe dropdown options (cuisine, meal type, diet)
+## User Story 10. As the Site Owner, I want to restrict content uploads to registered users. <!-- omit in toc -->
 
 - Requirements considered
   - Add, Edit or Remove cuisine type options
@@ -279,39 +307,38 @@ Tested with User Story 2.
 
  | Step | Expected Result | Devices | Test Result |
   | --- | --- | --- | --- |
- | Signed in as Admin, from Administrator page, Open Cuisine option and select Edit Button | Changes Cuisine details and returns new detail on Administrator page | Desktop, Tablet, Mobile| All passed |
- | Signed in as Admin, from Administrator page, Open Cuisine option and select Add Button | Add Cuisine details and returns new detail on Administrator page | Desktop, Tablet, Mobile| All passed |
- | Signed in as Admin, from Administrator page, Open Cuisine option and select Edit Button | Changes Cuisine details and returns new detail on Administrator page | Desktop, Tablet, Mobile| All passed |
- | Signed in as Admin, from Administrator page, Open Cuisine option and select Delete Button | Removes Cuisine option from list | Desktop, Tablet, Mobile| All passed |
- | Signed in as Admin, from Administrator page, Open Mealtype option and select Add Button | Add Mealtype details and returns new detail on Administrator page | Desktop, Tablet, Mobile| All passed |
- | Signed in as Admin, from Administrator page, Open Mealtype option and select Edit Button | Changes Mealtype details and returns new detail on Administrator page | Desktop, Tablet, Mobile| All passed |
- | Signed in as Admin, from Administrator page, Open Mealtype option and select Delete Button | Removes Mealtype option from list | Desktop, Tablet, Mobile| All passed |
- | Signed in as Admin, from Administrator page, Open Diets option and select Add Button | Add Diet details and returns new detail on Administrator page | Desktop, Tablet, Mobile| All passed |
- | Signed in as Admin, from Administrator page, Open Diet option and select Edit Button | Changes Diet details and returns new detail on Administrator page | Desktop, Tablet, Mobile| All passed |
- | Signed in as Admin, from Administrator page, Open Diet option and select Delete Button | Removes Diet option from list | Desktop, Tablet, Mobile| All passed |
+ | From Designs detail page | Login prompt if not signed in, else button to upload content | Desktop, Tablet, Mobile| All passed |
 
- ![Results](https://ms3recipebundle.s3.eu-central-1.amazonaws.com/testing/user_story-1.png)
+ [Results](https://ci-ms4-blacksheepprint.s3.eu-central-1.amazonaws.com/testing/user_story-10.png)
 
+## User Story 11. As the Site Owner, I want to view a record of orders in various states. <!-- omit in toc -->
+
+Currently limited to viewing, statuses in future version.
+
+## User Story 12. As the Site Owner, I want to be able to easily add or edit design templates. <!-- omit in toc -->
+
+Tested as part of User Story 3.
+
+## User Story 13. As the Site Owner, I want to be able to easily add or edit products and details. <!-- omit in toc -->
+
+Tested as part of User Story 2.
 ## 4.2 Automated testing
 
-[UILicious:](https://uilicious.com/)
-Tested user login, register and sign out.
-
-[Results)[https://snippet.uilicious.com/embed/test/private/8oQXB8MNQFS5kHi5nmH6BA?stepNum=1&autoplay=0]
-
-Issues related to user error, manually tested highlighted tests and all passed.
+All tests performed manually.
 
 ## 4.3 Testing Bugs - Resolved
 
 | Bug Found | Solution |
 | --- | ---- |
-| Certificate expired error, unable to write to MongoDB | Manually installed security certificate to resolve, with guidance [from]("https://www.mongodb.com/community/forums/t/keep-getting-serverselectiontimeouterror/126190/10") |
-| BadRequestKeyError '400: Bad Request' when adding recipe |  |
+| CSS not loading | env field added |
 
 ## 4.4 Known Bugs
 
 - The website is not optimised for Internet Explorer. No additional work was performed to optimise the site for IE as (extended) support has ended for customers since January 2020 and no further development of IE is expected.
-- Reset function not updating database correctly.
-- Collections page scrolls across page, throws off responsiveness of page on Mobile.
-- Ingredients and methods written to MongoDB appears as single array item instead of list of arrays.
-- Edit ingredients and Edit method in Edit Recipe page results in items being removed from database due to issue with JavaScript code. Further debugging required to resolve this issue.
+- Order success page does not show order details after successful completion, but does show it from profile > past orders view.
+- Google authentication failure
+- Adding designs to cart adds Product equivalent instead
+- Product search not working
+- Allauth pages not loading, defaults to standard
+- Verification and emails not working
+- Quantity buttons not working on cart

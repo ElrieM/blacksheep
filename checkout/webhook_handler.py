@@ -10,6 +10,7 @@ from django.conf import settings
 
 # Internal:
 from products.models import Product
+from designs.models import Mockup
 from profiles.models import UserProfile
 from .models import Order, OrderLineItem
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -18,7 +19,6 @@ class StripeWH_Handler:
     """
     Handles stripe webhooks
     """
-
     def __init__(self, request):
         """
         Initialise handler
@@ -39,7 +39,7 @@ class StripeWH_Handler:
         send_mail(
             subject,
             body,
-            settings.DEFAULT_FROM-EMAIL,
+            settings.DEFAULT_FROM_EMAIL,
             [cust_email]
         )
 
@@ -156,6 +156,7 @@ class StripeWH_Handler:
         self._send_confirmation_email(order)
         return HttpResponse(content=f'Webhook received: {event["type"]}',
                             status=200)
+
 
     def handle_payment_intent_payment_failed(self, event):
         """

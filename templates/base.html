@@ -183,7 +183,11 @@
         {% block content %}{% endblock %}
         <footer class="container-fluid fixed-bottom p-0">
             <div class="row nav-bg">
-                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="text-start text-pampas">
+                        <a href="{% url 'home' %}" class="nav-link">Home</a>
+                    </div>
+                </div>
                 <div class="col-4">
                     <div class="text-center text-pampas">
                         <a href="{% url 'terms' %}" class="nav-link">Terms and Conditions</a>

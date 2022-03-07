@@ -10,6 +10,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='google_login'),
-    path('account/', include('allauth.urls')),
-    path('logout/', LogoutView.as_view(), name="logout"),
+    path('accounts/', include('allauth.urls')),
+    path('logout', LogoutView.as_view(), name="logout"),
 ]

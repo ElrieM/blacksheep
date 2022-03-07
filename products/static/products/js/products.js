@@ -9,7 +9,7 @@ $('#sort-selector').change(function() {
         var sort = selectedVal.split("_")[0];
         var direction = selectedVal.split("_")[1];
 
-        currentUrl.searchParams.set("sort", sort);
+       currentUrl.searchParams.set("sort", sort);
         currentUrl.searchParams.set("direction", direction);
 
         window.location.replace(currentUrl);

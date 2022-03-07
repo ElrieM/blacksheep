@@ -26,8 +26,7 @@
                             {% if search_term or current_categories or current_sorting != 'None_None' %}
                                 <span class="small"><a href="{% url 'products' %}">Show All</a> | </span>
                             {% endif %}
-                            {{ products|length }} Products
-                            {% if search_term %}found for {{ search_term }}{% endif %}
+                            {{ products|length }} Products{% if search_term %} found for {{ search_term }}{% endif %}
                         </p>
                     </div>
                     <div class="col-3">
@@ -110,5 +109,5 @@
     </div>
 {% endblock %}
 {% block postloadjs %}
-    <script src="{% static 'js/products.js' %}"></script>
+    <script src="{% static 'products/js/products.js' %}"></script>
 {% endblock %}

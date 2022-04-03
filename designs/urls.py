@@ -12,10 +12,10 @@ urlpatterns = [
     path('', views.designs, name="designs"),
 
     path('mockup/', views.designs, name="designs"),
-    path('mockup/<int:mockup_id>', views.design_mockup, name="design_mockup"),
-    path('mockup/delete/<int:design_id>', views.delete_design, name="delete_design"),
+    path('mockup/<int:mockup_id>/', views.design_mockup, name="design_mockup"),
+    path('mockup/delete/<int:design_id>/', views.delete_design, name="delete_design"),
 
-    path('<int:design_id>', views.design_detail, name='design_detail'),
+    path('<int:design_id>/', views.design_detail, name='design_detail'),
 
     path('add/', views.add_template, name="add_template"),
     path('edit/<int:mockup_id>', views.edit_template, name="edit_template"),

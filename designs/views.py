@@ -5,8 +5,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Mockup
-from .forms import MockupForm
+from .models import Mockup, Design
+from .forms import MockupForm, DesignForm
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -31,6 +31,18 @@ def design_mockup(request, mockup_id):
     """
     mockup = get_object_or_404(Mockup, pk=mockup_id)
 
+    if request.method == 'POST':
+        form = DesignForm(request.POST, request.FILES)
+        if form.is_valid():
+            design = form.save()
+            messages.success(request, 'New design saved successfully')
+            return redirect(reverse('designs'))
+        else:
+            messages.error(request, 'An error occurred when attempting to save design. \
+                Please check form is valid and try again')
+    else:
+        form = DesignForm()
+
     context = {
         'mockup': mockup,
     }
@@ -38,43 +50,28 @@ def design_mockup(request, mockup_id):
     return render(request, 'designs/design_mockup.html', context)
 
 
-@login_required
-def add_mockup(request):
+def design_detail(request, design_id):
     """
-    A view for adding new mockup templates. Only administrative users can make changes.
+    A view to show details of mockup, select options and add to cart
     """
-    if not request.user.is_superuser:
-        messages.error(request, "This action can only be performed by super users.")
-        return redirect(reverse('home'))
 
-    if request.method == 'POST':
-        form = MockupForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'New design template added successfully')
-            return redirect(reverse('add_mockup'))
-        else:
-            messages.error(request, 'An error occurred when attempting to add new design template. \
-                Please check form is valid and try again')
-    else:
-        form = MockupForm()
+    mockup = get_object_or_404(Design, pk=design_id)
 
-    template = 'designs/add_mockup.html'
     context = {
-        'form': form,
+        'mockup': mockup,
     }
-    return render(request, template, context)
+
+    return render(request, 'designs/design_detail.html', context)
 
 
 @login_required
-def edit_mockup(request, mockup_id):
+def edit_template(request, mockup_id):
     """
     A view for editing existing mockup templates. Only administrative users can make changes.
     """
     if not request.user.is_superuser:
         messages.error(request, "This action can only be performed by super users.")
         return redirect(reverse('home'))
-
 
     mockup = get_object_or_404(Mockup, pk=mockup_id)
     if request.method == 'POST':
@@ -90,7 +87,7 @@ def edit_mockup(request, mockup_id):
         form = MockupForm(instance=mockup)
         messages.info(request, f'You are editing {mockup.name}')
 
-    template = 'designs/edit_mockup.html'
+    template = 'designs/edit_template.html'
     context = {
         'form': form,
         'mockup': mockup,
@@ -100,7 +97,7 @@ def edit_mockup(request, mockup_id):
 
 
 @login_required
-def delete_mockup(request, mockup_id):
+def delete_template(request, mockup_id):
     """
     A view to delete a mockup template.
     """
@@ -111,5 +108,44 @@ def delete_mockup(request, mockup_id):
     mockup = get_object_or_404(Mockup, pk=mockup_id)
     mockup.delete()
     messages.success(request, 'Design template removed')
+
+    return redirect(reverse('designs'))
+
+
+@login_required
+def add_template(request):
+    """
+    A view for adding new mockup templates. Only administrative users can make changes.
+    """
+    if not request.user.is_superuser:
+        messages.error(request, "This action can only be performed by super users.")
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = MockupForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New design template added successfully')
+            return redirect(reverse('admin_overview'))
+        else:
+            messages.error(request, 'An error occurred when attempting to add new design template. \
+                Please check form is valid and try again')
+    else:
+        form = MockupForm()
+
+    template = 'designs/add_template.html'
+    context = {
+        'form': form,
+    }
+    return render(request, template, context)
+
+
+def delete_design(request, design_id):
+    """
+    A view to delete a design.
+    """
+    saved_design = get_object_or_404(Mockup, pk=design_id)
+    saved_design.delete()
+    messages.success(request, 'Saved design removed')
 
     return redirect(reverse('designs'))

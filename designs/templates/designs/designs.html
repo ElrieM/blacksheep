@@ -12,7 +12,7 @@
     <div class="container container-content">
         <div class="row">
             <div class="col">
-                <h2 class="text-center md-4">Choose a Product for Your Design</h2>
+                <h2 class="text-center md-4">Choose a Template for Your Design</h2>
                 <hr>
             </div>
             <div class="row">
@@ -25,7 +25,7 @@
                             </div>
                             {% if m.image %}
                                 <a href="{% url 'design_mockup' m.id %}" class="text-center">
-                                    <img class="card-img-top" src="{{ m.image_url }}" alt="{{ m.name }}">
+                                    <img class="card-img-top" src="{{ m.image.url }}" alt="{{ m.name }}">
                                 </a>
                             {% else %}
                                 <a href="{% url 'design_mockup' m.id %}" class="text-center">
@@ -37,8 +37,8 @@
                             <!-- Design template in card (body) -->
                             <div class="card-body">
                                 {% if request.user.is_superuser %}
-                                    <a href="{% url 'edit_mockup' m.id %}" class="btn btn-link">Edit</a>
-                                    <a href="{% url 'delete_mockup' m.id %}" class="btn btn-link">Delete</a>
+                                    <a href="{% url 'edit_template' m.id %}" class="btn btn-link">Edit</a>
+                                    <a href="{% url 'delete_template' m.id %}" class="btn btn-link">Delete</a>
                                 {% endif %}
                             </div>
                             <div class="card-footer">

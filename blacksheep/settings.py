@@ -20,7 +20,7 @@ if 'X_FRAME_OPTIONS' in os.environ:
     X_FRAME_OPTIONS = 'ALLOW-FROM https://ci-ms4-blacksheepprint.herokuapp.com/*'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -33,7 +33,6 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 
 ALLOWED_HOSTS = ['ci-ms4-blacksheepprint.herokuapp.com', 'localhost', '127.0.0.1']
-
 
 # Application definition
 

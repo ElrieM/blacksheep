@@ -1,9 +1,0 @@
-Django
-Pillow
-django-utils
-Flask
-Jinja2
-MarkupSafe
-PyJWT
-pyOpenSSL
-Werkzeug

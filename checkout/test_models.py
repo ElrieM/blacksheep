@@ -17,8 +17,23 @@ class TestCheckoutModel(TestCase):
     Checkout model testing class
 
     """
-    Product.objects.create(
-        name='Test User',
-        price='99.99',
-        stock_code='CHITSH001',
-    )
+    def setup(self):
+        Product.objects.create(
+            name='Test User',
+            price='99.99',
+            stock_code='CHITSH001',
+            description='Test description',
+        )
+
+        Order.objects.create(
+            full_name='Test Name',
+            email='test@email.com',
+            phone_number='1234567890',
+            country='NL',
+            town_or_city='Test City',
+            street_address1='Test Address',
+        )
+
+    def test_order_str_method(self):
+        order = Order.objects.get(email='test@email.com')
+        self.assertEqual(str(order), order.order_number)

@@ -34,10 +34,10 @@ card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
     if (event.error) {
         var html = `
-        <span class="icon" role="alert">
-            <i class="fas fa-times"></i>
-        </span>
-        <span>${event.error.message}</span>
+            <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>${event.error.message}</span>
         `;
         $(errorDiv).html(html);
     } else {
@@ -48,7 +48,7 @@ card.addEventListener('change', function (event) {
 // Handle form submit
 var form = document.getElementById('payment-form');
 
-form.addEventListener('submit', function (ev) {
+form.addEventListener('submit', function(ev) {
     ev.preventDefault();
     card.update({'disabled': true});
     $('#submit-button').attr('disabled', true);
@@ -77,8 +77,8 @@ form.addEventListener('submit', function (ev) {
                         line1: $.trim(form.street_address1.value),
                         line2: $.trim(form.street_address2.value),
                         city: $.trim(form.town_or_city.value),
-                        state: $.trim(form.county.value),
                         country: $.trim(form.country.value),
+                        state: $.trim(form.county.value),
                     }
                 }
             },
@@ -94,7 +94,7 @@ form.addEventListener('submit', function (ev) {
                     country: $.trim(form.country.value),
                 }
             },
-        }).then(function (result) {
+        }).then(function(result) {
             if (result.error) {
                 // Show card error message to customer
                 var errorDiv = document.getElementById('card-errors');

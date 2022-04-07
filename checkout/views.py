@@ -3,14 +3,15 @@
 # 3rd party:
 import json
 import stripe
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse, get_object_or_404, HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.contrib import messages
 
 # Internal:
 from products.models import Product
-from designs.models import Mockup
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from cart.contexts import cart_contents
@@ -28,7 +29,6 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-
         stripe.PaymentIntent.modify(
             pid,
             metadata={
@@ -104,8 +104,10 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_cart'))
 
+            # Save info to user profile if inputs valid
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
+        
         else:
             messages.error(request, "An error occurred, please double-check your details.")
     else:
@@ -121,7 +123,6 @@ def checkout(request):
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
-            payment_method_types=["card"],
         )
 
         if request.user.is_authenticated:

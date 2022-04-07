@@ -34,7 +34,7 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['ci-ms4-blacksheepprint.herokuapp.com', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-elriem-cims4blacksheep-daaaptwgk3r.ws-eu38.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-elriem-cims4blacksheep-iu4gm6g0rmo.ws-eu38.gitpod.io']
 
 # Application definition
 

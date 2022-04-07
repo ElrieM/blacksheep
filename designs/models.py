@@ -51,16 +51,7 @@ class Design(models.Model):
         """
         verbose_name_plural = 'Designs'
 
-    stock_code = models.CharField(max_length=254,
-                                  null=True,
-                                  blank=True)
     name = models.CharField(max_length=254)
-    description = models.TextField()
-    has_sizes = models.BooleanField(default=True,
-                                    null=True,
-                                    blank=True)
-    price = models.DecimalField(max_digits=6,
-                                decimal_places=2)
     user_profile = models.ForeignKey(UserProfile,
                                      on_delete=models.SET_NULL,
                                      null=True,

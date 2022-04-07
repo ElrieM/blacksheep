@@ -42,10 +42,6 @@ class DesignForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        placeholders = {
-            'name': 'Name',
-            'description': 'Short Description',
-        }
 
         for field_name, field, in self.fields.items():
             field.widget.attrs['class'] = 'border-dark'

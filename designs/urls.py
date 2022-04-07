@@ -14,7 +14,6 @@ urlpatterns = [
     path('mockup/', views.designs, name="designs"),
     path('mockup/<int:mockup_id>/', views.design_mockup, name="design_mockup"),
     path('mockup/delete/<int:design_id>/', views.delete_design, name="delete_design"),
-
     path('<int:design_id>/', views.design_detail, name='design_detail'),
 
     path('add/', views.add_template, name="add_template"),

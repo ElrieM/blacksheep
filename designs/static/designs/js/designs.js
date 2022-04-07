@@ -45,9 +45,9 @@ document.getElementById('tshirt-custompicture').addEventListener("change", funct
 // When the user selects a picture that has been added and press the DEL key
 // The object will be removed !
 document.addEventListener("keydown", function (e) {
-    var keyCode = e.key;
+    var keyCode = e.keyCode;
 
-    if (keyCode == 46) {
+    if (keyCode == "Delete") {
         console.log("Removing selected element on Fabric.js on DELETE key !");
         canvas.remove(canvas.getActiveObject());
     }

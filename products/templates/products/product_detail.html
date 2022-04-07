@@ -85,22 +85,24 @@
                                     <div class="input-group input-group-{{ product.id }}">
                                         <div class="input-group-prepend">
                                             <button class="decrement-qty btn decrement-qty_{{ product.id }}"
-                                                    data-item_id="{{ product.id }}">
+                                                    data-item_id="{{ product.id }}" title="decrement-qty">
                                                 <span class="icon">
                                                     <i class="fas fa-minus"></i>
                                                 </span>
                                             </button>
                                         </div>
+                                        <label for="quantity-input" hidden>Quantity</label>
                                         <input type="number"
                                                class="form-control qty_input id_qty_{{ product.id }}"
                                                name="quantity"
                                                value="1"
                                                min="1"
                                                max="99"
-                                               data-item_id="{{ product.id }}">
+                                               data-item_id="{{ product.id }}"
+                                               id="quantity-input">
                                         <div class="input-group-append">
                                             <button class="increment-qty btn increment-qty_{{ product.id }}"
-                                                    data-item_id="{{ product.id }}">
+                                                    data-item_id="{{ product.id }}" title="increment-qty">
                                                 <span class="icon">
                                                     <i class="fas fa-plus"></i>
                                                 </span>

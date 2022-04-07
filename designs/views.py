@@ -34,7 +34,7 @@ def design_mockup(request, mockup_id):
     if request.method == 'POST':
         design_form = DesignForm(request.POST, request.FILES)
         if design_form.is_valid():
-            design = design_form.save()
+            mockup = design_form.save()
             messages.success(request, 'New design saved successfully')
             return redirect(reverse('designs'))
         else:

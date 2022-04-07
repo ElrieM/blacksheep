@@ -24,69 +24,39 @@ def add_to_cart(request, item_id):
     product_or_design = request.POST.get('product_or_design')
     size = None
 
-    if product_or_design == "product": # Adding pre-made products
+    if product_or_design == "product":
         product = get_object_or_404(Product, pk=item_id)
+    else:
+        product = get_object_or_404(Mockup, pk=item_id)
 
-        if 'product_size' in request.POST:
-            size = request.POST['product_size']
-        cart = request.session.get('cart', {})
+    if 'product_size' in request.POST:
+        size = request.POST['product_size']
+    cart = request.session.get('cart', {})
 
-        if size:
-            if item_id in list(cart.keys()):
-                if size in cart[item_id]['items_by_size'].keys():
-                    cart[item_id]['items_by_size'][size] += quantity
-                    messages.success(
-                        request,
-                        f'Added additional {product.name} size {size.upper()} to cart'
-                    )
-                else:
-                    cart[item_id]['items_by_size'][size] = quantity
-                    messages.success(
-                        request,
-                        f'Added {product.name} size {size.upper()} to cart')
+    if size:
+        if item_id in list(cart.keys()):
+            if size in cart[item_id]['items_by_size'].keys():
+                cart[item_id]['items_by_size'][size] += quantity
+                messages.success(
+                    request,
+                    f'Added additional {product.name} size {size.upper()} to cart'
+                )
             else:
-                cart[item_id] = {'items_by_size': {size: quantity}}
-                messages.success(request,
-                                f'Added {product.name} to cart')
+                cart[item_id]['items_by_size'][size] = quantity
+                messages.success(
+                    request,
+                    f'Added {product.name} size {size.upper()} to cart')
         else:
-            if item_id in list(cart.keys()):
-                cart[item_id] += quantity
-                messages.success(request, f'Added additional {product.name} to cart')
-            else:
-                cart[item_id] = quantity
-                messages.success(request, f'{product.name} added to cart')
-
-    else: # Adding mockup
-        mockup = get_object_or_404(Mockup, pk=item_id)
-
-        if 'mockup_size' in request.POST:
-            size = request.POST['mockup_size']
-        cart = request.session.get('cart', {})
-
-        if size:
-            if item_id in list(cart.keys()):
-                if size in cart[item_id]['items_by_size'].keys():
-                    cart[item_id]['items_by_size'][size] += quantity
-                    messages.success(
-                        request,
-                        f'Added additional {mockup.name} size {size.upper()} to cart'
-                    )
-                else:
-                    cart[item_id]['items_by_size'][size] = quantity
-                    messages.success(
-                        request,
-                        f'Added {mockup.name} size {size.upper()} to cart')
-            else:
-                cart[item_id] = {'items_by_size': {size: quantity}}
-                messages.success(request,
-                                f'Added {mockup.name} to cart')
+            cart[item_id] = {'items_by_size': {size: quantity}}
+            messages.success(request,
+                            f'Added {product.name} to cart')
+    else:
+        if item_id in list(cart.keys()):
+            cart[item_id] += quantity
+            messages.success(request, f'Added {product.name} to cart')
         else:
-            if item_id in list(cart.keys()):
-                cart[item_id] += quantity
-                messages.success(request, f'Added {mockup.name} to cart')
-            else:
-                cart[item_id] = quantity
-                messages.success(request, f'{mockup.name} added to cart')
+            cart[item_id] = quantity
+            messages.success(request, f'{product.name} added to cart')
 
     request.session['cart'] = cart
     return redirect(redirect_url)
